@@ -1,6 +1,7 @@
 Extract from my blog at : http://diversecollectionofexperiences.blogspot.co.uk/2012/07/malodic-banjo-arranger-part-1.html
 
 Malodic Banjo Arranger Part 1
+-----------------------------
 As part of a push to develop my skills further and raise my visibility within the coding community, I decided to startup a number of open source projects and hopefully leverage existing source on CodePlex, GitHib etc... to take the pain out of getting a project up and running.
 
 Being a part time musician and a long term fan of the Banjo, one of the projects I have begun working on is a Melodic Banjo tablature Arranger implemented either as self contained application or plugin module for an existing  tablature/music scoring application.
