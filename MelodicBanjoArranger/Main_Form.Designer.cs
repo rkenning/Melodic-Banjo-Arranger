@@ -39,13 +39,13 @@
             this.txtStatus.Size = new System.Drawing.Size(551, 102);
             this.txtStatus.TabIndex = 0;
             // 
-            // Form1
+            // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 413);
+            this.ClientSize = new System.Drawing.Size(1280, 467);
             this.Controls.Add(this.txtStatus);
-            this.Name = "Form1";
+            this.Name = "Main_Form";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -20,8 +20,8 @@ namespace MelodicBanjoArranger
 
 
 
-            String filepath1 = @"C:\Work\Other VS Projects\MelodicBanjoArranger\Test Files\bwv772.mid";
-            String filepath2 = @"C:\Work\Other VS Projects\MelodicBanjoArranger\Test Files\bwv772.temp";
+            String filepath1 = @"Test Files\bwv772.mid";
+            String filepath2 = @"Test Files\bwv772.temp";
 
             MidiFileClass test1 = new MidiFileClass();
 
