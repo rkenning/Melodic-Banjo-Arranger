@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.txtStatus = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.musicPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtStatus
@@ -38,28 +37,28 @@
             this.txtStatus.Location = new System.Drawing.Point(16, 11);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(551, 102);
+            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtStatus.Size = new System.Drawing.Size(94, 597);
             this.txtStatus.TabIndex = 0;
             // 
-            // pictureBox1
+            // musicPanel
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 131);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1252, 324);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.musicPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.musicPanel.Location = new System.Drawing.Point(122, 17);
+            this.musicPanel.Name = "musicPanel";
+            this.musicPanel.Size = new System.Drawing.Size(648, 591);
+            this.musicPanel.TabIndex = 1;
+            this.musicPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.musicPanel_Paint);
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 467);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(782, 620);
+            this.Controls.Add(this.musicPanel);
             this.Controls.Add(this.txtStatus);
             this.Name = "Main_Form";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -68,7 +67,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel musicPanel;
 
     }
 }

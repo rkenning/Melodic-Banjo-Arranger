@@ -13,7 +13,8 @@ namespace MelodicBanjoArranger
          public int velocity {get; set;}
          public int duration {get; set;}
          public long position {get; set;}
-
+         public long String { get; set; }
+         public long fret { get; set; }
 
          public BanjoNote(int NoteNumber_, int velocity_, int duration_, long position_)
          {
