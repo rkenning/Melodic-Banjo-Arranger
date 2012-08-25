@@ -92,13 +92,13 @@ namespace MelodicBanjoArranger
 
 
     
-    public class BanjoNotes
+    class BanjoNotes
     {
         //MDimen Array to hold Banjo String, Fret Number, Note Number relationship
         public int[,] allnotes = new int[5,24];
 
-        public BanjoNotes
-            (
+        public BanjoNotes()
+        {
             // Constructor
 
             // Populate the allnotes array with notes from standard tunings
@@ -121,16 +121,10 @@ namespace MelodicBanjoArranger
              */
            // for (int i= 
 
-            );
-
-
-        public static string return_next_note(string last_note)
-        {
-            String Note_part = last_note.Substring(1, 1);
-            String Octave_part = last_note.Substring(2, 1);
-
-            return Note_part + Octave_part;
         }
+
+
+
 
 
     }
