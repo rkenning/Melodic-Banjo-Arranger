@@ -43,7 +43,7 @@
             // 
             // musicPanel
             // 
-            this.musicPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.musicPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.musicPanel.Location = new System.Drawing.Point(122, 17);
             this.musicPanel.Name = "musicPanel";
             this.musicPanel.Size = new System.Drawing.Size(648, 591);
