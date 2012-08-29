@@ -19,7 +19,7 @@ namespace MelodicBanjoArranger
 
 
         private static readonly string[] NoteNames = new string[] { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
-        
+
         public string get_note_name(int noteNumber)
         {
             int octave = noteNumber / 12;
@@ -45,57 +45,19 @@ namespace MelodicBanjoArranger
             noteName = noteOnEvent.OffEvent.NoteName;
         }
 
-
-        public bool Perform_Arrangement()
-        {
-            try
-            {
-                ICollection<ArrangeNote> tempall = new List<ArrangeNote>();
-                foreach (ArrangeNote temp in tempall)
-                {
-
-                    // Review each note and map it to a banjo fret
-                    // perform a seach in the 5 lists for the frequence value
-
-                    //To do
-                    /* -Create 5 sting list sctructors (Note to fret)
-                     * -Add a search across the scturers from each note
-                     * - 
-                     * 
-                     */
-
-
-
-                }
-                return true;
-            }
-            catch { return false; };
-
-        }
-
-
-    }
-
-    public class ArrangeNotes
-    {
-        public ICollection<ArrangeNote> allnotes;
-    }
-
-
-    public class BanjoNote
-    {
-
-
     }
 
 
 
-
-    
-    class BanjoNotes
+    public class BanjoNotes
     {
         //MDimen Array to hold Banjo String, Fret Number, Note Number relationship
-        public int[,] allnotes = new int[5,24];
+        public int[,] allnotes = new int[5, 23];
+        //Define the starting frets for each string (5 string banjo 5th string starts at the 5th fret)
+        public int[] starting_frets = new int[5] { 5, 0, 0, 0, 0 };
+        public int[] starting_notes = new int[5] { 79, 48, 67, 71, 74 };
+
+        public int max_frets = 22;
 
         public BanjoNotes()
         {
@@ -104,9 +66,9 @@ namespace MelodicBanjoArranger
             // Populate the allnotes array with notes from standard tunings
             // ** This can be altered for other tunings **
             // ** Might event add suggested tunings in a later release **
-
             /*
-            string	Note	MIDI Number
+            
+             * string	Note	MIDI Number
             ======	====	===========
             5 - 	D5 	- 74
             4 - 	B4 	- 71
@@ -115,11 +77,27 @@ namespace MelodicBanjoArranger
             1 - 	G5 	- 79
             
             Number of frets :
-              22 Strings 2-5 
-              String 1 = 17 frets 
+              Strings 2-5 = 22 frets
+              String  1 = 17 frets 
 
              */
-           // for (int i= 
+            // Loop through each string
+            for (int string_count = 0; string_count < 5; string_count++)
+            {
+                for (int fret_count = starting_frets[string_count]; fret_count < max_frets + 1; fret_count++)
+                {
+                    if (string_count > 0)
+                    {
+                        allnotes[string_count, fret_count] = starting_notes[string_count] + fret_count;
+                    }
+                    else
+                    {
+                        // Due to the 5th string starting at 5th freet need to adjust off set
+                        allnotes[string_count, fret_count] = starting_notes[string_count] + fret_count - 5;
+                    }
+
+                }
+            }
 
         }
 
@@ -135,3 +113,4 @@ namespace MelodicBanjoArranger
 
 
 }
+

@@ -13,35 +13,12 @@ namespace MelodicBanjoArranger
 {
     public partial class Main_Form : Form
     {
-private  bool note_Draw;
+        private bool note_Draw = false;
 
         public Main_Form()
         {
             InitializeComponent();
 
-            note_Draw = false;
-
-            string referencepath = @"";
-
-
-            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.mid"));
-            String filepath2 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.temp"));
-
-
-            MidiFileClass test1 = new MidiFileClass();
-
-            ArrangeNotes banjocollection = new ArrangeNotes();
-            ICollection<ArrangeNote> tempall = new List<ArrangeNote>();
-
-
-
-            test1.ConvertFile(filepath1, filepath2, 1, 2, tempall);
-
-            foreach (ArrangeNote temp in tempall)
-            {
-                txtStatus.Text += temp.noteNumber + ":" + temp.noteName + ":" + temp.position + "\r\n";
-
-            }
 
 
 
@@ -84,6 +61,10 @@ private  bool note_Draw;
 
 
 
+
+
+
+
                 g.DrawString("9", Font, _noteBrush, 10, 10);
                 g.DrawString("9", Font, _noteBrush, 20, 30);
                 g.DrawString("9", Font, _noteBrush, 10, 40);
@@ -101,9 +82,76 @@ private  bool note_Draw;
             }
         }
 
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+            cmbOctive.Items.Add("0");
+            cmbOctive.Items.Add("1");
+            cmbOctive.Items.Add("2");
+            cmbOctive.Items.Add("3");
+            cmbOctive.Items.Add("-1");
+            cmbOctive.Items.Add("-2");
+            cmbOctive.Items.Add("-3");
+            cmbOctive.SelectedIndex = 0;
+
+            update_arrangement();
+
+        }
+
+        private void update_arrangement()
+        {
+
+            txtNoteMatch.Clear();
+
+            string referencepath = @"";
+
+
+            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.mid"));
+
+            MidiFileClass MidiControlObject = new MidiFileClass();
+            ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();
+            //Load the midifile into the midi object
+            MidiControlObject.ConvertFile(filepath1, 1, 2, MidiObject);
+
+            // Create the banjo object
+            BanjoNotes banjoobject = new BanjoNotes();
+            //Define the matches structure
+            List<matchref> matches = new List<matchref>();
+
+            //Populate the matches 
+            matches = arragement.Perform_Arrangement(MidiObject, banjoobject, Convert.ToInt16(cmbOctive.SelectedItem));
+
+
+            foreach (ArrangeNote temp in MidiObject)
+            {
+
+                // Pass the current note numbe to the arrangenote object to match
+
+
+                txtStatus.Text += temp.noteNumber + ":" + temp.noteName + ":" + temp.position + "\r\n";
+
+            };
+
+
+            foreach (matchref temp in matches)
+            {
+                txtNoteMatch.Text += temp.position.ToString() + ":" + temp.notenumber + ":"
+                    + temp.banjoString + ":" + temp.fret + "\r\n";
+
+            };
+        }
+
+
+        private void cmdArrange_Click(object sender, EventArgs e)
+        {
+            update_arrangement();
+        }
+
+
+
 
 
 
     }
+
 }
 
