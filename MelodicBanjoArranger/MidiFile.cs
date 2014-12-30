@@ -21,6 +21,10 @@ namespace MelodicBanjoArranger
         private List<IEventRule> excludeRules;
         private List<IEventRule> eventRules;
         private List<MidiEvent> insertEvents;
+        public int tempo = 120;
+
+        public int timesig1;
+        public int timesig2;
 
         public MidiFileClass()
         {
@@ -86,6 +90,7 @@ namespace MelodicBanjoArranger
 
             int track = TrackNum;
             IList<MidiEvent> trackEvents = midiFile.Events[track];
+            
             IList<MidiEvent> outputEvents;
             if (fileType == 1 || track == 0)
             {
@@ -115,12 +120,41 @@ namespace MelodicBanjoArranger
                         NoteCollection.Add(tempnote);
                     };
 
+                  
+
+
                     //System.Diagnostics.Debug.Assert(noteOnEvent.OffEvent != null);
                     hasNotes = true;
                     outputEvents.Add(noteOnEvent.OffEvent);
                 }
                 //}
             }
+
+            // Get the tempo events
+            foreach (MidiEvent midiEvent in trackEvents)
+            {
+                //get the tempo and drop out of that track
+                if (midiEvent is TempoEvent)
+                {
+                    //tempo in milliseconds
+                    tempo = (midiEvent as TempoEvent).MicrosecondsPerQuarterNote / 1000;
+                    break;
+                }
+
+
+                //get the tempo and drop out of that track
+                if (midiEvent is TimeSignatureEvent)
+                {
+                    //Time sig
+                    timesig1 = (midiEvent as TimeSignatureEvent).Numerator;
+                    timesig2 = (midiEvent as TimeSignatureEvent).Denominator;
+                    break;
+                }
+            
+            }
+
+
+
             if (fileType == 1 || track == 0)
             {
                 outputFileEvents.AddTrack(outputEvents);

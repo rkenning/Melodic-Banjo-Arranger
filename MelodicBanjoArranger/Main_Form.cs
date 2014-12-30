@@ -13,7 +13,7 @@ namespace MelodicBanjoArranger
 {
     public partial class Main_Form : Form
     {
-        private bool note_Draw = false;
+        private bool note_Draw = true;
 
         public Main_Form()
         {
@@ -119,6 +119,11 @@ namespace MelodicBanjoArranger
 
             //Populate the matches 
             matches = arragement.Perform_Arrangement(MidiObject, banjoobject, Convert.ToInt16(cmbOctive.SelectedItem));
+            int tempo = MidiControlObject.tempo;
+            int timeSig1 = MidiControlObject.timesig1;
+            int timeSig2 = MidiControlObject.timesig2;
+
+            txtStatus.Text += "Tempo = :" + tempo.ToString() + "\r\n";
 
 
             foreach (ArrangeNote temp in MidiObject)
@@ -127,24 +132,30 @@ namespace MelodicBanjoArranger
                 // Pass the current note numbe to the arrangenote object to match
 
 
-                txtStatus.Text += temp.noteNumber + ":" + temp.noteName + ":" + temp.position + "\r\n";
+                txtStatus.Text += "Note Number : "+ temp.noteNumber + " Note name:" + temp.noteName + " Note Postion:" + temp.position + "\r\n";
 
             };
 
 
             foreach (matchref temp in matches)
             {
-                txtNoteMatch.Text += temp.position.ToString() + ":" + temp.notenumber + ":"
-                    + temp.banjoString + ":" + temp.fret + "\r\n";
+                // Write the matched note position to the screen
+                txtNoteMatch.Text += "Position "+ temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number "
+                    + temp.banjoString + ":" + "Fret Number " + temp.fret + "\r\n";
 
             };
         }
+
+
+
 
 
         private void cmdArrange_Click(object sender, EventArgs e)
         {
             update_arrangement();
         }
+
+  
 
 
 
