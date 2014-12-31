@@ -23,8 +23,8 @@ namespace MelodicBanjoArranger
         private List<MidiEvent> insertEvents;
         public int tempo = 120;
 
-        public int timesig1;
-        public int timesig2;
+        public int timesig1 = 4;  //Default for all MIDI files is 4/4
+        public int timesig2 = 4;  //Default for all MIDI files is 4/4  
 
         public MidiFileClass()
         {

@@ -106,6 +106,8 @@ namespace MelodicBanjoArranger
 
 
             String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.mid"));
+            //String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\Take5Score.mid"));
+
 
             MidiFileClass MidiControlObject = new MidiFileClass();
             ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();
@@ -124,6 +126,7 @@ namespace MelodicBanjoArranger
             int timeSig2 = MidiControlObject.timesig2;
 
             txtStatus.Text += "Tempo = :" + tempo.ToString() + "\r\n";
+            txtStatus.Text += "Time Sig = :" + timeSig1+"/"+timeSig2 + "\r\n";
 
 
             foreach (ArrangeNote temp in MidiObject)
