@@ -120,7 +120,7 @@ namespace MelodicBanjoArranger
             List<matchref> matches = new List<matchref>();
 
             //Populate the matches 
-            matches = arragement.Perform_Arrangement(MidiObject, banjoobject, Convert.ToInt16(cmbOctive.SelectedItem));
+            matches = arragement.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(cmbOctive.SelectedItem));
             int tempo = MidiControlObject.tempo;
             int timeSig1 = MidiControlObject.timesig1;
             int timeSig2 = MidiControlObject.timesig2;
