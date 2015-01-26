@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace MelodicBanjoArranger
 {
 
@@ -12,13 +13,15 @@ namespace MelodicBanjoArranger
         public int banjoString { get; set; }
         public int fret { get; set; }
         public long position { get; set; }
+        public string notename { get; set; }
 
-        public matchref(int notenumber_, int banjostring_, int fret_, long position_)
+        public matchref(int notenumber_, int banjostring_, int fret_, long position_ ,string notename_)
         {
             notenumber = notenumber_;
             banjoString = banjostring_;
             fret = fret_;
             position = position_;
+            notename = notename_;
         }
 
         /* 
@@ -29,6 +32,10 @@ namespace MelodicBanjoArranger
          * - Base cost of from and to note postions
          * 
          *  (May need to move things around and create a static list for Find_Matching_Notes)
+         *  
+         * 
+         * 
+         * ALSO  need find or create a  general class to return any note e.g. D7 based on a note number  (See point A1 below)
          */
 
 
@@ -42,7 +49,7 @@ namespace MelodicBanjoArranger
 
         // Populate Matching results List with all possible matching positions to play each note passed in TempAllNotes
         // Also allows for modification of notes by -/+ octive intivals
-        public static List<matchref> Find_Matching_Notes(ICollection<ArrangeNote> TempAllNotes, BanjoNotes banjotemp, int octave_change)
+        public static List<matchref> Find_Matching_Notes(ICollection<ArrangeNote> TempAllNotes, BanjoNotes banjotemp, int transpose)
         {
 
             List<matchref> matchingresults = new List<matchref>();
@@ -57,8 +64,8 @@ namespace MelodicBanjoArranger
                     for (int fret_count = banjotemp.starting_frets[string_count]; fret_count < banjotemp.max_frets + 1; fret_count++)
                     {
                         // If this is a matching note then add the note to the matching results
-                        if (banjotemp.allnotes[string_count, fret_count] == temp1.noteNumber+(24*octave_change))
-                            matchingresults.Add(new matchref(temp1.noteNumber + (24 * octave_change), string_count, fret_count, temp1.position));
+                        if (banjotemp.allnotes[string_count, fret_count] == temp1.noteNumber+(transpose))
+                            matchingresults.Add(new matchref(temp1.noteNumber + (transpose), string_count, fret_count, temp1.position, "test" ));  /* A1 */
 
                     }
                 }

@@ -84,14 +84,7 @@ namespace MelodicBanjoArranger
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
-            cmbOctive.Items.Add("0");
-            cmbOctive.Items.Add("1");
-            cmbOctive.Items.Add("2");
-            cmbOctive.Items.Add("3");
-            cmbOctive.Items.Add("-1");
-            cmbOctive.Items.Add("-2");
-            cmbOctive.Items.Add("-3");
-            cmbOctive.SelectedIndex = 0;
+
 
             update_arrangement();
 
@@ -101,6 +94,11 @@ namespace MelodicBanjoArranger
         {
 
             txtNoteMatch.Clear();
+            txtNotes.Clear();
+
+            txtNoteMatch.Text = null;
+            txtNotes.Text = null;
+            txtUpdate.Text = "";
 
             string referencepath = @"";
 
@@ -119,15 +117,25 @@ namespace MelodicBanjoArranger
             //Define the matches structure
             List<matchref> matches = new List<matchref>();
 
-            //Populate the matches 
-            matches = arragement.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(cmbOctive.SelectedItem));
+
+
+
             int tempo = MidiControlObject.tempo;
             int timeSig1 = MidiControlObject.timesig1;
             int timeSig2 = MidiControlObject.timesig2;
 
-            txtStatus.Text += "Tempo = :" + tempo.ToString() + "\r\n";
-            txtStatus.Text += "Time Sig = :" + timeSig1+"/"+timeSig2 + "\r\n";
 
+
+            txtUpdate.Text += "Starting arrangement Process" + "\r\n";
+            txtUpdate.Text += "========================" + "\r\n";
+            txtUpdate.Text += "Transpose Offset = " + txtTranspose.Text + "\r\n";
+           
+           txtUpdate.Text += "Time Sig = " + timeSig1 + "/" + timeSig2 + "\r\n";
+          /*  txtStatus.Text += "Transpose Value = " + txtTranspose.Text + "\r\n"; */
+
+            //Populate the matches 
+
+            matches = arragement.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
 
             foreach (ArrangeNote temp in MidiObject)
             {
@@ -135,15 +143,15 @@ namespace MelodicBanjoArranger
                 // Pass the current note numbe to the arrangenote object to match
 
 
-                txtStatus.Text += "Note Number : "+ temp.noteNumber + " Note name:" + temp.noteName + " Note Postion:" + temp.position + "\r\n";
+                txtNotes.Text += "Note Number : " + temp.noteNumber + " Note name:" + temp.noteName + " Note Postion:" + temp.position + "\r\n";
 
             };
-
+           
 
             foreach (matchref temp in matches)
             {
                 // Write the matched note position to the screen
-                txtNoteMatch.Text += "Position "+ temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number "
+                txtNoteMatch.Text += "Position " + temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number " 
                     + temp.banjoString + ":" + "Fret Number " + temp.fret + "\r\n";
 
             };
@@ -158,7 +166,9 @@ namespace MelodicBanjoArranger
             update_arrangement();
         }
 
-  
+
+
+
 
 
 

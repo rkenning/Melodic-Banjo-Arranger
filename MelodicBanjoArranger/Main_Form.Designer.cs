@@ -28,26 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
+            this.txtNotes = new System.Windows.Forms.TextBox();
             this.musicPanel = new System.Windows.Forms.Panel();
             this.txtNoteMatch = new System.Windows.Forms.TextBox();
-            this.cmbOctive = new System.Windows.Forms.ComboBox();
             this.cmdArrange = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtTranspose = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtUpdate = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // txtStatus
+            // txtNotes
             // 
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(15, 41);
-            this.txtStatus.Multiline = true;
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatus.Size = new System.Drawing.Size(284, 554);
-            this.txtStatus.TabIndex = 0;
+            this.txtNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNotes.Location = new System.Drawing.Point(15, 41);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtNotes.Size = new System.Drawing.Size(284, 554);
+            this.txtNotes.TabIndex = 0;
             // 
             // musicPanel
             // 
@@ -57,7 +59,7 @@
             this.musicPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.musicPanel.Location = new System.Drawing.Point(782, 41);
             this.musicPanel.Name = "musicPanel";
-            this.musicPanel.Size = new System.Drawing.Size(695, 554);
+            this.musicPanel.Size = new System.Drawing.Size(619, 554);
             this.musicPanel.TabIndex = 1;
             this.musicPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.musicPanel_Paint);
             // 
@@ -71,14 +73,6 @@
             this.txtNoteMatch.Size = new System.Drawing.Size(450, 554);
             this.txtNoteMatch.TabIndex = 2;
             // 
-            // cmbOctive
-            // 
-            this.cmbOctive.FormattingEnabled = true;
-            this.cmbOctive.Location = new System.Drawing.Point(1176, 12);
-            this.cmbOctive.Name = "cmbOctive";
-            this.cmbOctive.Size = new System.Drawing.Size(121, 21);
-            this.cmbOctive.TabIndex = 3;
-            // 
             // cmdArrange
             // 
             this.cmdArrange.Location = new System.Drawing.Point(1303, 12);
@@ -88,16 +82,6 @@
             this.cmdArrange.Text = "Re-Arrange";
             this.cmdArrange.UseVisualStyleBackColor = true;
             this.cmdArrange.Click += new System.EventHandler(this.cmdArrange_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(15, 618);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(1462, 130);
-            this.textBox1.TabIndex = 5;
             // 
             // label1
             // 
@@ -122,25 +106,48 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 598);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Arranged Decision";
+            this.label3.Text = "Status";
+            // 
+            // txtTranspose
+            // 
+            this.txtTranspose.Location = new System.Drawing.Point(1183, 15);
+            this.txtTranspose.Name = "txtTranspose";
+            this.txtTranspose.Size = new System.Drawing.Size(100, 20);
+            this.txtTranspose.TabIndex = 9;
+            this.txtTranspose.Text = "0";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // txtUpdate
+            // 
+            this.txtUpdate.Location = new System.Drawing.Point(12, 625);
+            this.txtUpdate.Multiline = true;
+            this.txtUpdate.Name = "txtUpdate";
+            this.txtUpdate.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtUpdate.Size = new System.Drawing.Size(800, 159);
+            this.txtUpdate.TabIndex = 11;
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1527, 770);
+            this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.txtUpdate);
+            this.Controls.Add(this.txtTranspose);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.cmdArrange);
-            this.Controls.Add(this.cmbOctive);
             this.Controls.Add(this.txtNoteMatch);
             this.Controls.Add(this.musicPanel);
-            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.txtNotes);
             this.Name = "Main_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Melodic Banjo Arranger";
             this.Load += new System.EventHandler(this.Main_Form_Load);
             this.ResumeLayout(false);
@@ -150,15 +157,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.Panel musicPanel;
         private System.Windows.Forms.TextBox txtNoteMatch;
-        private System.Windows.Forms.ComboBox cmbOctive;
         private System.Windows.Forms.Button cmdArrange;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTranspose;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox txtUpdate;
 
     }
 }
