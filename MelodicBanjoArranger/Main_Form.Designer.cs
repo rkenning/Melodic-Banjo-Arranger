@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.musicPanel = new System.Windows.Forms.Panel();
             this.txtNoteMatch = new System.Windows.Forms.TextBox();
@@ -39,11 +40,14 @@
             this.txtTranspose = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.txtUpdate = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNotes
             // 
-            this.txtNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNotes.Location = new System.Drawing.Point(15, 41);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
@@ -59,13 +63,13 @@
             this.musicPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.musicPanel.Location = new System.Drawing.Point(782, 41);
             this.musicPanel.Name = "musicPanel";
-            this.musicPanel.Size = new System.Drawing.Size(619, 554);
+            this.musicPanel.Size = new System.Drawing.Size(619, 254);
             this.musicPanel.TabIndex = 1;
             this.musicPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.musicPanel_Paint);
             // 
             // txtNoteMatch
             // 
-            this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNoteMatch.Location = new System.Drawing.Point(305, 41);
             this.txtNoteMatch.Multiline = true;
             this.txtNoteMatch.Name = "txtNoteMatch";
@@ -116,7 +120,7 @@
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "0";
+            this.txtTranspose.Text = "10";
             // 
             // contextMenuStrip1
             // 
@@ -132,11 +136,32 @@
             this.txtUpdate.Size = new System.Drawing.Size(800, 159);
             this.txtUpdate.TabIndex = 11;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(857, 625);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(272, 117);
+            this.textBox1.TabIndex = 12;
+            this.textBox1.Text = "Banjo Tuning Notes\r\n\r\n4)  D4 = 62\r\n3)  B3 = 59\r\n2)  G3 = 55\r\n1)  C3 = 48\r\n0)  G4 " +
+    "= 67 ";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(782, 316);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(708, 190);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtUpdate);
             this.Controls.Add(this.txtTranspose);
             this.Controls.Add(this.label3);
@@ -150,6 +175,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Melodic Banjo Arranger";
             this.Load += new System.EventHandler(this.Main_Form_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,6 +193,8 @@
         private System.Windows.Forms.TextBox txtTranspose;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtUpdate;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

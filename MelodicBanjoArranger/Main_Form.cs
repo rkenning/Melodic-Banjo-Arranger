@@ -115,7 +115,7 @@ namespace MelodicBanjoArranger
             // Create the banjo object
             BanjoNotes banjoobject = new BanjoNotes();
             //Define the matches structure
-            List<matchref> matches = new List<matchref>();
+            List<MatchNote> matches = new List<MatchNote>();
 
 
 
@@ -129,13 +129,13 @@ namespace MelodicBanjoArranger
             txtUpdate.Text += "Starting arrangement Process" + "\r\n";
             txtUpdate.Text += "========================" + "\r\n";
             txtUpdate.Text += "Transpose Offset = " + txtTranspose.Text + "\r\n";
-           
-           txtUpdate.Text += "Time Sig = " + timeSig1 + "/" + timeSig2 + "\r\n";
-          /*  txtStatus.Text += "Transpose Value = " + txtTranspose.Text + "\r\n"; */
+
+            txtUpdate.Text += "Time Sig = " + timeSig1 + "/" + timeSig2 + "\r\n";
+
 
             //Populate the matches 
 
-            matches = arragement.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
+            matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
 
             foreach (ArrangeNote temp in MidiObject)
             {
@@ -146,13 +146,13 @@ namespace MelodicBanjoArranger
                 txtNotes.Text += "Note Number : " + temp.noteNumber + " Note name:" + temp.noteName + " Note Postion:" + temp.position + "\r\n";
 
             };
-           
 
-            foreach (matchref temp in matches)
+
+            foreach (MatchNote temp in matches)
             {
                 // Write the matched note position to the screen
-                txtNoteMatch.Text += "Position " + temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number " 
-                    + temp.banjoString + ":" + "Fret Number " + temp.fret + "\r\n";
+                txtNoteMatch.Text += "Position " + temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number "
+                    + temp.banjoString + ":" + "Fret Number " + temp.fret + " Note name:" + temp.notename + "\r\n";
 
             };
         }
@@ -164,6 +164,11 @@ namespace MelodicBanjoArranger
         private void cmdArrange_Click(object sender, EventArgs e)
         {
             update_arrangement();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
 
 

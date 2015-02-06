@@ -49,8 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrangementEngine.cs" />
+    <Compile Include="MatchNote.cs" />
     <Compile Include="BanjoNotes.cs" />
+    <Compile Include="DecisionTree.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>

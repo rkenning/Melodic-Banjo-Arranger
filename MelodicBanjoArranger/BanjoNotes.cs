@@ -7,6 +7,19 @@ using NAudio.Midi;
 
 namespace MelodicBanjoArranger
 {
+    public static class note_names
+    {
+
+        private static readonly string[] NoteNames = new string[] { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
+
+        static public string get_note_name(int noteNumber)
+        {
+            int octave = noteNumber / 12;
+            return (string.Format("{0}{1}", NoteNames[noteNumber % 12], octave));
+        }
+    }
+
+
     public class ArrangeNote
     {
         public int noteNumber { get; set; }
@@ -18,13 +31,6 @@ namespace MelodicBanjoArranger
         public long fret { get; set; }
 
 
-        private static readonly string[] NoteNames = new string[] { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
-
-        public string get_note_name(int noteNumber)
-        {
-            int octave = noteNumber / 12;
-            return (string.Format("{0}{1}", NoteNames[noteNumber % 12], octave));
-        }
 
 
         public ArrangeNote(int NoteNumber_, int velocity_, int duration_, long position_)
@@ -55,7 +61,7 @@ namespace MelodicBanjoArranger
         public int[,] allnotes = new int[5, 23];
         //Define the starting frets for each string (5 string banjo 5th string starts at the 5th fret)
         public int[] starting_frets = new int[5] { 5, 0, 0, 0, 0 };
-        public int[] starting_notes = new int[5] { 79, 48, 67, 71, 74 };
+        public int[] starting_notes = new int[5] { 67, 50, 55, 59, 62 };
 
         public int max_frets = 22;
 
@@ -68,13 +74,13 @@ namespace MelodicBanjoArranger
             // ** Might event add suggested tunings in a later release **
             /*
             
-             * string	Note	MIDI Number
-            ======	====	===========
-            5 - 	D5 	- 74
-            4 - 	B4 	- 71
-            3 - 	G4 	- 67
-            2 - 	C3 	- 48
-            1 - 	G5 	- 79
+             * Array Element) string	Note	MIDI Number Array
+                ======	====	===========
+            4)  D4 = 62
+            3)  B3 = 59
+            2)  G3 = 55
+            1)  D3 = 48
+            0)  G4 = 67  
             
             Number of frets :
               Strings 2-5 = 22 frets
