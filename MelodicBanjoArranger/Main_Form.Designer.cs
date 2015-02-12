@@ -42,6 +42,7 @@
             this.txtUpdate = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,9 +62,9 @@
             this.musicPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.musicPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.musicPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.musicPanel.Location = new System.Drawing.Point(782, 41);
+            this.musicPanel.Location = new System.Drawing.Point(782, 139);
             this.musicPanel.Name = "musicPanel";
-            this.musicPanel.Size = new System.Drawing.Size(619, 254);
+            this.musicPanel.Size = new System.Drawing.Size(619, 171);
             this.musicPanel.TabIndex = 1;
             this.musicPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.musicPanel_Paint);
             // 
@@ -79,9 +80,9 @@
             // 
             // cmdArrange
             // 
-            this.cmdArrange.Location = new System.Drawing.Point(1303, 12);
+            this.cmdArrange.Location = new System.Drawing.Point(785, 57);
             this.cmdArrange.Name = "cmdArrange";
-            this.cmdArrange.Size = new System.Drawing.Size(75, 23);
+            this.cmdArrange.Size = new System.Drawing.Size(145, 23);
             this.cmdArrange.TabIndex = 4;
             this.cmdArrange.Text = "Re-Arrange";
             this.cmdArrange.UseVisualStyleBackColor = true;
@@ -116,7 +117,7 @@
             // 
             // txtTranspose
             // 
-            this.txtTranspose.Location = new System.Drawing.Point(1183, 15);
+            this.txtTranspose.Location = new System.Drawing.Point(903, 34);
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
@@ -155,11 +156,21 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(782, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Semitones Transposed";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtUpdate);
@@ -195,6 +206,7 @@
         private System.Windows.Forms.TextBox txtUpdate;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label4;
 
     }
 }

@@ -18,10 +18,6 @@ namespace MelodicBanjoArranger
         public Main_Form()
         {
             InitializeComponent();
-
-
-
-
         }
 
 
@@ -60,24 +56,6 @@ namespace MelodicBanjoArranger
                 }
 
 
-
-
-
-
-
-                g.DrawString("9", Font, _noteBrush, 10, 10);
-                g.DrawString("9", Font, _noteBrush, 20, 30);
-                g.DrawString("9", Font, _noteBrush, 10, 40);
-
-
-                // draw four semi-random full and quarter notes
-                /*g.DrawEllipse(_notePen, 10, 2 * _staffHght, _noteWdth, _noteHght);
-                g.DrawEllipse(_notePen, 50, 4 * _staffHght, _noteWdth, _noteHght);
-
-                g.FillEllipse(_noteBrush, 100, 2 * _staffHght, _noteWdth, _noteHght);
-                g.FillEllipse(_noteBrush, 150, 4 * _staffHght, _noteWdth, _noteHght); */
-
-                //g.DrawString("9",Font,  _noteBrush, 2 * _staffHght, _noteWdth, _noteHght);
 
             }
         }
@@ -126,11 +104,10 @@ namespace MelodicBanjoArranger
 
 
 
-            txtUpdate.Text += "Starting arrangement Process" + "\r\n";
-            txtUpdate.Text += "========================" + "\r\n";
-            txtUpdate.Text += "Transpose Offset = " + txtTranspose.Text + "\r\n";
-
-            txtUpdate.Text += "Time Sig = " + timeSig1 + "/" + timeSig2 + "\r\n";
+            Update_Status("Starting arrangement Process");
+            Update_Status("========================");
+            Update_Status("Transpose Offset = " + txtTranspose.Text);
+            Update_Status("Time Sig = " + timeSig1 + "/" + timeSig2);
 
 
             //Populate the matches 
@@ -172,7 +149,11 @@ namespace MelodicBanjoArranger
         }
 
 
+        public void Update_Status(String strMessage)
+        {
+            txtUpdate.Text += strMessage + "\r\n";
 
+        }
 
 
 
