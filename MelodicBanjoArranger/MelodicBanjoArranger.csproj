@@ -60,7 +60,7 @@
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="MidiFile.cs" />
-    <Compile Include="Notatin.cs" />
+    <Compile Include="Notation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\IEventRule.cs" />

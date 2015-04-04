@@ -81,7 +81,7 @@ namespace MelodicBanjoArranger
             string referencepath = @"";
 
 
-            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.mid"));
+            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.2.mid"));
             //String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\Take5Score.mid"));
 
 
