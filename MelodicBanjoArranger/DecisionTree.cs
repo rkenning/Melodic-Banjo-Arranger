@@ -70,12 +70,13 @@ namespace MelodicBanjoArranger
 
                 if (matchresult.position != matchingresults[matchindex].position)
                 {
+                    //If the route note is position is different than last route note (I.e. not the first note then stop)
                     break;
                 }
-                
+
                 //Add the note as a route node to the DT
                 NoteTree.add_node(0, 0, matchindex);
-                
+
                 // Note is still the same so process from this point
                 Process_Note_Range(matchindex);
 
@@ -89,19 +90,19 @@ namespace MelodicBanjoArranger
         //Accept the parent index as a parameter to allow for recursave calls
         public void Process_Note_Range(int parent_index)
         {
-            
-            
+            // Find the location after the received note from index
+            for (int i = parent_index; i < MatchNotes.matchingresults.Count(); i ++ ) //The last note in the  )
+            {
 
-            
-            // Add this note to the DT
-            NoteTree.add_node(parent_index,parent_index,)
-            
-            
-            //First find the next note after specified parent
-            // (Check the timeframe value not note as the same note may be played x2)
+                // Check the position value of the current index is greater than the recieved index note position
 
 
+                // If the note is 'next' in the position then add the current note to the DT
+                //NoteTree.add_node(parent_index,parent_index,);
 
+
+
+            }
 
         }
 
