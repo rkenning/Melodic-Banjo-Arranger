@@ -43,6 +43,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.cmdBuildDT = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,11 +166,22 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Semitones Transposed";
             // 
+            // cmdBuildDT
+            // 
+            this.cmdBuildDT.Location = new System.Drawing.Point(1006, 56);
+            this.cmdBuildDT.Name = "cmdBuildDT";
+            this.cmdBuildDT.Size = new System.Drawing.Size(75, 23);
+            this.cmdBuildDT.TabIndex = 15;
+            this.cmdBuildDT.Text = "Build DT";
+            this.cmdBuildDT.UseVisualStyleBackColor = true;
+            this.cmdBuildDT.Click += new System.EventHandler(this.cmdBuildDT_Click);
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.cmdBuildDT);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
@@ -207,6 +219,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button cmdBuildDT;
 
     }
 }

@@ -30,19 +30,20 @@ namespace MelodicBanjoArranger
     public class DecisionTree
     {
         // Moved to a public static allowing results to be accessed outside of class
-        public static List<note_node> matchingresults = new List<note_node>();
+        public  static List<note_node> DTData = new List<note_node>();
         note_node temp_note_node = new note_node();
 
-        public void add_node(int parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref)
+        public void add_node(int parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref_)
         {
             //Assign the passed attibute values to the temp object
             temp_note_node.parent_node_index = parent_node_index_;
-            temp_note_node.note_to_idx_ref = parent_node_index_;
+            temp_note_node.note_to_idx_ref = note_to_idx_ref_;
             temp_note_node.note_from_idx_ref = note_from_idx_ref_;
             temp_note_node.cost = 0;
 
             //Add the object to the list
-            matchingresults.Add(temp_note_node);
+            DTData.Add(temp_note_node);
+            
         }
     }
 
@@ -70,7 +71,7 @@ namespace MelodicBanjoArranger
 
                 if (matchresult.position != matchingresults[matchindex].position)
                 {
-                    //If the route note is position is different than last route note (I.e. not the first note then stop)
+                    //If the route note is position is different than last route note (I.e. not the first note position then stop)
                     break;
                 }
 
@@ -90,17 +91,20 @@ namespace MelodicBanjoArranger
         //Accept the parent index as a parameter to allow for recursave calls
         public void Process_Note_Range(int parent_index)
         {
-            // Find the location after the received note from index
+            /* Start the loop at the current index position and work forwards through the 
+                note results untill the next note position is found
+             */
             for (int i = parent_index; i < MatchNotes.matchingresults.Count(); i ++ ) //The last note in the  )
             {
 
                 // Check the position value of the current index is greater than the recieved index note position
-
-
-                // If the note is 'next' in the position then add the current note to the DT
-                //NoteTree.add_node(parent_index,parent_index,);
-
-
+                if (MatchNotes.matchingresults[i].position > MatchNotes.matchingresults[parent_index].position)
+                {
+                    // Current note note is 'next' in the position then add the current note to the DT
+                    NoteTree.add_node(parent_index,parent_index,i);
+                    // Perform recursive call to generate the next tree node
+                    Process_Note_Range(i);
+                }
 
             }
 

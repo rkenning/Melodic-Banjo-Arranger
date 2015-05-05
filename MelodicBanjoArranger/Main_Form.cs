@@ -155,6 +155,23 @@ namespace MelodicBanjoArranger
 
         }
 
+        private void cmdBuildDT_Click(object sender, EventArgs e)
+        {
+            DTController tempDT = new DTController();
+            tempDT.Process_Route_Notes(MatchNotes.matchingresults);
+
+        
+            // list the results  
+            foreach (note_node temp_note in DecisionTree.DTData)
+              {
+                
+
+
+              }
+        
+        
+        }
+
 
 
 
