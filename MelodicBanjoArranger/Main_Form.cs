@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using NAudio.Midi;
 using System.IO;
+using System.Diagnostics;
 
 namespace MelodicBanjoArranger
 {
@@ -157,24 +157,26 @@ namespace MelodicBanjoArranger
 
         private void cmdBuildDT_Click(object sender, EventArgs e)
         {
-            DTController tempDT = new DTController();
-            tempDT.Process_Route_Notes(MatchNotes.matchingresults);
-
-        
-            // list the results  
-            foreach (note_node temp_note in DecisionTree.DTData)
-              {
-                
+            //Create a new Decision Tree Object
 
 
-              }
+            List<note_node> DTData_result = new List<note_node>();
+            DTController.Process_Route_Notes(MatchNotes.matchingresults);
+            
+            DTData_result = DecisionTree.DTData;
+                        
+       
+            // TO DO : Write the DT_Data_Results out to the DT Text box for review
         
         
         }
 
 
 
-
+    public  void writeDT (String Text_Log)
+    {
+         txtDTResults.Text += Text_Log;
+    }
 
 
 

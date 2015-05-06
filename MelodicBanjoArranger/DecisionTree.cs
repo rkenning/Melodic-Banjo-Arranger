@@ -30,11 +30,12 @@ namespace MelodicBanjoArranger
     public class DecisionTree
     {
         // Moved to a public static allowing results to be accessed outside of class
-        public  static List<note_node> DTData = new List<note_node>();
-        note_node temp_note_node = new note_node();
+        public static List<note_node> DTData = new List<note_node>();
+
 
         public void add_node(int parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref_)
         {
+            note_node temp_note_node = new note_node();
             //Assign the passed attibute values to the temp object
             temp_note_node.parent_node_index = parent_node_index_;
             temp_note_node.note_to_idx_ref = note_to_idx_ref_;
@@ -43,26 +44,23 @@ namespace MelodicBanjoArranger
 
             //Add the object to the list
             DTData.Add(temp_note_node);
-            
+
+            //Kill the object
+            temp_note_node = null;
+
         }
     }
 
 
-    public class DTController
+    public static class DTController
     {
 
-        DecisionTree NoteTree;
-        int matchindex = 0;
-
-        public DTController()
-        {
-            //Create the blank decision tree
-            NoteTree = new DecisionTree();
-        }
+        static DecisionTree NoteTree = new DecisionTree();
+        static int matchindex = 0;
 
 
         //Accept the list of matched notes to perform analysis and create the DT
-        public void Process_Route_Notes(List<MatchNote> matchingresults)
+        public static void Process_Route_Notes(List<MatchNote> matchingresults)
         {
             foreach (MatchNote matchresult in matchingresults)
             {
@@ -89,19 +87,19 @@ namespace MelodicBanjoArranger
         }
 
         //Accept the parent index as a parameter to allow for recursave calls
-        public void Process_Note_Range(int parent_index)
+        public static void Process_Note_Range(int parent_index)
         {
             /* Start the loop at the current index position and work forwards through the 
                 note results untill the next note position is found
              */
-            for (int i = parent_index; i < MatchNotes.matchingresults.Count(); i ++ ) //The last note in the  )
+            for (int i = parent_index; i < MatchNotes.matchingresults.Count(); i++) //The last note in the  )
             {
 
                 // Check the position value of the current index is greater than the recieved index note position
                 if (MatchNotes.matchingresults[i].position > MatchNotes.matchingresults[parent_index].position)
                 {
                     // Current note note is 'next' in the position then add the current note to the DT
-                    NoteTree.add_node(parent_index,parent_index,i);
+                    NoteTree.add_node(parent_index, parent_index, i);
                     // Perform recursive call to generate the next tree node
                     Process_Note_Range(i);
                 }
@@ -111,17 +109,5 @@ namespace MelodicBanjoArranger
         }
 
 
-
-
-
     }
-
-
-
-    // TODO: Point to index of list returned from the function Find_Matching_Notes
-    // TODO: Base cost of from and to note postions
-
-    // TODO: (May need to move things around and create a static list for Find_Matching_Notes)
-
-
 }

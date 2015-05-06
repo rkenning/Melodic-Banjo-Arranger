@@ -44,6 +44,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmdBuildDT = new System.Windows.Forms.Button();
+            this.txtDTResults = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +56,7 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNotes.Size = new System.Drawing.Size(284, 554);
+            this.txtNotes.Size = new System.Drawing.Size(229, 554);
             this.txtNotes.TabIndex = 0;
             // 
             // musicPanel
@@ -72,11 +74,11 @@
             // txtNoteMatch
             // 
             this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoteMatch.Location = new System.Drawing.Point(305, 41);
+            this.txtNoteMatch.Location = new System.Drawing.Point(262, 41);
             this.txtNoteMatch.Multiline = true;
             this.txtNoteMatch.Name = "txtNoteMatch";
             this.txtNoteMatch.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNoteMatch.Size = new System.Drawing.Size(450, 554);
+            this.txtNoteMatch.Size = new System.Drawing.Size(204, 554);
             this.txtNoteMatch.TabIndex = 2;
             // 
             // cmdArrange
@@ -101,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(302, 15);
+            this.label2.Location = new System.Drawing.Point(259, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 7;
@@ -176,11 +178,32 @@
             this.cmdBuildDT.UseVisualStyleBackColor = true;
             this.cmdBuildDT.Click += new System.EventHandler(this.cmdBuildDT_Click);
             // 
+            // txtDTResults
+            // 
+            this.txtDTResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDTResults.Location = new System.Drawing.Point(486, 41);
+            this.txtDTResults.Multiline = true;
+            this.txtDTResults.Name = "txtDTResults";
+            this.txtDTResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDTResults.Size = new System.Drawing.Size(281, 554);
+            this.txtDTResults.TabIndex = 16;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(483, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "DT Results";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtDTResults);
             this.Controls.Add(this.cmdBuildDT);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
@@ -220,6 +243,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button cmdBuildDT;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.TextBox txtDTResults;
 
     }
 }
