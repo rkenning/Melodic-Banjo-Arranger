@@ -56,7 +56,7 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNotes.Size = new System.Drawing.Size(229, 554);
+            this.txtNotes.Size = new System.Drawing.Size(465, 299);
             this.txtNotes.TabIndex = 0;
             // 
             // musicPanel
@@ -65,25 +65,25 @@
             this.musicPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.musicPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.musicPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.musicPanel.Location = new System.Drawing.Point(782, 139);
+            this.musicPanel.Location = new System.Drawing.Point(1102, 676);
             this.musicPanel.Name = "musicPanel";
-            this.musicPanel.Size = new System.Drawing.Size(619, 171);
+            this.musicPanel.Size = new System.Drawing.Size(422, 171);
             this.musicPanel.TabIndex = 1;
             this.musicPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.musicPanel_Paint);
             // 
             // txtNoteMatch
             // 
-            this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoteMatch.Location = new System.Drawing.Point(262, 41);
+            this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoteMatch.Location = new System.Drawing.Point(15, 342);
             this.txtNoteMatch.Multiline = true;
             this.txtNoteMatch.Name = "txtNoteMatch";
             this.txtNoteMatch.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNoteMatch.Size = new System.Drawing.Size(204, 554);
+            this.txtNoteMatch.Size = new System.Drawing.Size(465, 253);
             this.txtNoteMatch.TabIndex = 2;
             // 
             // cmdArrange
             // 
-            this.cmdArrange.Location = new System.Drawing.Point(785, 57);
+            this.cmdArrange.Location = new System.Drawing.Point(1218, 435);
             this.cmdArrange.Name = "cmdArrange";
             this.cmdArrange.Size = new System.Drawing.Size(145, 23);
             this.cmdArrange.TabIndex = 4;
@@ -120,7 +120,7 @@
             // 
             // txtTranspose
             // 
-            this.txtTranspose.Location = new System.Drawing.Point(903, 34);
+            this.txtTranspose.Location = new System.Drawing.Point(1336, 412);
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
@@ -142,7 +142,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(857, 625);
+            this.textBox1.Location = new System.Drawing.Point(824, 586);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(272, 117);
@@ -153,16 +153,16 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(782, 316);
+            this.pictureBox1.Location = new System.Drawing.Point(504, 367);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(708, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(698, 190);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(782, 41);
+            this.label4.Location = new System.Drawing.Point(1215, 419);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 13);
             this.label4.TabIndex = 14;
@@ -170,7 +170,7 @@
             // 
             // cmdBuildDT
             // 
-            this.cmdBuildDT.Location = new System.Drawing.Point(1006, 56);
+            this.cmdBuildDT.Location = new System.Drawing.Point(1439, 434);
             this.cmdBuildDT.Name = "cmdBuildDT";
             this.cmdBuildDT.Size = new System.Drawing.Size(75, 23);
             this.cmdBuildDT.TabIndex = 15;
@@ -180,12 +180,12 @@
             // 
             // txtDTResults
             // 
-            this.txtDTResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDTResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDTResults.Location = new System.Drawing.Point(486, 41);
             this.txtDTResults.Multiline = true;
             this.txtDTResults.Name = "txtDTResults";
             this.txtDTResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDTResults.Size = new System.Drawing.Size(281, 554);
+            this.txtDTResults.Size = new System.Drawing.Size(1028, 299);
             this.txtDTResults.TabIndex = 16;
             // 
             // label5

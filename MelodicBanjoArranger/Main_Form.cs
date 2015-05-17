@@ -124,11 +124,13 @@ namespace MelodicBanjoArranger
 
             };
 
-
+            int index;
             foreach (MatchNote temp in matches)
             {
+
+                index = matches.IndexOf(temp);
                 // Write the matched note position to the screen
-                txtNoteMatch.Text += "Position " + temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number "
+                txtNoteMatch.Text += "Current Index : " + index + " Position " + temp.position.ToString() + ":" + "Note Number : " + temp.notenumber + ": String Number "
                     + temp.banjoString + ":" + "Fret Number " + temp.fret + " Note name:" + temp.notename + "\r\n";
 
             };
@@ -159,24 +161,33 @@ namespace MelodicBanjoArranger
         {
             //Create a new Decision Tree Object
 
+            int index;
 
             List<note_node> DTData_result = new List<note_node>();
-            DTController.Process_Route_Notes(MatchNotes.matchingresults);
-            
-            DTData_result = DecisionTree.DTData;
-                        
-       
-            // TO DO : Write the DT_Data_Results out to the DT Text box for review
-        
-        
+            DTData_result.Clear();
+            DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
+
+
+            String Temp_str = null;
+            txtDTResults.Text = null;
+            // Write out the DT Results
+            foreach (note_node temp_node in DTData_result)
+            {
+                index = DTData_result.IndexOf(temp_node);
+                Temp_str = Temp_str += "Current Index :" + index + " " + temp_node.ToString();
+                Temp_str += "\r\n";
+            }
+
+            txtDTResults.Text = Temp_str;
+
         }
 
 
 
-    public  void writeDT (String Text_Log)
-    {
-         txtDTResults.Text += Text_Log;
-    }
+        public void writeDT(String Text_Log)
+        {
+            txtDTResults.Text += Text_Log;
+        }
 
 
 

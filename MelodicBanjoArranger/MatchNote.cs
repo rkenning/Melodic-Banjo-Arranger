@@ -26,6 +26,19 @@ namespace MelodicBanjoArranger
             notename = notename_;
         }
 
+        public override string ToString()
+        {
+            String Temp_string;
+            Temp_string = "Note Number:" + notenumber.ToString();
+            Temp_string += " String:" + banjoString.ToString();
+            Temp_string += " Fret:" + fret.ToString();
+            Temp_string += " Position:" + position.ToString();
+            Temp_string += " NoteName:" + notename.ToString();
+
+            return Temp_string;
+
+        } 
+
     }
 
 
