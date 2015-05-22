@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.txtNotes = new System.Windows.Forms.TextBox();
-            this.musicPanel = new System.Windows.Forms.Panel();
             this.txtNoteMatch = new System.Windows.Forms.TextBox();
             this.cmdArrange = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,6 +45,8 @@
             this.cmdBuildDT = new System.Windows.Forms.Button();
             this.txtDTResults = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cmdCreateDTGraph = new System.Windows.Forms.Button();
+            this.cmdCosts = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,18 +60,6 @@
             this.txtNotes.Size = new System.Drawing.Size(465, 299);
             this.txtNotes.TabIndex = 0;
             // 
-            // musicPanel
-            // 
-            this.musicPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.musicPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.musicPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.musicPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.musicPanel.Location = new System.Drawing.Point(1102, 676);
-            this.musicPanel.Name = "musicPanel";
-            this.musicPanel.Size = new System.Drawing.Size(422, 171);
-            this.musicPanel.TabIndex = 1;
-            this.musicPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.musicPanel_Paint);
-            // 
             // txtNoteMatch
             // 
             this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -78,12 +67,12 @@
             this.txtNoteMatch.Multiline = true;
             this.txtNoteMatch.Name = "txtNoteMatch";
             this.txtNoteMatch.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNoteMatch.Size = new System.Drawing.Size(465, 253);
+            this.txtNoteMatch.Size = new System.Drawing.Size(528, 253);
             this.txtNoteMatch.TabIndex = 2;
             // 
             // cmdArrange
             // 
-            this.cmdArrange.Location = new System.Drawing.Point(1218, 435);
+            this.cmdArrange.Location = new System.Drawing.Point(890, 599);
             this.cmdArrange.Name = "cmdArrange";
             this.cmdArrange.Size = new System.Drawing.Size(145, 23);
             this.cmdArrange.TabIndex = 4;
@@ -120,7 +109,7 @@
             // 
             // txtTranspose
             // 
-            this.txtTranspose.Location = new System.Drawing.Point(1336, 412);
+            this.txtTranspose.Location = new System.Drawing.Point(1008, 576);
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
@@ -142,7 +131,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(824, 586);
+            this.textBox1.Location = new System.Drawing.Point(1243, 734);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(272, 117);
@@ -153,16 +142,16 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(504, 367);
+            this.pictureBox1.Location = new System.Drawing.Point(606, 367);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(698, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(882, 190);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1215, 419);
+            this.label4.Location = new System.Drawing.Point(887, 583);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 13);
             this.label4.TabIndex = 14;
@@ -170,7 +159,7 @@
             // 
             // cmdBuildDT
             // 
-            this.cmdBuildDT.Location = new System.Drawing.Point(1439, 434);
+            this.cmdBuildDT.Location = new System.Drawing.Point(1111, 598);
             this.cmdBuildDT.Name = "cmdBuildDT";
             this.cmdBuildDT.Size = new System.Drawing.Size(75, 23);
             this.cmdBuildDT.TabIndex = 15;
@@ -197,11 +186,33 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "DT Results";
             // 
+            // cmdCreateDTGraph
+            // 
+            this.cmdCreateDTGraph.Location = new System.Drawing.Point(890, 641);
+            this.cmdCreateDTGraph.Name = "cmdCreateDTGraph";
+            this.cmdCreateDTGraph.Size = new System.Drawing.Size(145, 23);
+            this.cmdCreateDTGraph.TabIndex = 18;
+            this.cmdCreateDTGraph.Text = "Create DT Graph";
+            this.cmdCreateDTGraph.UseVisualStyleBackColor = true;
+            this.cmdCreateDTGraph.Click += new System.EventHandler(this.cmdCreateDTGraph_Click);
+            // 
+            // cmdCosts
+            // 
+            this.cmdCosts.Location = new System.Drawing.Point(890, 671);
+            this.cmdCosts.Name = "cmdCosts";
+            this.cmdCosts.Size = new System.Drawing.Size(145, 23);
+            this.cmdCosts.TabIndex = 19;
+            this.cmdCosts.Text = "Calculate Costs";
+            this.cmdCosts.UseVisualStyleBackColor = true;
+            this.cmdCosts.Click += new System.EventHandler(this.cmdCosts_Click);
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.cmdCosts);
+            this.Controls.Add(this.cmdCreateDTGraph);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtDTResults);
             this.Controls.Add(this.cmdBuildDT);
@@ -215,7 +226,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmdArrange);
             this.Controls.Add(this.txtNoteMatch);
-            this.Controls.Add(this.musicPanel);
             this.Controls.Add(this.txtNotes);
             this.Name = "Main_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -230,7 +240,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtNotes;
-        private System.Windows.Forms.Panel musicPanel;
         private System.Windows.Forms.TextBox txtNoteMatch;
         private System.Windows.Forms.Button cmdArrange;
         private System.Windows.Forms.Label label1;
@@ -245,6 +254,8 @@
         private System.Windows.Forms.Button cmdBuildDT;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox txtDTResults;
+        private System.Windows.Forms.Button cmdCreateDTGraph;
+        private System.Windows.Forms.Button cmdCosts;
 
     }
 }

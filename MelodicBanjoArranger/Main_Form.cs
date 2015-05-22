@@ -15,6 +15,8 @@ namespace MelodicBanjoArranger
     {
         private bool note_Draw = true;
 
+        List<note_node> DTData_result = new List<note_node>();
+
         public Main_Form()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace MelodicBanjoArranger
         private void musicPanel_Paint(object sender, PaintEventArgs e)
         {
 
-            if (note_Draw == true)
+         /*   if (note_Draw == true)
             {
                 int _staffHght = 10;
                 Pen _notePen = new Pen(Color.Black, 2);
@@ -54,10 +56,10 @@ namespace MelodicBanjoArranger
                     //txtStatus.Text += temp.noteNumber + ":" + temp.position + "\r\n";
 
                 }
+            
 
 
-
-            }
+            }*/
         }
 
         private void Main_Form_Load(object sender, EventArgs e)
@@ -163,7 +165,7 @@ namespace MelodicBanjoArranger
 
             int index;
 
-            List<note_node> DTData_result = new List<note_node>();
+         
             DTData_result.Clear();
             DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
 
@@ -187,6 +189,37 @@ namespace MelodicBanjoArranger
         public void writeDT(String Text_Log)
         {
             txtDTResults.Text += Text_Log;
+        }
+
+        private void cmdCreateDTGraph_Click(object sender, EventArgs e)
+        {
+            DataVisulisation.Create_Graph(DTData_result);
+        }
+
+        private void cmdCosts_Click(object sender, EventArgs e)
+        {
+            //Create a new Decision Tree Object
+
+            int index;
+
+            List<note_node> DTData_Costs = new List<note_node>();
+
+            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result);
+
+            DTData_result = DTData_Costs;
+            
+
+            String Temp_str = null;
+            txtDTResults.Text = null;
+            // Write out the DT Results
+            foreach (note_node temp_node in DTData_Costs)
+            {
+                index = DTData_Costs.IndexOf(temp_node);
+                Temp_str = Temp_str += "Current Index :" + index + " " + temp_node.ToString();
+                Temp_str += "\r\n";
+            }
+
+            txtDTResults.Text = Temp_str;
         }
 
 

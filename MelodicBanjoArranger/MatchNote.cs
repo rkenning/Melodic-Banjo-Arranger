@@ -37,6 +37,19 @@ namespace MelodicBanjoArranger
 
             return Temp_string;
 
+        }
+
+        public string ToStringSmall()
+        {
+            String Temp_string;
+            Temp_string =  position.ToString();
+            Temp_string += ":" + notenumber.ToString();
+            Temp_string += ":" + banjoString.ToString();
+            Temp_string += ":" + fret.ToString();
+            Temp_string += ":"+ notename.ToString();
+
+            return Temp_string;
+
         } 
 
     }

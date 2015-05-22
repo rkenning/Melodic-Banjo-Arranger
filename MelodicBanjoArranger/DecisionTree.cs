@@ -34,6 +34,17 @@ namespace MelodicBanjoArranger
             return Temp_string;
 
         }
+        
+        public string ToStringSmall()
+        {
+            String Temp_string;
+            Temp_string = "Cost:" + cost.ToString();
+            Temp_string += ":" + NoteDetails.ToStringSmall();
+
+            return Temp_string;
+
+        }
+
 
     }
 
@@ -69,13 +80,16 @@ namespace MelodicBanjoArranger
     {
 
         static DecisionTree NoteTree = new DecisionTree();
-        static int matchindex = 0;
+       
 
 
         //Accept the list of matched notes to perform analysis and create the DT
         public static List<note_node> Process_Route_Notes(List<MatchNote> matchingresults)
         {
             // get the 
+             int matchindex = 0;
+           
+        
 
             foreach (MatchNote matchresult in matchingresults)
             {
