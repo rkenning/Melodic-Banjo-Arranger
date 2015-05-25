@@ -83,9 +83,10 @@ namespace MelodicBanjoArranger
             string referencepath = @"";
 
 
-            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.2.mid"));
+            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.3.mid"));
             //String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\Take5Score.mid"));
 
+            Update_Status("Loading File : " + filepath1);
 
             MidiFileClass MidiControlObject = new MidiFileClass();
             ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();

@@ -47,6 +47,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cmdCreateDTGraph = new System.Windows.Forms.Button();
             this.cmdCosts = new System.Windows.Forms.Button();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,11 +208,24 @@
             this.cmdCosts.UseVisualStyleBackColor = true;
             this.cmdCosts.Click += new System.EventHandler(this.cmdCosts_Click);
             // 
+            // txtFileName
+            // 
+            this.txtFileName.Location = new System.Drawing.Point(15, 808);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(465, 20);
+            this.txtFileName.TabIndex = 20;
+            this.txtFileName.Text = "bwv772.2.mid";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 903);
+            this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.cmdCosts);
             this.Controls.Add(this.cmdCreateDTGraph);
             this.Controls.Add(this.label5);
@@ -256,6 +271,8 @@
         public System.Windows.Forms.TextBox txtDTResults;
         private System.Windows.Forms.Button cmdCreateDTGraph;
         private System.Windows.Forms.Button cmdCosts;
+        private System.Windows.Forms.TextBox txtFileName;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
 
     }
 }

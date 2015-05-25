@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -46,8 +47,8 @@ namespace MelodicBanjoArranger
 
 
                     //Build the Node string values
-                    Parent_Note = temp_node.parent_node_index.GetValueOrDefault().ToString() + ":" + DTArray[temp_node.parent_node_index.GetValueOrDefault()].ToStringSmall();
-                    Current_Note = DTArray.IndexOf(temp_node).ToString() + ":" + temp_node.ToStringSmall();
+                    Parent_Note = temp_node.parent_node_index.GetValueOrDefault().ToString() + "\r\n" + DTArray[temp_node.parent_node_index.GetValueOrDefault()].ToStringSmall();
+                    Current_Note = DTArray.IndexOf(temp_node).ToString() + "\r\n" + temp_node.ToStringSmall();
 
                     // Not route node so add edge details
                     graph.AddEdge(Parent_Note, Current_Note);
