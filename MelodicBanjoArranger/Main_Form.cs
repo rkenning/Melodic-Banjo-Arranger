@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using NAudio.Midi;
 using System.IO;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MelodicBanjoArranger
 {
@@ -99,7 +100,10 @@ namespace MelodicBanjoArranger
             List<MatchNote> matches = new List<MatchNote>();
 
 
-
+      //Get the last note position for arrangements
+            Arrangemenet_engine.last_note_position = MidiObject.Last().position;
+              
+                
 
             int tempo = MidiControlObject.tempo;
             int timeSig1 = MidiControlObject.timesig1;
@@ -221,6 +225,11 @@ namespace MelodicBanjoArranger
             }
 
             txtDTResults.Text = Temp_str;
+        }
+
+        private void cmdCheckTree_Click(object sender, EventArgs e)
+        {
+           
         }
 
 

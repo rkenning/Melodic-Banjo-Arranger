@@ -55,13 +55,13 @@ namespace MelodicBanjoArranger
 
 
 
-    public class DecisionTree
+    public static class DecisionTree
     {
         // Moved to a public static allowing results to be accessed outside of class
-        public static List<note_node> DTData = new List<note_node>();
+        private static List<note_node> DTData = new List<note_node>();
 
 
-        public note_node add_node(int? parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref_, MatchNote NoteDetails_, note_node parent_node_) // Accept null parent note index
+        public static note_node add_node(int? parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref_, MatchNote NoteDetails_, note_node parent_node_) // Accept null parent note index
         {
             note_node temp_note_node = new note_node();
             //Assign the passed attibute values to the temp object
@@ -83,15 +83,36 @@ namespace MelodicBanjoArranger
 
         }
 
-        public List<note_node> get_Children(note_node parent_node)
+        public static List<note_node> get_Children(note_node parent_node_)
         {
             List<note_node> childrenNodes = new List<note_node>();
 
-            //DTData.Where()
+            childrenNodes = DTData.FindAll(obj => obj.parent_node == parent_node_);
 
             //Return the identified children
             return childrenNodes;
         }
+
+        public static List<note_node> get_top_nodes()
+        {
+            List<note_node> tempNodes = new List<note_node>();
+
+            tempNodes = DTData.FindAll(obj => obj.parent_node==null);
+            //Return the identified children
+            return tempNodes;
+
+        }
+
+        public static List<note_node> get_all_nodes()
+        {
+            List<note_node> tempNodes = new List<note_node>();
+
+            tempNodes = DTData;
+            //Return the identified children
+            return tempNodes;
+
+        }
+
 
     }
 
@@ -99,7 +120,7 @@ namespace MelodicBanjoArranger
     public static class DTController
     {
 
-        static DecisionTree NoteTree = new DecisionTree();
+        //static DecisionTree NoteTree = new DecisionTree();
 
 
 
@@ -124,9 +145,9 @@ namespace MelodicBanjoArranger
                     break;
                 }
 
-                int new_node_index;
+       
                 //Add the note as a route node to the DT
-                new_node = NoteTree.add_node(null, 0, matchindex, matchingresults[matchindex], null);
+                new_node = DecisionTree.add_node(null, 0, matchindex, matchingresults[matchindex], null);
 
                 // Note is still the same so process from this point
                 Process_Note_Range(matchindex, new_node.tree_index,  new_node);
@@ -134,7 +155,7 @@ namespace MelodicBanjoArranger
                 matchindex++; // Track the index of the current matched note in the list of notes
 
             }
-            return DecisionTree.DTData;
+            return DecisionTree.get_all_nodes() ;
 
         }
 
@@ -154,7 +175,7 @@ namespace MelodicBanjoArranger
                 if (MatchNotes.matchingresults[i].position > MatchNotes.matchingresults[last_note_index].position)
                 {
                     // Current note note is 'next' in the position then add the current note to the DT
-                    new_node = NoteTree.add_node(last_DT_index, last_note_index, i, MatchNotes.matchingresults[i], parent_node_);
+                    new_node = DecisionTree.add_node(last_DT_index, last_note_index, i, MatchNotes.matchingresults[i], parent_node_);
                     
 
                     // Perform recursive call to generate the next tree node

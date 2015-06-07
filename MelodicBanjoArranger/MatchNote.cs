@@ -79,7 +79,7 @@ namespace MelodicBanjoArranger
                     {
                         
                        /*NOTE : The searching process below is just plain rubbish (from performance perspective) however will redo when 
-                        * Got basics working*/
+                         Got basics working*/
  
 
                         // If this is a matching note then add the note to the matching results
