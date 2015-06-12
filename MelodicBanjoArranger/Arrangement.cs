@@ -24,7 +24,7 @@ namespace MelodicBanjoArranger
         public override string ToString()
         {
             String TempStr;
-            TempStr = "Total Cost: " + total_Cost;
+            TempStr = "Total Cost: " + total_Cost + " Total Neg:"+total_neg +" Total Pos:" +total_pos;
             TempStr += "\r\n";
             foreach (note_node temp_node in arrange_notes)
             {
@@ -121,7 +121,12 @@ namespace MelodicBanjoArranger
                     
                     foreach(note_node temp_node in temp2)
                     {
-                        tempArrange.total_Cost += temp_node.cost; 
+                        tempArrange.total_Cost += temp_node.cost;
+                        if (temp_node.cost < 0)
+                            tempArrange.total_neg += temp_node.cost;
+                        if (temp_node.cost > 0)
+                            tempArrange.total_pos += temp_node.cost;
+                    
                     }
 
 
