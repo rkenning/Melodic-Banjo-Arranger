@@ -32,6 +32,8 @@ namespace MelodicBanjoArranger
             Temp_string = "Parent Note:" + parent_node_index.ToString();
             Temp_string += " cost:" + cost.ToString();
             Temp_string += " Note:" + NoteDetails.ToString();
+            if (parent_node != null)
+                Temp_string += "  -- P:" + parent_node.NoteDetails.ToString();
 
             return Temp_string;
 
@@ -42,6 +44,7 @@ namespace MelodicBanjoArranger
             String Temp_string;
             Temp_string = "Cost:" + cost.ToString();
             Temp_string += ":" + NoteDetails.ToStringSmall();
+           
 
             return Temp_string;
 
@@ -73,13 +76,13 @@ namespace MelodicBanjoArranger
             //Add the object to the list
             DTData.Add(temp_note_node);
 
-          
+
 
             //return the index of the new newly created note node item
-            temp_note_node.tree_index =  DTData.Count() - 1;
+            temp_note_node.tree_index = DTData.Count() - 1;
             return temp_note_node;
-            
- 
+
+
 
         }
 
@@ -97,7 +100,7 @@ namespace MelodicBanjoArranger
         {
             List<note_node> tempNodes = new List<note_node>();
 
-            tempNodes = DTData.FindAll(obj => obj.parent_node==null);
+            tempNodes = DTData.FindAll(obj => obj.parent_node == null);
             //Return the identified children
             return tempNodes;
 
@@ -145,44 +148,45 @@ namespace MelodicBanjoArranger
                     break;
                 }
 
-       
+
                 //Add the note as a route node to the DT
                 new_node = DecisionTree.add_node(null, 0, matchindex, matchingresults[matchindex], null);
 
                 // Note is still the same so process from this point
-                Process_Note_Range(matchindex, new_node.tree_index,  new_node);
+                Process_Note_Range(matchindex, new_node.tree_index, new_node, matchingresults[matchindex]);
 
                 matchindex++; // Track the index of the current matched note in the list of notes
 
             }
-            return DecisionTree.get_all_nodes() ;
+            return DecisionTree.get_all_nodes();
 
         }
 
         //Accept the parent index as a parameter to allow for recursave calls
-        public static void Process_Note_Range(int last_note_index, int? last_DT_index, note_node parent_node_)
+        public static void Process_Note_Range(int last_note_index, int? last_DT_index, note_node parent_node_, MatchNote currentMatchNote)
         {
-            
+
             note_node new_node;
 
             /* Start the loop at the current index position and work forwards through the 
                 note results untill the next note position is found
              */
-            for (int i = last_note_index; i < MatchNotes.matchingresults.Count(); i++) //The last note in the  )
+
+
+            foreach (MatchNote tempMatchNote in MatchNotes.getNextMatchNotes(currentMatchNote))
             {
 
-                // Check the position value of the current index is greater than the recieved index note position
-                if (MatchNotes.matchingresults[i].position > MatchNotes.matchingresults[last_note_index].position)
-                {
-                    // Current note note is 'next' in the position then add the current note to the DT
-                    new_node = DecisionTree.add_node(last_DT_index, last_note_index, i, MatchNotes.matchingresults[i], parent_node_);
-                    
+                int i = 0;    
+                // Current note note is 'next' in the position then add the current note to the DT
+                    new_node = DecisionTree.add_node(last_DT_index, last_note_index, i, tempMatchNote, parent_node_);
 
-                    // Perform recursive call to generate the next tree node
-                    Process_Note_Range(i, new_node.tree_index, new_node);
-                    // Finished processing of the note to break from the loop
-         
-                }
+                    if (new_node.NoteDetails.position < MatchNotes.last_note_position)
+                    {
+                        // If not the last note position then perform recursive call to generate the next tree node
+                        Process_Note_Range(i, new_node.tree_index, new_node, tempMatchNote);
+                        // Finished processing of the note to break from the loop
+                    }
+                
 
             }
 

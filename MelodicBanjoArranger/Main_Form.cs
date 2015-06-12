@@ -21,7 +21,14 @@ namespace MelodicBanjoArranger
         public Main_Form()
         {
             InitializeComponent();
+            //Testing calls below
+
+            update_arrangement();
+            DTData_result.Clear();
+            DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
+
         }
+
 
 
 
@@ -84,7 +91,7 @@ namespace MelodicBanjoArranger
             string referencepath = @"";
 
 
-            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\bwv772.3.mid"));
+            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\"+ txtFileName.Text));
             //String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\Take5Score.mid"));
 
             Update_Status("Loading File : " + filepath1);
@@ -101,7 +108,7 @@ namespace MelodicBanjoArranger
 
 
       //Get the last note position for arrangements
-            Arrangemenet_engine.last_note_position = MidiObject.Last().position;
+            MatchNotes.last_note_position = MidiObject.Last().position;
               
                 
 
@@ -152,10 +159,6 @@ namespace MelodicBanjoArranger
             update_arrangement();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
         public void Update_Status(String strMessage)
@@ -230,6 +233,20 @@ namespace MelodicBanjoArranger
         private void cmdCheckTree_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void cmdCreateArrangemenets_Click(object sender, EventArgs e)
+        {
+            Arrangemenet_engine.create_arrangemnets(DecisionTree.get_all_nodes());
+            String tempStr = "";
+
+            foreach (Arrangement tempArr in Arrangemenet_engine.get_arrangemenets())
+            {
+                tempStr += "Arrangemenet: " +Arrangemenet_engine.get_arrangemenets().IndexOf(tempArr) +  " "+ tempArr.ToString();
+            }
+            
+            txtArrange.Text = tempStr;
+            
         }
 
 

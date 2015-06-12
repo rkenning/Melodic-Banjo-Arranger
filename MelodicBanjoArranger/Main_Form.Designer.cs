@@ -53,11 +53,11 @@
             this.cmdCreateArrangemenets = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtArrange = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -129,7 +129,7 @@
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "10";
+            this.txtTranspose.Text = "0";
             // 
             // contextMenuStrip1
             // 
@@ -228,7 +228,7 @@
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(325, 20);
             this.txtFileName.TabIndex = 20;
-            this.txtFileName.Text = "bwv772.2.mid";
+            this.txtFileName.Text = "bwv772.3.mid";
             // 
             // openFileDialog1
             // 
@@ -252,6 +252,7 @@
             this.cmdCreateArrangemenets.TabIndex = 22;
             this.cmdCreateArrangemenets.Text = "Create Arrangemenets";
             this.cmdCreateArrangemenets.UseVisualStyleBackColor = true;
+            this.cmdCreateArrangemenets.Click += new System.EventHandler(this.cmdCreateArrangemenets_Click);
             // 
             // tabMain
             // 
@@ -292,6 +293,15 @@
             this.tabPage1.Text = "Initial Stuff";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(636, 499);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Filename";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.pictureBox1);
@@ -304,18 +314,9 @@
             this.tabPage2.Text = "Reference";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(636, 499);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Filename";
-            // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.txtArrange);
             this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -324,6 +325,15 @@
             this.tabPage3.Text = "Arrangemenets";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // txtArrange
+            // 
+            this.txtArrange.Location = new System.Drawing.Point(557, 21);
+            this.txtArrange.Multiline = true;
+            this.txtArrange.Name = "txtArrange";
+            this.txtArrange.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtArrange.Size = new System.Drawing.Size(626, 449);
+            this.txtArrange.TabIndex = 1;
+            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -331,15 +341,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(515, 449);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(557, 21);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(626, 449);
-            this.textBox2.TabIndex = 1;
             // 
             // Main_Form
             // 
@@ -392,7 +393,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtArrange;
         private System.Windows.Forms.DataGridView dataGridView1;
 
     }
