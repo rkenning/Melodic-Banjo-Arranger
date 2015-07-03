@@ -10,6 +10,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Linq;
 
+
 namespace MelodicBanjoArranger
 {
     public partial class Main_Form : Form
@@ -242,10 +243,21 @@ namespace MelodicBanjoArranger
 
             foreach (Arrangement tempArr in Arrangemenet_engine.get_arrangemenets())
             {
-                tempStr += "Arrangemenet: " +Arrangemenet_engine.get_arrangemenets().IndexOf(tempArr) +  " "+ tempArr.ToString();
+                tempStr +=  tempArr.ToString();
             }
-            
+
+            txtArrange.Text = null;
             txtArrange.Text = tempStr;
+
+            /* Bind the arrangemenet collection to the Grid Form control
+             */
+            
+            // Copy returned list object to temp sortable binding list
+
+
+            dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
+
+
             
         }
 

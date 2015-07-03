@@ -57,13 +57,13 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtArrange = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dGridArrangements = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNotes
@@ -317,7 +317,7 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.txtArrange);
-            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.dGridArrangements);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1495, 834);
@@ -334,13 +334,14 @@
             this.txtArrange.Size = new System.Drawing.Size(626, 449);
             this.txtArrange.TabIndex = 1;
             // 
-            // dataGridView1
+            // dGridArrangements
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(515, 449);
-            this.dataGridView1.TabIndex = 0;
+            this.dGridArrangements.AllowUserToOrderColumns = true;
+            this.dGridArrangements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGridArrangements.Location = new System.Drawing.Point(18, 21);
+            this.dGridArrangements.Name = "dGridArrangements";
+            this.dGridArrangements.Size = new System.Drawing.Size(515, 767);
+            this.dGridArrangements.TabIndex = 0;
             // 
             // Main_Form
             // 
@@ -360,7 +361,7 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -394,7 +395,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox txtArrange;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dGridArrangements;
 
     }
 }

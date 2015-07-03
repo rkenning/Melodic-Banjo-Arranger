@@ -8,10 +8,12 @@ namespace MelodicBanjoArranger
 {
     public class Arrangement
     {
+        public int Arr_index { get; set; }
         public int total_Cost { get; set; }
         public int total_variance { get; set; }
         public int total_pos { get; set; }
         public int total_neg { get; set; }
+       
 
         List<note_node> arrange_notes { get; set; }
 
@@ -24,7 +26,7 @@ namespace MelodicBanjoArranger
         public override string ToString()
         {
             String TempStr;
-            TempStr = "Total Cost: " + total_Cost + " Total Neg:"+total_neg +" Total Pos:" +total_pos;
+            TempStr = "Index: " + Arr_index+  " Total Cost: " + total_Cost + " Total Neg:"+total_neg +" Total Pos:" +total_pos;
             TempStr += "\r\n";
             foreach (note_node temp_node in arrange_notes)
             {
@@ -44,6 +46,8 @@ namespace MelodicBanjoArranger
         //Add arrangemenet objects to arrangemenets list
         public static void add_arrangemenet(Arrangement temp_arr_)
         {
+           int last_index = Arrange_list.Count();
+           temp_arr_.Arr_index = last_index + 1; 
             Arrange_list.Add(temp_arr_);
         }
 
@@ -53,6 +57,12 @@ namespace MelodicBanjoArranger
             return Arrange_list;
         }
 
+        public static SortableBindingList<Arrangement> get_arrangemenets_sortable()
+        {
+            SortableBindingList<Arrangement> tempList = new SortableBindingList<Arrangement>(Arrange_list);
+            return tempList;
+          
+        }
 
 
 
@@ -69,6 +79,13 @@ namespace MelodicBanjoArranger
         {
             return Arrangemenets.get_arrangemenets();
         }
+
+
+        public static SortableBindingList<Arrangement> get_arrangemenets_sortable()
+        {
+            return Arrangemenets.get_arrangemenets_sortable();
+        }
+
 
         public static void create_arrangemnets(List<note_node> in_DT_Notes_)
         {
