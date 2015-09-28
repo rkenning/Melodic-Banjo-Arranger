@@ -37,38 +37,38 @@ namespace MelodicBanjoArranger
         private void musicPanel_Paint(object sender, PaintEventArgs e)
         {
 
-         /*   if (note_Draw == true)
-            {
-                int _staffHght = 10;
-                Pen _notePen = new Pen(Color.Black, 2);
-                Brush _noteBrush = Brushes.Black;
+            /*   if (note_Draw == true)
+               {
+                   int _staffHght = 10;
+                   Pen _notePen = new Pen(Color.Black, 2);
+                   Brush _noteBrush = Brushes.Black;
 
-                Graphics g = e.Graphics;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                   Graphics g = e.Graphics;
+                   g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-                this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-
-
-                // Draw six staffs of 5 lines down the page
-                for (int staffs = 0; staffs < 6; staffs++)
-                {
-                    // draw some staff lines
-                    for (int i = 1 + (staffs * 6 + 1); i < 6 + (staffs * 6 + 1); i++)
-                        g.DrawLine(Pens.Black, 0, i * _staffHght, musicPanel.Width, i * _staffHght);
-                }
+                   this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 
 
-                ICollection<ArrangeNote> tempall = new List<ArrangeNote>();
-                //Loop though the midi events and write the note and fret position
-                foreach (ArrangeNote temp in tempall)
-                {
-                    //txtStatus.Text += temp.noteNumber + ":" + temp.position + "\r\n";
+                   // Draw six staffs of 5 lines down the page
+                   for (int staffs = 0; staffs < 6; staffs++)
+                   {
+                       // draw some staff lines
+                       for (int i = 1 + (staffs * 6 + 1); i < 6 + (staffs * 6 + 1); i++)
+                           g.DrawLine(Pens.Black, 0, i * _staffHght, musicPanel.Width, i * _staffHght);
+                   }
 
-                }
-            
+
+                   ICollection<ArrangeNote> tempall = new List<ArrangeNote>();
+                   //Loop though the midi events and write the note and fret position
+                   foreach (ArrangeNote temp in tempall)
+                   {
+                       //txtStatus.Text += temp.noteNumber + ":" + temp.position + "\r\n";
+
+                   }
 
 
-            }*/
+
+               }*/
         }
 
         private void Main_Form_Load(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace MelodicBanjoArranger
             string referencepath = @"";
 
 
-            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\"+ txtFileName.Text));
+            String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\" + txtFileName.Text));
             //String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\Take5Score.mid"));
 
             Update_Status("Loading File : " + filepath1);
@@ -100,7 +100,11 @@ namespace MelodicBanjoArranger
             MidiFileClass MidiControlObject = new MidiFileClass();
             ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();
             //Load the midifile into the midi object
-            MidiControlObject.ConvertFile(filepath1, 1, 2, MidiObject);
+            //MidiControlObject.ConvertFile(filepath1, 1, 2, MidiObject);
+
+            //TODO Add process to specific select track for processing Currently track 0 is only processed
+            MidiControlObject.ConvertFile(filepath1, 1, 0, MidiObject);  //Note track number 0 being used for the current file
+
 
             // Create the banjo object
             BanjoNotes banjoobject = new BanjoNotes();
@@ -108,10 +112,10 @@ namespace MelodicBanjoArranger
             List<MatchNote> matches = new List<MatchNote>();
 
 
-      //Get the last note position for arrangements
+            //Get the last note position for arrangements
             MatchNotes.last_note_position = MidiObject.Last().position;
-              
-                
+
+
 
             int tempo = MidiControlObject.tempo;
             int timeSig1 = MidiControlObject.timesig1;
@@ -174,7 +178,7 @@ namespace MelodicBanjoArranger
 
             int index;
 
-         
+
             DTData_result.Clear();
             DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
 
@@ -216,7 +220,7 @@ namespace MelodicBanjoArranger
             DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result);
 
             DTData_result = DTData_Costs;
-            
+
 
             String Temp_str = null;
             txtDTResults.Text = null;
@@ -233,7 +237,7 @@ namespace MelodicBanjoArranger
 
         private void cmdCheckTree_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cmdCreateArrangemenets_Click(object sender, EventArgs e)
@@ -243,7 +247,7 @@ namespace MelodicBanjoArranger
 
             foreach (Arrangement tempArr in Arrangemenet_engine.get_arrangemenets())
             {
-                tempStr +=  tempArr.ToString();
+                tempStr += tempArr.ToString();
             }
 
             txtArrange.Text = null;
@@ -251,14 +255,14 @@ namespace MelodicBanjoArranger
 
             /* Bind the arrangemenet collection to the Grid Form control
              */
-            
+
             // Copy returned list object to temp sortable binding list
 
 
             dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
 
 
-            
+
         }
 
 

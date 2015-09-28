@@ -228,7 +228,7 @@
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(325, 20);
             this.txtFileName.TabIndex = 20;
-            this.txtFileName.Text = "bwv772.3.mid";
+            this.txtFileName.Text = "Dance1.mid";
             // 
             // openFileDialog1
             // 

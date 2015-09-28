@@ -85,11 +85,10 @@ namespace MelodicBanjoArranger
 
             MidiEventCollection outputFileEvents = new MidiEventCollection(fileType, midiFile.DeltaTicksPerQuarterNote);
             bool hasNotes = false;
-            //for (int track = 0; track < midiFile.Tracks; track++)
-            //{
-
+      
             int track = TrackNum;
-            IList<MidiEvent> trackEvents = midiFile.Events[track];
+            
+            IList<MidiEvent> trackEvents = midiFile.Events[track];  // Notes the use of the Track reference, if invalid track is referenced then causes big issues
             
             IList<MidiEvent> outputEvents;
             if (fileType == 1 || track == 0)
