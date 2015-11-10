@@ -9,14 +9,13 @@ using NAudio.Midi;
 using System.IO;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 
 
 namespace MelodicBanjoArranger
 {
     public partial class Main_Form : Form
     {
-        private bool note_Draw = true;
-
         List<note_node> DTData_result = new List<note_node>();
 
         public Main_Form()
@@ -31,56 +30,18 @@ namespace MelodicBanjoArranger
         }
 
 
-
-
-
-        private void musicPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-            /*   if (note_Draw == true)
-               {
-                   int _staffHght = 10;
-                   Pen _notePen = new Pen(Color.Black, 2);
-                   Brush _noteBrush = Brushes.Black;
-
-                   Graphics g = e.Graphics;
-                   g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-                   this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-
-
-                   // Draw six staffs of 5 lines down the page
-                   for (int staffs = 0; staffs < 6; staffs++)
-                   {
-                       // draw some staff lines
-                       for (int i = 1 + (staffs * 6 + 1); i < 6 + (staffs * 6 + 1); i++)
-                           g.DrawLine(Pens.Black, 0, i * _staffHght, musicPanel.Width, i * _staffHght);
-                   }
-
-
-                   ICollection<ArrangeNote> tempall = new List<ArrangeNote>();
-                   //Loop though the midi events and write the note and fret position
-                   foreach (ArrangeNote temp in tempall)
-                   {
-                       //txtStatus.Text += temp.noteNumber + ":" + temp.position + "\r\n";
-
-                   }
-
-
-
-               }*/
-        }
-
         private void Main_Form_Load(object sender, EventArgs e)
         {
-
-
             update_arrangement();
-
         }
 
         private void update_arrangement()
         {
+
+            //Open Status dlg screen
+            Logging.Open_Dlg();
+
+
 
             txtNoteMatch.Clear();
             txtNotes.Clear();
@@ -93,9 +54,8 @@ namespace MelodicBanjoArranger
 
 
             String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\" + txtFileName.Text));
-            //String filepath1 = Path.GetFullPath(Path.Combine(referencepath, @"..\..\TestFiles\Take5Score.mid"));
 
-            Update_Status("Loading File : " + filepath1);
+            Logging.Update_Status("Loading File : " + filepath1);
 
             MidiFileClass MidiControlObject = new MidiFileClass();
             ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();
@@ -103,8 +63,11 @@ namespace MelodicBanjoArranger
             //MidiControlObject.ConvertFile(filepath1, 1, 2, MidiObject);
 
             //TODO Add process to specific select track for processing Currently track 0 is only processed
-            MidiControlObject.ConvertFile(filepath1, 1, 0, MidiObject);  //Note track number 0 being used for the current file
-
+            int trackNumber;
+            if (Int32.TryParse(txtTrackNumber.Text, out trackNumber))
+                MidiControlObject.ConvertFile(filepath1, 1, trackNumber , MidiObject);  //Note track number 0 being used for the current file
+            else
+                throw new System.ArgumentException("Invalid Track Number.  Music be numeric", "Error");
 
             // Create the banjo object
             BanjoNotes banjoobject = new BanjoNotes();
@@ -115,18 +78,14 @@ namespace MelodicBanjoArranger
             //Get the last note position for arrangements
             MatchNotes.last_note_position = MidiObject.Last().position;
 
-
-
             int tempo = MidiControlObject.tempo;
             int timeSig1 = MidiControlObject.timesig1;
             int timeSig2 = MidiControlObject.timesig2;
 
-
-
-            Update_Status("Starting arrangement Process");
-            Update_Status("========================");
-            Update_Status("Transpose Offset = " + txtTranspose.Text);
-            Update_Status("Time Sig = " + timeSig1 + "/" + timeSig2);
+            Logging.Update_Status("Starting arrangement Process");
+            Logging.Update_Status("========================");
+            Logging.Update_Status("Transpose Offset = " + txtTranspose.Text);
+            Logging.Update_Status("Time Sig = " + timeSig1 + "/" + timeSig2);
 
 
             //Populate the matches 
@@ -164,45 +123,73 @@ namespace MelodicBanjoArranger
             update_arrangement();
         }
 
+        // This delegate enables asynchronous calls for setting
+        // the text property on a TextBox control.
+        delegate void SetTextCallback(string text);
 
 
-        public void Update_Status(String strMessage)
-        {
-            txtUpdate.Text += strMessage + "\r\n";
-
-        }
 
         private void cmdBuildDT_Click(object sender, EventArgs e)
         {
             //Create a new Decision Tree Object
-
+            Logging.Open_Dlg();
             int index;
-
+            string build_line = "";
 
             DTData_result.Clear();
             DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
 
 
             String Temp_str = null;
-            txtDTResults.Text = null;
+            dataDTResults.Rows.Clear();
             // Write out the DT Results
-            foreach (note_node temp_node in DTData_result)
+            Logging.Update_Status("Writing " + DTData_result.Count + " to form");
+            
+
+        
+            long write_count = 1;
+            int last_update =0;
+
+            Logging.Update_Status("Finished DT Build, Updating Screen");
+
+
+            note_node temp_node;
+
+
+            StringBuilder MyStringBuilder = new StringBuilder("");
+
+            // NEW DataGrid Stuff
+            DataTable table = new DataTable("DTResults");
+            
+
+            this.dataDTResults.Columns.Add("Results", "Results");
+            this.dataDTResults.Rows.Add("Test");
+
+            List<String> Result_list = new List<string>();
+
+            for (int i=0; i< DTData_result.Count;i++)
+            //foreach (note_node temp_node in DTData_result)
             {
-                index = DTData_result.IndexOf(temp_node);
-                Temp_str = Temp_str += "Current Index :" + index + " " + temp_node.ToString();
-                Temp_str += "\r\n";
+                temp_node = DTData_result[i];
+                index = i;
+                build_line = "Current Index :" + index + " " + temp_node.ToString()+"\r\n"; ;
+                Result_list.Add(build_line);
+                // this.dataDTResults.Rows.Add(build_line);
+
             }
 
-            txtDTResults.Text = Temp_str;
+            SortableBindingList<String> tempList = new SortableBindingList<string>(Result_list);
+            this.dataDTResults.DataSource = tempList;
 
+            //txtDTResults.AppendText(MyStringBuilder.ToString());
+            //this.lal
+
+            Logging.Update_Status("DT calculation complete & form updated");
         }
 
 
 
-        public void writeDT(String Text_Log)
-        {
-            txtDTResults.Text += Text_Log;
-        }
+   
 
         private void cmdCreateDTGraph_Click(object sender, EventArgs e)
         {
@@ -217,13 +204,13 @@ namespace MelodicBanjoArranger
 
             List<note_node> DTData_Costs = new List<note_node>();
 
-            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result);
+            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result, this);
 
             DTData_result = DTData_Costs;
 
 
             String Temp_str = null;
-            txtDTResults.Text = null;
+            dataDTResults.Rows.Clear();
             // Write out the DT Results
             foreach (note_node temp_node in DTData_Costs)
             {
@@ -232,7 +219,7 @@ namespace MelodicBanjoArranger
                 Temp_str += "\r\n";
             }
 
-            txtDTResults.Text = Temp_str;
+           // txtDTResults.Text = Temp_str;
         }
 
         private void cmdCheckTree_Click(object sender, EventArgs e)

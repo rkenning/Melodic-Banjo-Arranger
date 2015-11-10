@@ -61,6 +61,7 @@
     <Compile Include="Arrangement.cs" />
     <Compile Include="CostCalculator.cs" />
     <Compile Include="DataVisulisation.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="MatchNote.cs" />
     <Compile Include="BanjoNotes.cs" />
     <Compile Include="DecisionTree.cs" />
@@ -73,12 +74,21 @@
     </Compile>
     <Compile Include="MidiFile.cs" />
     <Compile Include="Notation.cs" />
+    <Compile Include="Processing_dlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Processing_dlg.Designer.cs">
+      <DependentUpon>Processing_dlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\IEventRule.cs" />
     <Compile Include="SortableBindingList.cs" />
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing_dlg.resx">
+      <DependentUpon>Processing_dlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

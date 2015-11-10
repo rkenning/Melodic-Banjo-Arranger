@@ -43,7 +43,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmdBuildDT = new System.Windows.Forms.Button();
-            this.txtDTResults = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmdCreateDTGraph = new System.Windows.Forms.Button();
             this.cmdCosts = new System.Windows.Forms.Button();
@@ -53,17 +52,21 @@
             this.cmdCreateArrangemenets = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTrackNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
+            this.dataDTResults = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataDTResults)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNotes
@@ -183,16 +186,6 @@
             this.cmdBuildDT.UseVisualStyleBackColor = true;
             this.cmdBuildDT.Click += new System.EventHandler(this.cmdBuildDT_Click);
             // 
-            // txtDTResults
-            // 
-            this.txtDTResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDTResults.Location = new System.Drawing.Point(506, 35);
-            this.txtDTResults.Multiline = true;
-            this.txtDTResults.Name = "txtDTResults";
-            this.txtDTResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDTResults.Size = new System.Drawing.Size(975, 299);
-            this.txtDTResults.TabIndex = 16;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -267,6 +260,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataDTResults);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.txtTrackNumber);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.txtNotes);
             this.tabPage1.Controls.Add(this.label1);
@@ -276,7 +272,6 @@
             this.tabPage1.Controls.Add(this.cmdCheckTree);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.cmdCreateArrangemenets);
-            this.tabPage1.Controls.Add(this.txtDTResults);
             this.tabPage1.Controls.Add(this.txtTranspose);
             this.tabPage1.Controls.Add(this.cmdBuildDT);
             this.tabPage1.Controls.Add(this.label5);
@@ -292,6 +287,23 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Initial Stuff";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(639, 525);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Midi Track Number";
+            // 
+            // txtTrackNumber
+            // 
+            this.txtTrackNumber.Location = new System.Drawing.Point(768, 525);
+            this.txtTrackNumber.Name = "txtTrackNumber";
+            this.txtTrackNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtTrackNumber.TabIndex = 24;
+            this.txtTrackNumber.Text = "0";
             // 
             // label6
             // 
@@ -343,6 +355,14 @@
             this.dGridArrangements.Size = new System.Drawing.Size(515, 767);
             this.dGridArrangements.TabIndex = 0;
             // 
+            // dataDTResults
+            // 
+            this.dataDTResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataDTResults.Location = new System.Drawing.Point(506, 33);
+            this.dataDTResults.Name = "dataDTResults";
+            this.dataDTResults.Size = new System.Drawing.Size(966, 299);
+            this.dataDTResults.TabIndex = 26;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +382,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataDTResults)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -382,7 +403,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button cmdBuildDT;
         private System.Windows.Forms.Label label5;
-        public System.Windows.Forms.TextBox txtDTResults;
         private System.Windows.Forms.Button cmdCreateDTGraph;
         private System.Windows.Forms.Button cmdCosts;
         private System.Windows.Forms.TextBox txtFileName;
@@ -396,7 +416,9 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox txtArrange;
         private System.Windows.Forms.DataGridView dGridArrangements;
-
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtTrackNumber;
+        private System.Windows.Forms.DataGridView dataDTResults;
     }
 }
 

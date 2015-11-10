@@ -87,8 +87,8 @@ namespace MelodicBanjoArranger
             bool hasNotes = false;
       
             int track = TrackNum;
-            
-            IList<MidiEvent> trackEvents = midiFile.Events[track];  // Notes the use of the Track reference, if invalid track is referenced then causes big issues
+
+            ; IList<MidiEvent> trackEvents = midiFile.Events[track];  // Notes the use of the Track reference, if invalid track is referenced then causes big issues
             
             IList<MidiEvent> outputEvents;
             if (fileType == 1 || track == 0)
@@ -105,9 +105,7 @@ namespace MelodicBanjoArranger
             }
             foreach (MidiEvent midiEvent in trackEvents)
             {
-                //if (Process(midiEvent, eventRuleArgs))
-                //{
-
+          
                 outputEvents.Add(midiEvent);
                 NoteOnEvent noteOnEvent = midiEvent as NoteOnEvent;
                 if (noteOnEvent != null)

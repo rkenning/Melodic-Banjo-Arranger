@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 
+
 namespace MelodicBanjoArranger
 {
 
@@ -72,6 +73,7 @@ namespace MelodicBanjoArranger
             temp_note_node.parent_node = parent_node_;
             temp_note_node.cost = 0;
             temp_note_node.NoteDetails = NoteDetails_;
+            
 
             //Add the object to the list
             DTData.Add(temp_note_node);
