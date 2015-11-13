@@ -18,6 +18,31 @@ namespace MelodicBanjoArranger
     {
         List<note_node> DTData_result = new List<note_node>();
 
+        private void update_DTResults(List<note_node> DTData_Display)
+        {
+            // NEW DataGrid Stuff
+            note_node temp_node;
+            int index;
+
+            this.dataDTResults.DataSource = null;
+            this.dataDTResults.Refresh();
+
+            DataTable table = new DataTable("DTResults");
+            List<String> Result_list = new List<string>();
+            table.Columns.Add("Index");
+            table.Columns.Add("Results");
+            for (int i = 0; i < DTData_Display.Count; i++)
+            //foreach (note_node temp_node in DTData_result)
+            {
+                temp_node = DTData_Display[i];
+                index = i;
+                table.Rows.Add(index, temp_node.ToString());
+            }
+
+            this.dataDTResults.DataSource = table;
+        }
+
+
         public Main_Form()
         {
             InitializeComponent();
@@ -48,7 +73,7 @@ namespace MelodicBanjoArranger
 
             txtNoteMatch.Text = null;
             txtNotes.Text = null;
-            txtUpdate.Text = "";
+            
 
             string referencepath = @"";
 
@@ -131,59 +156,22 @@ namespace MelodicBanjoArranger
 
         private void cmdBuildDT_Click(object sender, EventArgs e)
         {
-            //Create a new Decision Tree Object
+          
             Logging.Open_Dlg();
-            int index;
-            string build_line = "";
 
+            //Create a new Decision Tree Object
             DTData_result.Clear();
             DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
 
+            lblMatchingNotes.Text = MatchNotes.get_matching_note_count().ToString();
 
-            String Temp_str = null;
-            dataDTResults.Rows.Clear();
             // Write out the DT Results
             Logging.Update_Status("Writing " + DTData_result.Count + " to form");
-            
-
-        
-            long write_count = 1;
-            int last_update =0;
-
             Logging.Update_Status("Finished DT Build, Updating Screen");
 
-
-            note_node temp_node;
-
-
-            StringBuilder MyStringBuilder = new StringBuilder("");
-
-            // NEW DataGrid Stuff
-            DataTable table = new DataTable("DTResults");
+            //Call local method to update the forms DataGrid with the latest DT Results
+            update_DTResults(DTData_result);
             
-
-            this.dataDTResults.Columns.Add("Results", "Results");
-            this.dataDTResults.Rows.Add("Test");
-
-            List<String> Result_list = new List<string>();
-
-            for (int i=0; i< DTData_result.Count;i++)
-            //foreach (note_node temp_node in DTData_result)
-            {
-                temp_node = DTData_result[i];
-                index = i;
-                build_line = "Current Index :" + index + " " + temp_node.ToString()+"\r\n"; ;
-                Result_list.Add(build_line);
-                // this.dataDTResults.Rows.Add(build_line);
-
-            }
-
-            SortableBindingList<String> tempList = new SortableBindingList<string>(Result_list);
-            this.dataDTResults.DataSource = tempList;
-
-            //txtDTResults.AppendText(MyStringBuilder.ToString());
-            //this.lal
-
             Logging.Update_Status("DT calculation complete & form updated");
         }
 
@@ -200,26 +188,16 @@ namespace MelodicBanjoArranger
         {
             //Create a new Decision Tree Object
 
-            int index;
-
             List<note_node> DTData_Costs = new List<note_node>();
 
             DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result, this);
-
             DTData_result = DTData_Costs;
 
 
-            String Temp_str = null;
-            dataDTResults.Rows.Clear();
-            // Write out the DT Results
-            foreach (note_node temp_node in DTData_Costs)
-            {
-                index = DTData_Costs.IndexOf(temp_node);
-                Temp_str = Temp_str += "Current Index :" + index + " " + temp_node.ToString();
-                Temp_str += "\r\n";
-            }
+            //Call local method to update the forms DataGrid with the latest DT Results
+            update_DTResults(DTData_result);
 
-           // txtDTResults.Text = Temp_str;
+            Logging.Update_Status("DT cost calculation complete & form updated");
         }
 
         private void cmdCheckTree_Click(object sender, EventArgs e)
@@ -232,19 +210,8 @@ namespace MelodicBanjoArranger
             Arrangemenet_engine.create_arrangemnets(DecisionTree.get_all_nodes());
             String tempStr = "";
 
-            foreach (Arrangement tempArr in Arrangemenet_engine.get_arrangemenets())
-            {
-                tempStr += tempArr.ToString();
-            }
-
             txtArrange.Text = null;
             txtArrange.Text = tempStr;
-
-            /* Bind the arrangemenet collection to the Grid Form control
-             */
-
-            // Copy returned list object to temp sortable binding list
-
 
             dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
 
@@ -252,8 +219,14 @@ namespace MelodicBanjoArranger
 
         }
 
+        private void cmdCreateScore_Click(object sender, EventArgs e)
+        {
+            int SelectArrangement = Convert.ToInt16(this.dGridArrangements.SelectedRows[0].Cells[0].Value);
+            txtSelectedArrangement.Text = SelectArrangement.ToString();
 
+            txtArrange.Text = Arrangemenets.get_Arrangement(SelectArrangement).ToString();
 
+        }
     }
 
 }

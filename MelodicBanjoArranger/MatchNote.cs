@@ -60,11 +60,16 @@ namespace MelodicBanjoArranger
     public class MatchNotes
     {
 
+      
         public static long last_note_position;
 
         // Moved to a public static allowing results to be accessed outside of class
         public static List<MatchNote> matchingresults = new List<MatchNote>();
 
+        public static int get_matching_note_count()
+        {
+            return matchingresults.Count();
+        }
 
         //Return the next set of matching notes options based on the recieved match object
         public static List<MatchNote> getNextMatchNotes(MatchNote CurrentMatchNote)
@@ -110,6 +115,7 @@ namespace MelodicBanjoArranger
         // Also allows for modification of notes by -/+ octive intivals
         public static List<MatchNote> Find_Matching_Notes(ICollection<ArrangeNote> TempAllNotes, BanjoNotes banjotemp, int transpose)
         {
+            Logging.Update_Status("Starting Note Matching Process");
             matchingresults.Clear(); // We need to clear any previsouly matched results
 
             foreach (ArrangeNote temp1 in TempAllNotes)
@@ -131,6 +137,8 @@ namespace MelodicBanjoArranger
                     }
                 }
             }
+          
+            Logging.Update_Status("End Note Matching Process");
             return matchingresults;
         }
 

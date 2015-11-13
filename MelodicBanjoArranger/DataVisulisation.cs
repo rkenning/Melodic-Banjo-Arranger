@@ -48,7 +48,9 @@ namespace MelodicBanjoArranger
 
                     //Build the Node string values
                     Parent_Note = temp_node.parent_node_index.GetValueOrDefault().ToString() + "\r\n" + DTArray[temp_node.parent_node_index.GetValueOrDefault()].ToStringSmall();
-                    Current_Note = DTArray.IndexOf(temp_node).ToString() + "\r\n" + temp_node.ToStringSmall();
+                    //Current_Note = DTArray.IndexOf(temp_node).ToString() + "\r\n" + temp_node.ToStringSmall();
+
+                    Current_Note =  temp_node.ToStringSmall();
 
                     // Not route node so add edge details
                     graph.AddEdge(Parent_Note, Current_Note);

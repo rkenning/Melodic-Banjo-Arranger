@@ -17,8 +17,8 @@ namespace MelodicBanjoArranger
             Logging.Open_Dlg();
             Logging.Update_Status("Starting Cost calulation");
             Logging.Update_Status("Total DT Count:" + DTArray.Count.ToString());
-            //foreach(note_node temp_node in DTArray)
-            Parallel.ForEach(DTArray, temp_node =>
+            foreach(note_node temp_node in DTArray)
+            //Parallel.ForEach(DTArray, temp_node =>
            {
                note_node temp_note = new note_node();
 
@@ -67,7 +67,8 @@ namespace MelodicBanjoArranger
 
                
 
-           });
+           };
+            //);
             return New_DT;
         }
     }

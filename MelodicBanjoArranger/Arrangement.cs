@@ -51,6 +51,12 @@ namespace MelodicBanjoArranger
             Arrange_list.Add(temp_arr_);
         }
 
+        public static Arrangement get_Arrangement(int ArrIndex)
+        {
+
+            return Arrange_list[ArrIndex];
+        }
+
         //Return the list of arrangemenets
         public static List<Arrangement> get_arrangemenets()
         {
@@ -93,13 +99,15 @@ namespace MelodicBanjoArranger
             //find the root notes first
 
 
+            Logging.Update_Status("Starting the tree walking process");
             foreach (note_node current_node in DecisionTree.get_top_nodes())
             {
                 // Iterate through tree
                 process_node(current_node);
                 temp_note_stk.Pop(); // Not quite sure why I need this pop but doesn't appear to clear stack after looping to next [root] node
-            }
 
+            }
+            Logging.Update_Status("Finished the Arrangement Process");
 
 
             //
