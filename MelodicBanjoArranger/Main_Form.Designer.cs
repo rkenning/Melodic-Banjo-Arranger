@@ -50,22 +50,23 @@
             this.cmdCreateArrangemenets = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblOriginalNotes = new System.Windows.Forms.Label();
+            this.lblMatchingNotes = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.dataDTResults = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTrackNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtSelectedArrangement = new System.Windows.Forms.TextBox();
+            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
+            this.cmdCreateScore = new System.Windows.Forms.Button();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblMatchingNotes = new System.Windows.Forms.Label();
-            this.lblOriginalNotes = new System.Windows.Forms.Label();
-            this.cmdCreateScore = new System.Windows.Forms.Button();
-            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
-            this.txtSelectedArrangement = new System.Windows.Forms.TextBox();
+            this.txtAlphaMarkup = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -129,7 +130,7 @@
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "0";
+            this.txtTranspose.Text = "10";
             // 
             // contextMenuStrip1
             // 
@@ -279,6 +280,51 @@
             this.tabPage1.Text = "Initial Stuff";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lblOriginalNotes
+            // 
+            this.lblOriginalNotes.AutoSize = true;
+            this.lblOriginalNotes.Location = new System.Drawing.Point(114, 669);
+            this.lblOriginalNotes.Name = "lblOriginalNotes";
+            this.lblOriginalNotes.Size = new System.Drawing.Size(41, 13);
+            this.lblOriginalNotes.TabIndex = 31;
+            this.lblOriginalNotes.Text = "label11";
+            // 
+            // lblMatchingNotes
+            // 
+            this.lblMatchingNotes.AutoSize = true;
+            this.lblMatchingNotes.Location = new System.Drawing.Point(114, 646);
+            this.lblMatchingNotes.Name = "lblMatchingNotes";
+            this.lblMatchingNotes.Size = new System.Drawing.Size(41, 13);
+            this.lblMatchingNotes.TabIndex = 30;
+            this.lblMatchingNotes.Text = "label10";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 669);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 13);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "#Original Notes";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 646);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 13);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "#Matching Notes";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 618);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Current Matching Stats";
+            // 
             // dataDTResults
             // 
             this.dataDTResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -327,6 +373,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.txtAlphaMarkup);
             this.tabPage3.Controls.Add(this.txtSelectedArrangement);
             this.tabPage3.Controls.Add(this.alphaTabControl1);
             this.tabPage3.Controls.Add(this.cmdCreateScore);
@@ -338,6 +385,33 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Arrangemenets";
             this.tabPage3.UseVisualStyleBackColor = true;
+
+            // 
+            // txtSelectedArrangement
+            // 
+            this.txtSelectedArrangement.Location = new System.Drawing.Point(1065, 128);
+            this.txtSelectedArrangement.Name = "txtSelectedArrangement";
+            this.txtSelectedArrangement.Size = new System.Drawing.Size(108, 20);
+            this.txtSelectedArrangement.TabIndex = 4;
+            // 
+            // alphaTabControl1
+            // 
+            this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
+            this.alphaTabControl1.Name = "alphaTabControl1";
+            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
+            this.alphaTabControl1.TabIndex = 3;
+            this.alphaTabControl1.Text = "alphaTabControl1";
+            this.alphaTabControl1.Track = null;
+            // 
+            // cmdCreateScore
+            // 
+            this.cmdCreateScore.Location = new System.Drawing.Point(872, 126);
+            this.cmdCreateScore.Name = "cmdCreateScore";
+            this.cmdCreateScore.Size = new System.Drawing.Size(187, 23);
+            this.cmdCreateScore.TabIndex = 2;
+            this.cmdCreateScore.Text = "Create Score";
+            this.cmdCreateScore.UseVisualStyleBackColor = true;
+            this.cmdCreateScore.Click += new System.EventHandler(this.cmdCreateScore_Click);
             // 
             // txtArrange
             // 
@@ -345,7 +419,7 @@
             this.txtArrange.Multiline = true;
             this.txtArrange.Name = "txtArrange";
             this.txtArrange.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtArrange.Size = new System.Drawing.Size(443, 141);
+            this.txtArrange.Size = new System.Drawing.Size(443, 99);
             this.txtArrange.TabIndex = 1;
             // 
             // dGridArrangements
@@ -357,76 +431,14 @@
             this.dGridArrangements.Size = new System.Drawing.Size(835, 292);
             this.dGridArrangements.TabIndex = 0;
             // 
-            // label3
+            // txtAlphaMarkup
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 618);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Current Matching Stats";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 646);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 13);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "#Matching Notes";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 669);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 13);
-            this.label9.TabIndex = 29;
-            this.label9.Text = "#Original Notes";
-            // 
-            // lblMatchingNotes
-            // 
-            this.lblMatchingNotes.AutoSize = true;
-            this.lblMatchingNotes.Location = new System.Drawing.Point(114, 646);
-            this.lblMatchingNotes.Name = "lblMatchingNotes";
-            this.lblMatchingNotes.Size = new System.Drawing.Size(41, 13);
-            this.lblMatchingNotes.TabIndex = 30;
-            this.lblMatchingNotes.Text = "label10";
-            // 
-            // lblOriginalNotes
-            // 
-            this.lblOriginalNotes.AutoSize = true;
-            this.lblOriginalNotes.Location = new System.Drawing.Point(114, 669);
-            this.lblOriginalNotes.Name = "lblOriginalNotes";
-            this.lblOriginalNotes.Size = new System.Drawing.Size(41, 13);
-            this.lblOriginalNotes.TabIndex = 31;
-            this.lblOriginalNotes.Text = "label11";
-            // 
-            // cmdCreateScore
-            // 
-            this.cmdCreateScore.Location = new System.Drawing.Point(872, 180);
-            this.cmdCreateScore.Name = "cmdCreateScore";
-            this.cmdCreateScore.Size = new System.Drawing.Size(187, 23);
-            this.cmdCreateScore.TabIndex = 2;
-            this.cmdCreateScore.Text = "Create Score";
-            this.cmdCreateScore.UseVisualStyleBackColor = true;
-            this.cmdCreateScore.Click += new System.EventHandler(this.cmdCreateScore_Click);
-            // 
-            // alphaTabControl1
-            // 
-            this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
-            this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
-            this.alphaTabControl1.TabIndex = 3;
-            this.alphaTabControl1.Text = "alphaTabControl1";
-            this.alphaTabControl1.Track = null;
-            // 
-            // txtSelectedArrangement
-            // 
-            this.txtSelectedArrangement.Location = new System.Drawing.Point(872, 210);
-            this.txtSelectedArrangement.Name = "txtSelectedArrangement";
-            this.txtSelectedArrangement.Size = new System.Drawing.Size(390, 20);
-            this.txtSelectedArrangement.TabIndex = 4;
+            this.txtAlphaMarkup.Location = new System.Drawing.Point(879, 167);
+            this.txtAlphaMarkup.Multiline = true;
+            this.txtAlphaMarkup.Name = "txtAlphaMarkup";
+            this.txtAlphaMarkup.Size = new System.Drawing.Size(416, 133);
+            this.txtAlphaMarkup.TabIndex = 5;
+            this.txtAlphaMarkup.Text = "<score-partwise version=\"3.0\">";
             // 
             // Main_Form
             // 
@@ -490,6 +502,7 @@
         private System.Windows.Forms.Button cmdCreateScore;
         private System.Windows.Forms.TextBox txtSelectedArrangement;
         private AlphaTab.Platform.CSharp.WinForms.AlphaTabControl alphaTabControl1;
+        private System.Windows.Forms.TextBox txtAlphaMarkup;
     }
 }
 

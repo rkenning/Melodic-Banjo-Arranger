@@ -46,7 +46,7 @@ namespace MelodicBanjoArranger
         //Add arrangemenet objects to arrangemenets list
         public static void add_arrangemenet(Arrangement temp_arr_)
         {
-           int last_index = Arrange_list.Count();
+           int last_index = Arrange_list.Count()-1;
            temp_arr_.Arr_index = last_index + 1; 
             Arrange_list.Add(temp_arr_);
         }
@@ -54,7 +54,8 @@ namespace MelodicBanjoArranger
         public static Arrangement get_Arrangement(int ArrIndex)
         {
 
-            return Arrange_list[ArrIndex];
+            Arrangement Temp_Arr = Arrange_list.Find(obj => obj.Arr_index == ArrIndex);
+            return Temp_Arr;
         }
 
         //Return the list of arrangemenets

@@ -77,7 +77,7 @@
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="MidiFile.cs" />
-    <Compile Include="Notation.cs" />
+    <Compile Include="AlphaTabController.cs" />
     <Compile Include="Processing_dlg.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,7 +9,8 @@ using NAudio.Midi;
 using System.IO;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
+using AlphaTab.Importer;
+using AlphaTab.Model;
 
 
 namespace MelodicBanjoArranger
@@ -46,18 +47,18 @@ namespace MelodicBanjoArranger
         public Main_Form()
         {
             InitializeComponent();
-            //Testing calls below
-
-            update_arrangement();
-            DTData_result.Clear();
-            DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
-
         }
 
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            //Testing Calls to work through the setup of DT, Arrangements etc..
             update_arrangement();
+            cmdBuildDT_Click(sender , e);
+            cmdCosts_Click(sender, e);
+            cmdCreateArrangemenets_Click(sender, e);
+            txtAlphaMarkup.Text = AlphaTabController.Example_Text;
+
         }
 
         private void update_arrangement()
@@ -221,13 +222,149 @@ namespace MelodicBanjoArranger
 
         private void cmdCreateScore_Click(object sender, EventArgs e)
         {
+            //Return selected arrangement from Data Grid
+            try
+            { 
             int SelectArrangement = Convert.ToInt16(this.dGridArrangements.SelectedRows[0].Cells[0].Value);
-            txtSelectedArrangement.Text = SelectArrangement.ToString();
+                
+                txtSelectedArrangement.Text = SelectArrangement.ToString();
 
-            txtArrange.Text = Arrangemenets.get_Arrangement(SelectArrangement).ToString();
+                Arrangement temp_arr = Arrangemenets.get_Arrangement(SelectArrangement);
+                byte[] array = Encoding.ASCII.GetBytes(this.txtAlphaMarkup.Text);
+                InternalOpenFile(array);
 
+
+                txtArrange.Text = temp_arr.ToString();
+            }
+            catch
+            {
+
+                //Error if no line is selected
+                MessageBox.Show("You need to select a line");
+            }
         }
-    }
 
+        //Alpha TAB Stuff Below
+        //=========================
+        //TO DO This all needs to be moved to somewhere better than in the main form code
+
+        private Score _score;
+        private int _currentTrackIndex;
+
+        #region Score Data
+
+        public Score Score
+        {
+            get { return _score; }
+            set
+            {
+                _score = value;
+    //            showScoreInfo.Enabled = value != null;
+                Text = "AlphaTab - " + (value == null ? "No File Opened" : value.Title);
+                CurrentTrackIndex = 0;
+            }
+        }
+
+        public int CurrentTrackIndex
+        {
+            get { return _currentTrackIndex; }
+            set
+            {
+                _currentTrackIndex = value;
+                UpdateSelectedTrack();
+                var track = CurrentTrack;
+                if (track != null)
+                {
+                    alphaTabControl1.Track = track;
+                }
+            }
+        }
+
+        public Track CurrentTrack
+        {
+            get
+            {
+                if (Score == null || CurrentTrackIndex < 0 || CurrentTrackIndex >= _score.Tracks.Count) return null;
+                return _score.Tracks[_currentTrackIndex];
+            }
+        }
+
+        #endregion
+
+        #region Score Loading
+
+        //private void OpenFile()
+        //{
+        //    using (OpenFileDialog dialog = new OpenFileDialog())
+        //    {
+        //        dialog.Filter = "Supported Files (*.gp3, *.gp4, *.gp5, *.gpx)|*.gp3;*.gp4;*.gp5;*.gpx";
+        //        if (dialog.ShowDialog(this) == DialogResult.OK)
+        //        {
+        //            OpenFile(dialog.FileName);
+        //        }
+        //    }
+        //}
+
+        //private void OpenFile(string file)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(file) && File.Exists(file))
+        //    {
+        //        InternalOpenFile(file);
+        //    }
+        //}
+
+        private void InternalOpenFile(byte[] data)
+        {
+            try
+            {
+                // load the score from the filesystem
+                Score = ScoreLoader.LoadScoreFromBytes(data);
+
+                //trackDetails.Controls.Clear();
+                //trackBars.Controls.Clear();
+                for (int i = Score.Tracks.Count - 1; i >= 0; i--)
+                {
+                  //  TrackDetailsControl details = new TrackDetailsControl(Score.Tracks[i]);
+                   // details.Dock = DockStyle.Top;
+                   // details.Height = 25;
+                   // trackDetails.Controls.Add(details);
+//                    details.Selected += details_Click;
+
+                   // TrackBarsControl bars = new TrackBarsControl(Score.Tracks[i]);
+  //                  bars.Dock = DockStyle.Top;
+                   // trackBars.Controls.Add(bars);
+                }
+
+                UpdateSelectedTrack();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(this, e.Message, "An error during opening the file occured", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void details_Click(object sender, EventArgs e)
+        {
+            //TrackDetailsControl details = (TrackDetailsControl)sender;
+      //      CurrentTrackIndex = _score.Tracks.FindIndex(t => t == details.Track);
+        }
+
+        private void UpdateSelectedTrack()
+        {
+            var currentTrack = CurrentTrack;
+           // foreach (TrackDetailsControl trackViewModel in trackDetails.Controls)
+           // {
+           //     trackViewModel.IsSelected = currentTrack == trackViewModel.Track;
+           // }
+        }
+
+        #endregion
+
+
+
+    }
 }
+
+
 
