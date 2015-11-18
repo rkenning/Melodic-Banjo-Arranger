@@ -61,12 +61,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtAlphaMarkup = new System.Windows.Forms.TextBox();
             this.txtSelectedArrangement = new System.Windows.Forms.TextBox();
             this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
             this.cmdCreateScore = new System.Windows.Forms.Button();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
-            this.txtAlphaMarkup = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -385,7 +385,14 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Arrangemenets";
             this.tabPage3.UseVisualStyleBackColor = true;
-
+            // 
+            // txtAlphaMarkup
+            // 
+            this.txtAlphaMarkup.Location = new System.Drawing.Point(879, 167);
+            this.txtAlphaMarkup.Multiline = true;
+            this.txtAlphaMarkup.Name = "txtAlphaMarkup";
+            this.txtAlphaMarkup.Size = new System.Drawing.Size(416, 133);
+            this.txtAlphaMarkup.TabIndex = 5;
             // 
             // txtSelectedArrangement
             // 
@@ -430,15 +437,6 @@
             this.dGridArrangements.Name = "dGridArrangements";
             this.dGridArrangements.Size = new System.Drawing.Size(835, 292);
             this.dGridArrangements.TabIndex = 0;
-            // 
-            // txtAlphaMarkup
-            // 
-            this.txtAlphaMarkup.Location = new System.Drawing.Point(879, 167);
-            this.txtAlphaMarkup.Multiline = true;
-            this.txtAlphaMarkup.Name = "txtAlphaMarkup";
-            this.txtAlphaMarkup.Size = new System.Drawing.Size(416, 133);
-            this.txtAlphaMarkup.TabIndex = 5;
-            this.txtAlphaMarkup.Text = "<score-partwise version=\"3.0\">";
             // 
             // Main_Form
             // 

@@ -139,11 +139,7 @@ namespace MelodicBanjoArranger
 
             };
         }
-
-
-
-
-
+                
         private void cmdArrange_Click(object sender, EventArgs e)
         {
             update_arrangement();
@@ -152,8 +148,6 @@ namespace MelodicBanjoArranger
         // This delegate enables asynchronous calls for setting
         // the text property on a TextBox control.
         delegate void SetTextCallback(string text);
-
-
 
         private void cmdBuildDT_Click(object sender, EventArgs e)
         {
@@ -175,12 +169,7 @@ namespace MelodicBanjoArranger
             
             Logging.Update_Status("DT calculation complete & form updated");
         }
-
-
-
-   
-
-        private void cmdCreateDTGraph_Click(object sender, EventArgs e)
+       private void cmdCreateDTGraph_Click(object sender, EventArgs e)
         {
             DataVisulisation.Create_Graph(DTData_result);
         }
