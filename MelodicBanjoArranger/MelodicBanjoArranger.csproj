@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrangement.cs" />
+    <Compile Include="ArrangementController.cs" />
     <Compile Include="CostCalculator.cs" />
     <Compile Include="DataVisulisation.cs" />
+    <Compile Include="DTController.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MatchNote.cs" />
     <Compile Include="BanjoNotes.cs" />

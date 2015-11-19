@@ -63,10 +63,11 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtAlphaMarkup = new System.Windows.Forms.TextBox();
             this.txtSelectedArrangement = new System.Windows.Forms.TextBox();
-            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
             this.cmdCreateScore = new System.Windows.Forms.Button();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
+            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
+            this.cmdRenderAlphaTab = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -373,6 +374,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.cmdRenderAlphaTab);
             this.tabPage3.Controls.Add(this.txtAlphaMarkup);
             this.tabPage3.Controls.Add(this.txtSelectedArrangement);
             this.tabPage3.Controls.Add(this.alphaTabControl1);
@@ -396,27 +398,18 @@
             // 
             // txtSelectedArrangement
             // 
-            this.txtSelectedArrangement.Location = new System.Drawing.Point(1065, 128);
+            this.txtSelectedArrangement.Location = new System.Drawing.Point(1187, 129);
             this.txtSelectedArrangement.Name = "txtSelectedArrangement";
             this.txtSelectedArrangement.Size = new System.Drawing.Size(108, 20);
             this.txtSelectedArrangement.TabIndex = 4;
-            // 
-            // alphaTabControl1
-            // 
-            this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
-            this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
-            this.alphaTabControl1.TabIndex = 3;
-            this.alphaTabControl1.Text = "alphaTabControl1";
-            this.alphaTabControl1.Track = null;
             // 
             // cmdCreateScore
             // 
             this.cmdCreateScore.Location = new System.Drawing.Point(872, 126);
             this.cmdCreateScore.Name = "cmdCreateScore";
-            this.cmdCreateScore.Size = new System.Drawing.Size(187, 23);
+            this.cmdCreateScore.Size = new System.Drawing.Size(130, 23);
             this.cmdCreateScore.TabIndex = 2;
-            this.cmdCreateScore.Text = "Create Score";
+            this.cmdCreateScore.Text = "Create AlphaText";
             this.cmdCreateScore.UseVisualStyleBackColor = true;
             this.cmdCreateScore.Click += new System.EventHandler(this.cmdCreateScore_Click);
             // 
@@ -437,6 +430,25 @@
             this.dGridArrangements.Name = "dGridArrangements";
             this.dGridArrangements.Size = new System.Drawing.Size(835, 292);
             this.dGridArrangements.TabIndex = 0;
+            // 
+            // alphaTabControl1
+            // 
+            this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
+            this.alphaTabControl1.Name = "alphaTabControl1";
+            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
+            this.alphaTabControl1.TabIndex = 3;
+            this.alphaTabControl1.Text = "alphaTabControl1";
+            this.alphaTabControl1.Track = null;
+            // 
+            // cmdRenderAlphaTab
+            // 
+            this.cmdRenderAlphaTab.Location = new System.Drawing.Point(1008, 126);
+            this.cmdRenderAlphaTab.Name = "cmdRenderAlphaTab";
+            this.cmdRenderAlphaTab.Size = new System.Drawing.Size(173, 23);
+            this.cmdRenderAlphaTab.TabIndex = 6;
+            this.cmdRenderAlphaTab.Text = "Render AlphaTab";
+            this.cmdRenderAlphaTab.UseVisualStyleBackColor = true;
+            this.cmdRenderAlphaTab.Click += new System.EventHandler(this.cmdRenderAlphaTab_Click);
             // 
             // Main_Form
             // 
@@ -501,6 +513,7 @@
         private System.Windows.Forms.TextBox txtSelectedArrangement;
         private AlphaTab.Platform.CSharp.WinForms.AlphaTabControl alphaTabControl1;
         private System.Windows.Forms.TextBox txtAlphaMarkup;
+        private System.Windows.Forms.Button cmdRenderAlphaTab;
     }
 }
 

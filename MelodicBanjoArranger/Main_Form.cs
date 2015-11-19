@@ -57,7 +57,7 @@ namespace MelodicBanjoArranger
             cmdBuildDT_Click(sender , e);
             cmdCosts_Click(sender, e);
             cmdCreateArrangemenets_Click(sender, e);
-            txtAlphaMarkup.Text = AlphaTabController.Example_Text;
+           
 
         }
 
@@ -118,6 +118,8 @@ namespace MelodicBanjoArranger
 
             matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
 
+
+            //TODO All the stuff below is rubbish - General re-wite required for this + move out to a class
             foreach (ArrangeNote temp in MidiObject)
             {
 
@@ -203,6 +205,8 @@ namespace MelodicBanjoArranger
             txtArrange.Text = null;
             txtArrange.Text = tempStr;
 
+            dGridArrangements.DataSource = null;
+           
             dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
 
 
@@ -213,17 +217,27 @@ namespace MelodicBanjoArranger
         {
             //Return selected arrangement from Data Grid
             try
-            { 
-            int SelectArrangement = Convert.ToInt16(this.dGridArrangements.SelectedRows[0].Cells[0].Value);
+            {
+                
+                int SelectArrangement = Convert.ToInt32(this.dGridArrangements.SelectedRows[0].Cells[0].Value);
                 
                 txtSelectedArrangement.Text = SelectArrangement.ToString();
 
                 Arrangement temp_arr = Arrangemenets.get_Arrangement(SelectArrangement);
-                byte[] array = Encoding.ASCII.GetBytes(this.txtAlphaMarkup.Text);
-                InternalOpenFile(array);
-
 
                 txtArrange.Text = temp_arr.ToString();
+
+                //Copy the new AlphaText markup to the text box
+                //TODO Remove txtbox and add direct to Byte array
+
+                txtAlphaMarkup.Text = AlphaTabController.Build_AlphaText(temp_arr);
+                //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
+
+
+          
+
+
+               
             }
             catch
             {
@@ -260,7 +274,7 @@ namespace MelodicBanjoArranger
             set
             {
                 _currentTrackIndex = value;
-                UpdateSelectedTrack();
+             
                 var track = CurrentTrack;
                 if (track != null)
                 {
@@ -282,50 +296,14 @@ namespace MelodicBanjoArranger
 
         #region Score Loading
 
-        //private void OpenFile()
-        //{
-        //    using (OpenFileDialog dialog = new OpenFileDialog())
-        //    {
-        //        dialog.Filter = "Supported Files (*.gp3, *.gp4, *.gp5, *.gpx)|*.gp3;*.gp4;*.gp5;*.gpx";
-        //        if (dialog.ShowDialog(this) == DialogResult.OK)
-        //        {
-        //            OpenFile(dialog.FileName);
-        //        }
-        //    }
-        //}
-
-        //private void OpenFile(string file)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(file) && File.Exists(file))
-        //    {
-        //        InternalOpenFile(file);
-        //    }
-        //}
-
         private void InternalOpenFile(byte[] data)
         {
             try
             {
                 // load the score from the filesystem
                 Score = ScoreLoader.LoadScoreFromBytes(data);
-
-                //trackDetails.Controls.Clear();
-                //trackBars.Controls.Clear();
-                for (int i = Score.Tracks.Count - 1; i >= 0; i--)
-                {
-                  //  TrackDetailsControl details = new TrackDetailsControl(Score.Tracks[i]);
-                   // details.Dock = DockStyle.Top;
-                   // details.Height = 25;
-                   // trackDetails.Controls.Add(details);
-//                    details.Selected += details_Click;
-
-                   // TrackBarsControl bars = new TrackBarsControl(Score.Tracks[i]);
-  //                  bars.Dock = DockStyle.Top;
-                   // trackBars.Controls.Add(bars);
-                }
-
-                UpdateSelectedTrack();
             }
+
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, "An error during opening the file occured", MessageBoxButtons.OK,
@@ -333,25 +311,16 @@ namespace MelodicBanjoArranger
             }
         }
 
-        private void details_Click(object sender, EventArgs e)
-        {
-            //TrackDetailsControl details = (TrackDetailsControl)sender;
-      //      CurrentTrackIndex = _score.Tracks.FindIndex(t => t == details.Track);
-        }
 
-        private void UpdateSelectedTrack()
-        {
-            var currentTrack = CurrentTrack;
-           // foreach (TrackDetailsControl trackViewModel in trackDetails.Controls)
-           // {
-           //     trackViewModel.IsSelected = currentTrack == trackViewModel.Track;
-           // }
-        }
+
 
         #endregion
 
-
-
+        private void cmdRenderAlphaTab_Click(object sender, EventArgs e)
+        {
+            byte[] array = Encoding.ASCII.GetBytes(this.txtAlphaMarkup.Text);
+            InternalOpenFile(array);
+        }
     }
 }
 
