@@ -61,13 +61,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cmdRenderAlphaTab = new System.Windows.Forms.Button();
             this.txtAlphaMarkup = new System.Windows.Forms.TextBox();
             this.txtSelectedArrangement = new System.Windows.Forms.TextBox();
+            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
             this.cmdCreateScore = new System.Windows.Forms.Button();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
-            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
-            this.cmdRenderAlphaTab = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -131,7 +131,7 @@
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "10";
+            this.txtTranspose.Text = "-18";
             // 
             // contextMenuStrip1
             // 
@@ -286,9 +286,8 @@
             this.lblOriginalNotes.AutoSize = true;
             this.lblOriginalNotes.Location = new System.Drawing.Point(114, 669);
             this.lblOriginalNotes.Name = "lblOriginalNotes";
-            this.lblOriginalNotes.Size = new System.Drawing.Size(41, 13);
+            this.lblOriginalNotes.Size = new System.Drawing.Size(0, 13);
             this.lblOriginalNotes.TabIndex = 31;
-            this.lblOriginalNotes.Text = "label11";
             // 
             // lblMatchingNotes
             // 
@@ -328,6 +327,8 @@
             // 
             // dataDTResults
             // 
+            this.dataDTResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataDTResults.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataDTResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataDTResults.Location = new System.Drawing.Point(489, 33);
             this.dataDTResults.Name = "dataDTResults";
@@ -388,6 +389,16 @@
             this.tabPage3.Text = "Arrangemenets";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // cmdRenderAlphaTab
+            // 
+            this.cmdRenderAlphaTab.Location = new System.Drawing.Point(1008, 126);
+            this.cmdRenderAlphaTab.Name = "cmdRenderAlphaTab";
+            this.cmdRenderAlphaTab.Size = new System.Drawing.Size(173, 23);
+            this.cmdRenderAlphaTab.TabIndex = 6;
+            this.cmdRenderAlphaTab.Text = "Render AlphaTab";
+            this.cmdRenderAlphaTab.UseVisualStyleBackColor = true;
+            this.cmdRenderAlphaTab.Click += new System.EventHandler(this.cmdRenderAlphaTab_Click);
+            // 
             // txtAlphaMarkup
             // 
             this.txtAlphaMarkup.Location = new System.Drawing.Point(879, 167);
@@ -402,6 +413,15 @@
             this.txtSelectedArrangement.Name = "txtSelectedArrangement";
             this.txtSelectedArrangement.Size = new System.Drawing.Size(108, 20);
             this.txtSelectedArrangement.TabIndex = 4;
+            // 
+            // alphaTabControl1
+            // 
+            this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
+            this.alphaTabControl1.Name = "alphaTabControl1";
+            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
+            this.alphaTabControl1.TabIndex = 3;
+            this.alphaTabControl1.Text = "alphaTabControl1";
+            this.alphaTabControl1.Track = null;
             // 
             // cmdCreateScore
             // 
@@ -430,25 +450,6 @@
             this.dGridArrangements.Name = "dGridArrangements";
             this.dGridArrangements.Size = new System.Drawing.Size(835, 292);
             this.dGridArrangements.TabIndex = 0;
-            // 
-            // alphaTabControl1
-            // 
-            this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
-            this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
-            this.alphaTabControl1.TabIndex = 3;
-            this.alphaTabControl1.Text = "alphaTabControl1";
-            this.alphaTabControl1.Track = null;
-            // 
-            // cmdRenderAlphaTab
-            // 
-            this.cmdRenderAlphaTab.Location = new System.Drawing.Point(1008, 126);
-            this.cmdRenderAlphaTab.Name = "cmdRenderAlphaTab";
-            this.cmdRenderAlphaTab.Size = new System.Drawing.Size(173, 23);
-            this.cmdRenderAlphaTab.TabIndex = 6;
-            this.cmdRenderAlphaTab.Text = "Render AlphaTab";
-            this.cmdRenderAlphaTab.UseVisualStyleBackColor = true;
-            this.cmdRenderAlphaTab.Click += new System.EventHandler(this.cmdRenderAlphaTab_Click);
             // 
             // Main_Form
             // 

@@ -13,7 +13,9 @@ namespace MelodicBanjoArranger
         public int total_variance { get; set; }
         public int total_pos { get; set; }
         public int total_neg { get; set; }
-       
+        public int number_of_notes { get; set; }
+
+
 
         public List<note_node> arrange_notes { get; set; }
 

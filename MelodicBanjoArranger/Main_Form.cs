@@ -85,6 +85,7 @@ namespace MelodicBanjoArranger
 
             MidiFileClass MidiControlObject = new MidiFileClass();
             ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();
+            
             //Load the midifile into the midi object
             //MidiControlObject.ConvertFile(filepath1, 1, 2, MidiObject);
 
@@ -107,6 +108,9 @@ namespace MelodicBanjoArranger
             int tempo = MidiControlObject.tempo;
             int timeSig1 = MidiControlObject.timesig1;
             int timeSig2 = MidiControlObject.timesig2;
+
+            Arrangemenet_engine.original_note_count = MidiObject.Count();
+            lblOriginalNotes.Text = Arrangemenet_engine.original_note_count.ToString();
 
             Logging.Update_Status("Starting arrangement Process");
             Logging.Update_Status("========================");
