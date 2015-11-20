@@ -21,6 +21,9 @@ namespace MelodicBanjoArranger
 
         private void update_DTResults(List<note_node> DTData_Display)
         {
+            //testing
+            return;
+            
             // NEW DataGrid Stuff
             note_node temp_node;
             int index;
@@ -54,9 +57,9 @@ namespace MelodicBanjoArranger
         {
             //Testing Calls to work through the setup of DT, Arrangements etc..
             update_arrangement();
-            cmdBuildDT_Click(sender , e);
-            cmdCosts_Click(sender, e);
-            cmdCreateArrangemenets_Click(sender, e);
+            //cmdBuildDT_Click(sender , e);
+            //cmdCosts_Click(sender, e);
+            //cmdCreateArrangemenets_Click(sender, e);
            
 
         }
@@ -120,8 +123,13 @@ namespace MelodicBanjoArranger
 
             //Populate the matches 
 
-            matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
-
+            try {
+                matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
+            }
+            catch
+            {
+                MessageBox.Show("There Was an error");
+            }
 
             //TODO All the stuff below is rubbish - General re-wite required for this + move out to a class
             foreach (ArrangeNote temp in MidiObject)
@@ -217,6 +225,30 @@ namespace MelodicBanjoArranger
 
         }
 
+
+
+        private void dGridArrangements_SelectionChanged(object sender, EventArgs e)
+        {
+           //TODO This doesn't work so need to fix or removeB
+            /* if(!dGridArrangements.Focused) return;
+            
+            int SelectArrangement = Convert.ToInt32(dGridArrangements.SelectedRows[0].Cells[0].Value);
+
+            txtSelectedArrangement.Text = SelectArrangement.ToString();
+
+            Arrangement temp_arr = Arrangemenets.get_Arrangement(SelectArrangement);
+
+            txtArrange.Text = temp_arr.ToString();
+
+            //Copy the new AlphaText markup to the text box
+            //TODO Remove txtbox and add direct to Byte array
+
+            txtAlphaMarkup.Text = AlphaTabController.Build_AlphaText(temp_arr);
+            //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
+            */
+
+        }
+
         private void cmdCreateScore_Click(object sender, EventArgs e)
         {
             //Return selected arrangement from Data Grid
@@ -237,11 +269,12 @@ namespace MelodicBanjoArranger
                 txtAlphaMarkup.Text = AlphaTabController.Build_AlphaText(temp_arr);
                 //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
 
+                byte[] array = Encoding.ASCII.GetBytes(AlphaTabController.Build_AlphaText(temp_arr));
+                InternalOpenFile(array);
 
-          
 
 
-               
+
             }
             catch
             {
@@ -316,8 +349,6 @@ namespace MelodicBanjoArranger
         }
 
 
-
-
         #endregion
 
         private void cmdRenderAlphaTab_Click(object sender, EventArgs e)
@@ -325,6 +356,7 @@ namespace MelodicBanjoArranger
             byte[] array = Encoding.ASCII.GetBytes(this.txtAlphaMarkup.Text);
             InternalOpenFile(array);
         }
+
     }
 }
 

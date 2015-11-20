@@ -45,7 +45,7 @@ namespace MelodicBanjoArranger
             String Temp_string;
             Temp_string = "Cost:" + cost.ToString();
             Temp_string += ":" + NoteDetails.ToStringSmall();
-           
+
 
             return Temp_string;
 
@@ -73,12 +73,36 @@ namespace MelodicBanjoArranger
             temp_note_node.parent_node = parent_node_;
             temp_note_node.cost = 0;
             temp_note_node.NoteDetails = NoteDetails_;
-            
-
-            //Add the object to the list
-            DTData.Add(temp_note_node);
 
 
+            if (parent_node_ != null)
+            {
+                //Check new note added to the DT isn't on same string and massive jump in frets
+                if (temp_note_node.NoteDetails.banjoString == parent_node_.NoteDetails.banjoString &&
+                        System.Math.Abs(temp_note_node.NoteDetails.fret - parent_node_.NoteDetails.fret) < 5)
+                //Add the object to the list
+                {
+
+                    /*
+                    TODO - Move the calculation of the cost to this section to speed up the processing of total costs
+                    this will require the following :
+                    - Evaluation of the cost between the current note and parent note
+                    - Evaluation of the parent's parent
+                    - Evaluation of the parent's parent 
+                    - etc.....
+
+    */
+
+
+
+
+                    DTData.Add(temp_note_node);
+                }
+            }
+            else
+            {
+                DTData.Add(temp_note_node);
+            }
 
             //return the index of the new newly created note node item
             temp_note_node.tree_index = DTData.Count() - 1;
@@ -122,5 +146,5 @@ namespace MelodicBanjoArranger
     }
 
 
-   
+
 }

@@ -61,7 +61,12 @@ namespace MelodicBanjoArranger
             return Temp_Arr;
         }
 
-        //Return the list of arrangemenets
+        public static int get_max_cost()
+        {
+            var item = Arrange_list.OrderByDescending(i => i.total_Cost).FirstOrDefault();
+            return item.total_Cost;
+        }
+                //Return the list of arrangemenets
         public static List<Arrangement> get_arrangemenets()
         {
             return Arrange_list;

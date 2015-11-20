@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 
+
 namespace MelodicBanjoArranger
 {
 
@@ -60,7 +61,7 @@ namespace MelodicBanjoArranger
     public class MatchNotes
     {
 
-      
+
         public static long last_note_position;
 
         // Moved to a public static allowing results to be accessed outside of class
@@ -117,9 +118,11 @@ namespace MelodicBanjoArranger
         {
             Logging.Update_Status("Starting Note Matching Process");
             matchingresults.Clear(); // We need to clear any previsouly matched results
+            bool note_matched_;
 
             foreach (ArrangeNote temp1 in TempAllNotes)
             {
+                note_matched_ = false;
                 // Review each note and map it to a banjo fret
                 // perform a seach in the 5 lists for the frequence value
                 for (int string_count = 0; string_count < 5; string_count++)
@@ -133,19 +136,33 @@ namespace MelodicBanjoArranger
 
                         // If this is a matching note then add the note to the matching results
                         if (banjotemp.allnotes[string_count, fret_count] == temp1.noteNumber + (transpose))
-                            matchingresults.Add(new MatchNote(temp1.noteNumber + (transpose), string_count, fret_count, temp1.position, note_names.get_note_name(temp1.noteNumber + (transpose))));  /* A1 */
+                        {
+                            matchingresults.Add(new MatchNote(temp1.noteNumber + (transpose), string_count, fret_count, temp1.position,
+                                    note_names.get_note_name(temp1.noteNumber + (transpose))));  /* A1 */
+                            note_matched_ = true;
+                        }
+
+
                     }
                 }
+                if (note_matched_ == false)
+                {
+
+                    Logging.Update_Status("Some Notes cannot be match");
+                    //return matchingresults;
+                    throw new System.ArgumentException("Some notes cannot be match with this tranposition", "original");
+                }
+
             }
-          
             Logging.Update_Status("End Note Matching Process");
             return matchingresults;
+
+
+
         }
 
 
     }
-
-
 }
 
 

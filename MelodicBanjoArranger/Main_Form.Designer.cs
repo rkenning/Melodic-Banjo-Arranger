@@ -1,4 +1,7 @@
-﻿namespace MelodicBanjoArranger
+﻿using System;
+using System.Windows.Forms;
+
+namespace MelodicBanjoArranger
 {
     partial class Main_Form
     {
@@ -131,7 +134,7 @@
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "-18";
+            this.txtTranspose.Text = "-15";
             // 
             // contextMenuStrip1
             // 
@@ -418,7 +421,7 @@
             // 
             this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
             this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(1294, 487);
+            this.alphaTabControl1.Size = new System.Drawing.Size(835, 487);
             this.alphaTabControl1.TabIndex = 3;
             this.alphaTabControl1.Text = "alphaTabControl1";
             this.alphaTabControl1.Track = null;
@@ -450,6 +453,7 @@
             this.dGridArrangements.Name = "dGridArrangements";
             this.dGridArrangements.Size = new System.Drawing.Size(835, 292);
             this.dGridArrangements.TabIndex = 0;
+            this.dGridArrangements.SelectionChanged += new System.EventHandler(this.dGridArrangements_SelectionChanged);
             // 
             // Main_Form
             // 
@@ -474,6 +478,8 @@
             this.ResumeLayout(false);
 
         }
+
+   
 
         #endregion
 

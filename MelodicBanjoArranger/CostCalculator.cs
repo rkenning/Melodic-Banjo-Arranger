@@ -28,7 +28,7 @@ namespace MelodicBanjoArranger
                 // Check if the note is an open string and 
                 if (temp_note.NoteDetails.fret == 0)
                {
-                   temp_note.cost = -10;
+                   temp_note.cost = -5;
                }
 
 
@@ -52,10 +52,36 @@ namespace MelodicBanjoArranger
                     if (System.Math.Abs(temp_node.NoteDetails.fret - DTArray[index - 1].NoteDetails.fret) > 4 &&
                        (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
                    {
-                       temp_note.cost = 5;
+                       temp_note.cost = 7;
                    }
 
-               }
+                    try
+                    {
+                        // Check distance between current note and 2 notes ago
+                        if (System.Math.Abs(temp_node.NoteDetails.fret - DTArray[index - 2].NoteDetails.fret) > 4 &&
+                           (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
+                        {
+                            temp_note.cost = 5;
+                        }
+                    }
+                    catch
+                    {
+                    };
+                    try
+                    {
+                        //// Check distance between current note and 3 notes ago
+                        if (System.Math.Abs(temp_node.NoteDetails.fret - DTArray[index - 3].NoteDetails.fret) > 4 &&
+                           (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
+                        {
+                            temp_note.cost = 3;
+                        }
+                    }
+                    catch
+                    {
+                    };
+
+
+                }
 
                New_DT.Add(temp_note);
 
