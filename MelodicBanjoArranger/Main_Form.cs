@@ -57,10 +57,10 @@ namespace MelodicBanjoArranger
         {
             //Testing Calls to work through the setup of DT, Arrangements etc..
             update_arrangement();
-            //cmdBuildDT_Click(sender , e);
-            //cmdCosts_Click(sender, e);
-            //cmdCreateArrangemenets_Click(sender, e);
-           
+            cmdBuildDT_Click(sender , e);
+            cmdCosts_Click(sender, e);
+            cmdCreateArrangemenets_Click(sender, e);
+            this.tabMain.SelectedIndex= 2;
 
         }
 
@@ -227,29 +227,13 @@ namespace MelodicBanjoArranger
 
 
 
-        private void dGridArrangements_SelectionChanged(object sender, EventArgs e)
-        {
-           //TODO This doesn't work so need to fix or removeB
-            /* if(!dGridArrangements.Focused) return;
-            
-            int SelectArrangement = Convert.ToInt32(dGridArrangements.SelectedRows[0].Cells[0].Value);
+        /*
+         * Arrangement Code Section
+         * 
+         * 
+         */
 
-            txtSelectedArrangement.Text = SelectArrangement.ToString();
-
-            Arrangement temp_arr = Arrangemenets.get_Arrangement(SelectArrangement);
-
-            txtArrange.Text = temp_arr.ToString();
-
-            //Copy the new AlphaText markup to the text box
-            //TODO Remove txtbox and add direct to Byte array
-
-            txtAlphaMarkup.Text = AlphaTabController.Build_AlphaText(temp_arr);
-            //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
-            */
-
-        }
-
-        private void cmdCreateScore_Click(object sender, EventArgs e)
+        public void Select_Arrangement()
         {
             //Return selected arrangement from Data Grid
             try
@@ -262,17 +246,15 @@ namespace MelodicBanjoArranger
                 Arrangement temp_arr = Arrangemenets.get_Arrangement(SelectArrangement);
 
                 txtArrange.Text = temp_arr.ToString();
-
-                //Copy the new AlphaText markup to the text box
-                //TODO Remove txtbox and add direct to Byte array
-
+                //Write the Alpha Text to the Form for reference
                 txtAlphaMarkup.Text = AlphaTabController.Build_AlphaText(temp_arr);
                 //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
-
                 byte[] array = Encoding.ASCII.GetBytes(AlphaTabController.Build_AlphaText(temp_arr));
+                //call method to render the Tab Creation
                 InternalOpenFile(array);
 
-
+                //TODO - Set the Other Data Grid to the NoteNode values for the select arrangemenet
+                int test;
 
 
             }
@@ -280,8 +262,21 @@ namespace MelodicBanjoArranger
             {
 
                 //Error if no line is selected
-                MessageBox.Show("You need to select a line");
+                //MessageBox.Show("You need to select a line");
             }
+ 
+        }
+
+
+        private void dGridArrangements_SelectionChanged(object sender, EventArgs e)
+        {
+            Select_Arrangement();
+
+        }
+
+        private void cmdCreateScore_Click(object sender, EventArgs e)
+        {
+            Select_Arrangement();
         }
 
         //Alpha TAB Stuff Below

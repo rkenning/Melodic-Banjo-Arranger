@@ -71,6 +71,7 @@ namespace MelodicBanjoArranger
             this.cmdCreateScore = new System.Windows.Forms.Button();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
+            this.dGridArrCost = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -78,6 +79,7 @@ namespace MelodicBanjoArranger
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridArrCost)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNotes
@@ -134,7 +136,7 @@ namespace MelodicBanjoArranger
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(100, 20);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "-15";
+            this.txtTranspose.Text = "-2";
             // 
             // contextMenuStrip1
             // 
@@ -214,7 +216,7 @@ namespace MelodicBanjoArranger
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(325, 20);
             this.txtFileName.TabIndex = 20;
-            this.txtFileName.Text = "Dance1.mid";
+            this.txtFileName.Text = "Dance5.mid";
             // 
             // openFileDialog1
             // 
@@ -353,7 +355,7 @@ namespace MelodicBanjoArranger
             this.txtTrackNumber.Name = "txtTrackNumber";
             this.txtTrackNumber.Size = new System.Drawing.Size(100, 20);
             this.txtTrackNumber.TabIndex = 24;
-            this.txtTrackNumber.Text = "0";
+            this.txtTrackNumber.Text = "1";
             // 
             // label6
             // 
@@ -378,6 +380,7 @@ namespace MelodicBanjoArranger
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.dGridArrCost);
             this.tabPage3.Controls.Add(this.cmdRenderAlphaTab);
             this.tabPage3.Controls.Add(this.txtAlphaMarkup);
             this.tabPage3.Controls.Add(this.txtSelectedArrangement);
@@ -419,9 +422,10 @@ namespace MelodicBanjoArranger
             // 
             // alphaTabControl1
             // 
+            this.alphaTabControl1.BackColor = System.Drawing.SystemColors.Window;
             this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
             this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(835, 487);
+            this.alphaTabControl1.Size = new System.Drawing.Size(715, 487);
             this.alphaTabControl1.TabIndex = 3;
             this.alphaTabControl1.Text = "alphaTabControl1";
             this.alphaTabControl1.Track = null;
@@ -455,6 +459,15 @@ namespace MelodicBanjoArranger
             this.dGridArrangements.TabIndex = 0;
             this.dGridArrangements.SelectionChanged += new System.EventHandler(this.dGridArrangements_SelectionChanged);
             // 
+            // dGridArrCost
+            // 
+            this.dGridArrCost.AllowUserToOrderColumns = true;
+            this.dGridArrCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGridArrCost.Location = new System.Drawing.Point(763, 336);
+            this.dGridArrCost.Name = "dGridArrCost";
+            this.dGridArrCost.Size = new System.Drawing.Size(532, 413);
+            this.dGridArrCost.TabIndex = 7;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,6 +488,7 @@ namespace MelodicBanjoArranger
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridArrCost)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -521,6 +535,7 @@ namespace MelodicBanjoArranger
         private AlphaTab.Platform.CSharp.WinForms.AlphaTabControl alphaTabControl1;
         private System.Windows.Forms.TextBox txtAlphaMarkup;
         private System.Windows.Forms.Button cmdRenderAlphaTab;
+        private DataGridView dGridArrCost;
     }
 }
 

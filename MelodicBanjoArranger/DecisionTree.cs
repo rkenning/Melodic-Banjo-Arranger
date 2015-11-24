@@ -78,10 +78,10 @@ namespace MelodicBanjoArranger
             if (parent_node_ != null)
             {
                 //Check new note added to the DT isn't on same string and massive jump in frets
-                if (temp_note_node.NoteDetails.banjoString == parent_node_.NoteDetails.banjoString &&
-                        System.Math.Abs(temp_note_node.NoteDetails.fret - parent_node_.NoteDetails.fret) < 5)
+                //if (temp_note_node.NoteDetails.banjoString == parent_node_.NoteDetails.banjoString &&
+                        //System.Math.Abs(temp_note_node.NoteDetails.fret - parent_node_.NoteDetails.fret) < 5)
                 //Add the object to the list
-                {
+                //{
 
                     /*
                     TODO - Move the calculation of the cost to this section to speed up the processing of total costs
@@ -97,7 +97,7 @@ namespace MelodicBanjoArranger
 
 
                     DTData.Add(temp_note_node);
-                }
+                //}
             }
             else
             {
