@@ -4,10 +4,13 @@ Melodic Banjo Arrangement Tool
 Summary: Project to perform a cost based analysis of melodic Banjo note arrangements
 
 
-	* Read a selected melodic line from a Midi file
-	* Calculate the various ways of playing each note of the melodic line on banjo (Currently excluding harmonics & alternate tunings 	however the approach should be able to scale to include at some point)
-	* Allow the definition of costs to be defined for arrangement decisions such as (Large changes in positions between notes, 			multiple notes played on a single string [Not desired for Melodic arrangement])
-	* Apply a cost based evaluation of every alternative arrangements
+* Read a selected melodic line from a Midi file
+
+* Calculate the various ways of playing each note of the melodic line on banjo (Currently excluding harmonics & alternate tunings 	however the approach should be able to scale to include at some point)
+
+* Allow the definition of costs to be defined for arrangement decisions such as (Large changes in positions between notes, 			multiple notes played on a single string [Not desired for Melodic arrangement])
+
+* Apply a cost based evaluation of every alternative arrangements
 
 Further detail regards the approaches I have implemented can be found at the blog [link](http://ryankenning.com/2015/07/14
 /melodic-banjo-project-the-story-so-far/)
