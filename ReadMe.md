@@ -18,4 +18,5 @@ Further detail regards the approaches I have implemented can be found at the blo
 Shoutouts to frameworks & guidance regards this project:
 
 [Naudio](https://github.com/naudio/NAudio) - Top notch audio libary which got things off the ground very quickly for me regards parsing of Midi
+
 [alphaTab](https://github.com/CoderLine/alphaTab) - Great Tab rendering libary used to present the arrangements
