@@ -256,6 +256,8 @@ namespace MelodicBanjoArranger
                 //TODO - Set the Other Data Grid to the NoteNode values for the select arrangemenet
                 int test;
 
+                dGridArrCost.DataSource = temp_arr.get_arrange_notes_sortable() ;
+
 
             }
             catch

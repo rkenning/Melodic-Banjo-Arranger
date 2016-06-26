@@ -25,6 +25,14 @@ namespace MelodicBanjoArranger
             arrange_notes = temp_notes;
         }
 
+        public SortableBindingList<note_node> get_arrange_notes_sortable()
+        {
+
+            SortableBindingList<note_node> sortableDetails = new SortableBindingList<note_node>(arrange_notes);
+           
+            return sortableDetails ;
+        }
+
         public override string ToString()
         {
             String TempStr;

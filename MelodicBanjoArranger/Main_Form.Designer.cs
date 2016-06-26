@@ -64,6 +64,7 @@ namespace MelodicBanjoArranger
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dGridArrCost = new System.Windows.Forms.DataGridView();
             this.cmdRenderAlphaTab = new System.Windows.Forms.Button();
             this.txtAlphaMarkup = new System.Windows.Forms.TextBox();
             this.txtSelectedArrangement = new System.Windows.Forms.TextBox();
@@ -71,15 +72,14 @@ namespace MelodicBanjoArranger
             this.cmdCreateScore = new System.Windows.Forms.Button();
             this.txtArrange = new System.Windows.Forms.TextBox();
             this.dGridArrangements = new System.Windows.Forms.DataGridView();
-            this.dGridArrCost = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataDTResults)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGridArrCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNotes
@@ -395,6 +395,15 @@ namespace MelodicBanjoArranger
             this.tabPage3.Text = "Arrangemenets";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // dGridArrCost
+            // 
+            this.dGridArrCost.AllowUserToOrderColumns = true;
+            this.dGridArrCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGridArrCost.Location = new System.Drawing.Point(675, 336);
+            this.dGridArrCost.Name = "dGridArrCost";
+            this.dGridArrCost.Size = new System.Drawing.Size(620, 413);
+            this.dGridArrCost.TabIndex = 7;
+            // 
             // cmdRenderAlphaTab
             // 
             this.cmdRenderAlphaTab.Location = new System.Drawing.Point(1008, 126);
@@ -425,7 +434,7 @@ namespace MelodicBanjoArranger
             this.alphaTabControl1.BackColor = System.Drawing.SystemColors.Window;
             this.alphaTabControl1.Location = new System.Drawing.Point(13, 319);
             this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(715, 487);
+            this.alphaTabControl1.Size = new System.Drawing.Size(643, 487);
             this.alphaTabControl1.TabIndex = 3;
             this.alphaTabControl1.Text = "alphaTabControl1";
             this.alphaTabControl1.Track = null;
@@ -459,15 +468,6 @@ namespace MelodicBanjoArranger
             this.dGridArrangements.TabIndex = 0;
             this.dGridArrangements.SelectionChanged += new System.EventHandler(this.dGridArrangements_SelectionChanged);
             // 
-            // dGridArrCost
-            // 
-            this.dGridArrCost.AllowUserToOrderColumns = true;
-            this.dGridArrCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGridArrCost.Location = new System.Drawing.Point(763, 336);
-            this.dGridArrCost.Name = "dGridArrCost";
-            this.dGridArrCost.Size = new System.Drawing.Size(532, 413);
-            this.dGridArrCost.TabIndex = 7;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,8 +487,8 @@ namespace MelodicBanjoArranger
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGridArrCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridArrangements)).EndInit();
             this.ResumeLayout(false);
 
         }
