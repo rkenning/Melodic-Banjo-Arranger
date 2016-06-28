@@ -1,0 +1,6 @@
+[submodule "lib/GLEE"]
+	path = lib/GLEE
+	url = https://github.com/Microsoft/automatic-graph-layout.git
+[submodule "lib/AlphaTab"]
+	path = lib/AlphaTab
+	url = https://github.com/CoderLine/alphaTab.git
