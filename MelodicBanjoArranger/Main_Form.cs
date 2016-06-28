@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using NAudio.Midi;
 using System.IO;
-using System.Diagnostics;
 using System.Linq;
 using AlphaTab.Importer;
 using AlphaTab.Model;
@@ -251,7 +248,7 @@ namespace MelodicBanjoArranger
                 //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
                 byte[] array = Encoding.ASCII.GetBytes(AlphaTabController.Build_AlphaText(temp_arr));
                 //call method to render the Tab Creation
-                InternalOpenFile(array);
+                //InternalOpenFile(array);
 
                 //TODO - Set the Other Data Grid to the NoteNode values for the select arrangemenet
                 int test;

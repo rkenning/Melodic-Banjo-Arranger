@@ -37,18 +37,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AlphaTab, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.VisualStudio.GraphModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AlphaTab.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.GLEE">
-      <HintPath>D:\Program Files (x86)\Microsoft Research\GLEE\bin\Microsoft.GLEE.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.GLEE.Drawing">
-      <HintPath>D:\Program Files (x86)\Microsoft Research\GLEE\bin\Microsoft.GLEE.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.GLEE.GraphViewerGDI">
-      <HintPath>D:\Program Files (x86)\Microsoft Research\GLEE\bin\Microsoft.GLEE.GraphViewerGDI.dll</HintPath>
+      <HintPath>..\lib\GLEE\GraphLayout\packages\VSSDK.GraphModel.12.0.4\lib\net45\Microsoft.VisualStudio.GraphModel.dll</HintPath>
     </Reference>
     <Reference Include="NAudio">
       <HintPath>..\Dependencies\NAudio.dll</HintPath>
@@ -119,6 +110,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Test Files\bwv772.mid" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lib\AlphaTab\Source\AlphaTab.CSharp\AlphaTab.CSharp.csproj">
+      <Project>{aba04ebe-36b2-469d-a025-16ba6131818e}</Project>
+      <Name>AlphaTab.CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GLEE\GraphLayout\MSAGL\Msagl.csproj">
+      <Project>{415d3e3f-7105-46c1-84d2-7ecb34213d92}</Project>
+      <Name>Msagl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
