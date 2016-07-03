@@ -1,19 +1,20 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.GraphModel;
+using Microsoft.Msagl.GraphViewerGdi;
 
 namespace MelodicBanjoArranger
 {
     public static class DataVisulisation
     {
+        public static GViewer GViewerewer { get; private set; }
+
         public static void Create_Graph(List<note_node> DTArray)
         {
 
 
-            /*   int index;
+           int index;
 
 
                //String Temp_str = null;
@@ -21,11 +22,11 @@ namespace MelodicBanjoArranger
                form.Size = new System.Drawing.Size(1000, 1000);
                form.WindowState = FormWindowState.Maximized;
 
-               //create a viewer object
-               GraphViewerGdi.GViewer viewer = new Microsoft.Glee.GraphViewerGdi.GViewer();
+            //create a viewer object
+            GViewerewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
 
-               //create a graph object
-               Drawing.Graph graph = new Microsoft.Glee.Drawing.Graph("graph");
+            //create a graph object
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
 
 
@@ -57,36 +58,35 @@ namespace MelodicBanjoArranger
 
                       if (temp_node.cost > 5)
                        {
-                           graph.FindNode(Current_Note).Attr.Fillcolor = Microsoft.Glee.Drawing.Color.Red;
+                           graph.FindNode(Current_Note).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Red;
 
                        }
                       else if (temp_node.cost < 0)
                       {
-                          graph.FindNode(Current_Note).Attr.Fillcolor = Microsoft.Glee.Drawing.Color.Green;
+                          graph.FindNode(Current_Note).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Green;
                       }
 
                    }
 
                }
 
-               graph.CleanNodes();
 
 
-               //bind the graph to the viewer
-               viewer.Graph = graph;
-               viewer.Size = new System.Drawing.Size(400, 400);
+            //bind the graph to the viewer
+            GViewerewer.Graph = graph;
+            GViewerewer.Size = new System.Drawing.Size(400, 400);
 
 
                //associate the viewer with the form
                form.SuspendLayout();
-               viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-               form.Controls.Add(viewer);
+            GViewerewer.Dock = System.Windows.Forms.DockStyle.Fill;
+               form.Controls.Add(GViewerewer);
                form.ResumeLayout();
 
                //show the form
                form.ShowDialog();
-           }*/
+           }
 
         }
     }
-}
+

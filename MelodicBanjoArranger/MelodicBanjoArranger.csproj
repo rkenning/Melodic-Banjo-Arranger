@@ -16,7 +16,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -116,9 +116,13 @@
       <Project>{aba04ebe-36b2-469d-a025-16ba6131818e}</Project>
       <Name>AlphaTab.CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\lib\GLEE\GraphLayout\MSAGL\Msagl.csproj">
-      <Project>{415d3e3f-7105-46c1-84d2-7ecb34213d92}</Project>
-      <Name>Msagl</Name>
+    <ProjectReference Include="..\lib\GLEE\GraphLayout\Drawing\drawing.csproj">
+      <Project>{b76f8f71-4b00-4242-be36-c9f0732511f7}</Project>
+      <Name>drawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GLEE\GraphLayout\tools\GraphViewerGDI\GraphViewerGDI.csproj">
+      <Project>{725cd2cb-cf37-414e-a5a6-f1d87d4d6ede}</Project>
+      <Name>GraphViewerGDI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
