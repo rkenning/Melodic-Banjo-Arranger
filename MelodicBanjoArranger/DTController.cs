@@ -30,9 +30,15 @@ namespace MelodicBanjoArranger
                     break;
                 }
 
+                
+               
+
 
                 //Add the note as a route node to the DT
                 new_node = DecisionTree.add_node(null, 0, matchindex, matchingresults[matchindex], null);
+                //Run the note through the BestNodes process
+   
+
 
                 // Note is still the same so process from this point
                 Process_Note_Range(matchindex, new_node.tree_index, new_node, matchingresults[matchindex]);
@@ -61,9 +67,12 @@ namespace MelodicBanjoArranger
                 int i = 0;
                 // Current note note is 'next' in the position then add the current note to the DT
                 
-                //Check the next note is > 5 frets from the last note on the same string
                 
                 new_node = DecisionTree.add_node(last_DT_index, last_note_index, i, tempMatchNote, parent_node_);
+                //Caclulate the cost of the note node
+                new_node.cost = CostCalculator.get_note_cost2(new_node, parent_node_);
+                BestNodes.add_Node(new_node);
+
 
                 if (new_node.NoteDetails.position < MatchNotes.last_note_position)
                 {

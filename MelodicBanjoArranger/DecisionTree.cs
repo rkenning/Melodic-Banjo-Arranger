@@ -61,9 +61,7 @@ namespace MelodicBanjoArranger
 
     public static class DecisionTree
     {
-        // Moved to a public static allowing results to be accessed outside of class
         private static List<note_node> DTData = new List<note_node>();
-
 
         public static note_node add_node(int? parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref_, MatchNote NoteDetails_, note_node parent_node_) // Accept null parent note index
         {
@@ -77,27 +75,7 @@ namespace MelodicBanjoArranger
 
             if (parent_node_ != null)
             {
-                //Check new note added to the DT isn't on same string and massive jump in frets
-                //if (temp_note_node.NoteDetails.banjoString == parent_node_.NoteDetails.banjoString &&
-                        //System.Math.Abs(temp_note_node.NoteDetails.fret - parent_node_.NoteDetails.fret) < 5)
-                //Add the object to the list
-                //{
-
-                    /*
-                    TODO - Move the calculation of the cost to this section to speed up the processing of total costs
-                    this will require the following :
-                    - Evaluation of the cost between the current note and parent note
-                    - Evaluation of the parent's parent
-                    - Evaluation of the parent's parent 
-                    - etc.....
-
-    */
-
-
-
-
-                    DTData.Add(temp_note_node);
-                //}
+                DTData.Add(temp_note_node);
             }
             else
             {
@@ -141,6 +119,8 @@ namespace MelodicBanjoArranger
             return tempNodes;
 
         }
+
+
 
 
     }

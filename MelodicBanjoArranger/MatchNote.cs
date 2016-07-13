@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 
 
@@ -75,6 +76,8 @@ namespace MelodicBanjoArranger
         //Return the next set of matching notes options based on the recieved match object
         public static List<MatchNote> getNextMatchNotes(MatchNote CurrentMatchNote)
         {
+            try
+            { 
             List<MatchNote> tempMatchNotes = new List<MatchNote>();
             MatchNote NextNote = null;
 
@@ -108,6 +111,12 @@ namespace MelodicBanjoArranger
 
             return tempMatchNotes;
         }
+        catch
+        {
+                MessageBox.Show("Error Mapping Notes");
+                return null;
+        }
+        }
 
 
 
@@ -138,7 +147,7 @@ namespace MelodicBanjoArranger
                         if (banjotemp.allnotes[string_count, fret_count] == temp1.noteNumber + (transpose))
                         {
                             matchingresults.Add(new MatchNote(temp1.noteNumber + (transpose), string_count, fret_count, temp1.position,
-                                    note_names.get_note_name(temp1.noteNumber + (transpose))));  /* A1 */
+                                    note_names.get_note_name(temp1.noteNumber + (transpose)))); 
                             note_matched_ = true;
                         }
 

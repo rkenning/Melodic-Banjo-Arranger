@@ -75,94 +75,102 @@ namespace MelodicBanjoArranger
 
         public bool ConvertFile(string sourceFile, int fileType, int TrackNum, ICollection<ArrangeNote> NoteCollection)
         {
-            //MidiFile midiFile = new MidiFile(sourceFile);
-            MidiFile midiFile = new MidiFile(sourceFile);
-            if (fileType == -1)
+            try
             {
-                fileType = midiFile.FileFormat;
-            }
-            EventRuleArgs eventRuleArgs = new EventRuleArgs(Path.GetFileNameWithoutExtension(sourceFile));
-
-            MidiEventCollection outputFileEvents = new MidiEventCollection(fileType, midiFile.DeltaTicksPerQuarterNote);
-            bool hasNotes = false;
-      
-            int track = TrackNum;
-
-            ; IList<MidiEvent> trackEvents = midiFile.Events[track];  // Notes the use of the Track reference, if invalid track is referenced then causes big issues
-            
-            IList<MidiEvent> outputEvents;
-            if (fileType == 1 || track == 0)
-            {
-                outputEvents = new List<MidiEvent>();
-            }
-            else
-            {
-                outputEvents = outputFileEvents[0];
-            }
-            foreach (MidiEvent midiEvent in InsertEvents)
-            {
-                outputEvents.Add(midiEvent);
-            }
-            foreach (MidiEvent midiEvent in trackEvents)
-            {
-          
-                outputEvents.Add(midiEvent);
-                NoteOnEvent noteOnEvent = midiEvent as NoteOnEvent;
-                if (noteOnEvent != null)
+                //MidiFile midiFile = new MidiFile(sourceFile);
+                MidiFile midiFile = new MidiFile(sourceFile);
+                if (fileType == -1)
                 {
-                    // Add to the midi collection
-                    if (!MidiEvent.IsNoteOff(noteOnEvent))
+                    fileType = midiFile.FileFormat;
+                }
+                EventRuleArgs eventRuleArgs = new EventRuleArgs(Path.GetFileNameWithoutExtension(sourceFile));
+
+                MidiEventCollection outputFileEvents = new MidiEventCollection(fileType, midiFile.DeltaTicksPerQuarterNote);
+                bool hasNotes = false;
+
+                int track = TrackNum;
+
+                ; IList<MidiEvent> trackEvents = midiFile.Events[track];  // Notes the use of the Track reference, if invalid track is referenced then causes big issues
+
+                IList<MidiEvent> outputEvents;
+                if (fileType == 1 || track == 0)
+                {
+                    outputEvents = new List<MidiEvent>();
+                }
+                else
+                {
+                    outputEvents = outputFileEvents[0];
+                }
+                foreach (MidiEvent midiEvent in InsertEvents)
+                {
+                    outputEvents.Add(midiEvent);
+                }
+                foreach (MidiEvent midiEvent in trackEvents)
+                {
+
+                    outputEvents.Add(midiEvent);
+                    NoteOnEvent noteOnEvent = midiEvent as NoteOnEvent;
+                    if (noteOnEvent != null)
                     {
-                        ArrangeNote tempnote = new ArrangeNote(noteOnEvent);
-                        NoteCollection.Add(tempnote);
-                    };
+                        // Add to the midi collection
+                        if (!MidiEvent.IsNoteOff(noteOnEvent))
+                        {
+                            ArrangeNote tempnote = new ArrangeNote(noteOnEvent);
+                            NoteCollection.Add(tempnote);
+                        };
 
-                  
 
 
-                    //System.Diagnostics.Debug.Assert(noteOnEvent.OffEvent != null);
-                    hasNotes = true;
-                    outputEvents.Add(noteOnEvent.OffEvent);
+
+                        //System.Diagnostics.Debug.Assert(noteOnEvent.OffEvent != null);
+                        hasNotes = true;
+                        outputEvents.Add(noteOnEvent.OffEvent);
+                    }
+                    //}
+                }
+
+                // Get the tempo events
+                foreach (MidiEvent midiEvent in trackEvents)
+                {
+                    //get the tempo and drop out of that track
+                    if (midiEvent is TempoEvent)
+                    {
+                        //tempo in milliseconds
+                        tempo = (midiEvent as TempoEvent).MicrosecondsPerQuarterNote / 1000;
+                        break;
+                    }
+
+
+                    //get the tempo and drop out of that track
+                    if (midiEvent is TimeSignatureEvent)
+                    {
+                        //Time sig
+                        timesig1 = (midiEvent as TimeSignatureEvent).Numerator;
+                        timesig2 = (midiEvent as TimeSignatureEvent).Denominator;
+                        break;
+                    }
+
+                }
+
+
+
+                if (fileType == 1 || track == 0)
+                {
+                    outputFileEvents.AddTrack(outputEvents);
                 }
                 //}
-            }
-
-            // Get the tempo events
-            foreach (MidiEvent midiEvent in trackEvents)
-            {
-                //get the tempo and drop out of that track
-                if (midiEvent is TempoEvent)
+                if (hasNotes)
                 {
-                    //tempo in milliseconds
-                    tempo = (midiEvent as TempoEvent).MicrosecondsPerQuarterNote / 1000;
-                    break;
+                    //MidiFile.Export(destFile, outputFileEvents);
                 }
 
-
-                //get the tempo and drop out of that track
-                if (midiEvent is TimeSignatureEvent)
-                {
-                    //Time sig
-                    timesig1 = (midiEvent as TimeSignatureEvent).Numerator;
-                    timesig2 = (midiEvent as TimeSignatureEvent).Denominator;
-                    break;
-                }
-            
+                return hasNotes;
             }
-
-
-
-            if (fileType == 1 || track == 0)
+            catch
             {
-                outputFileEvents.AddTrack(outputEvents);
+                MessageBox.Show("Invalid File or track number");
+                return false;
             }
-            //}
-            if (hasNotes)
-            {
-                //MidiFile.Export(destFile, outputFileEvents);
-            }
-
-            return hasNotes;
         }
 
 

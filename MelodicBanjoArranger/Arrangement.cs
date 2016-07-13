@@ -54,6 +54,11 @@ namespace MelodicBanjoArranger
     {
         private static List<Arrangement> Arrange_list = new List<Arrangement>();
 
+        public static void clear_arrangements()
+        {
+            Arrange_list.Clear();
+        }
+
         //Add arrangemenet objects to arrangemenets list
         public static void add_arrangemenet(Arrangement temp_arr_)
         {

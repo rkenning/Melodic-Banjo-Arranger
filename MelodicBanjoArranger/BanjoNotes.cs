@@ -63,7 +63,7 @@ namespace MelodicBanjoArranger
         public int[] starting_frets = new int[5] { 5, 0, 0, 0, 0 };
         public int[] starting_notes = new int[5] { 67, 50, 55, 59, 62 };
 
-        public int max_frets = 22;
+        public int max_frets = 18; //Changed to reuce options
 
         public BanjoNotes()
         {
@@ -76,14 +76,14 @@ namespace MelodicBanjoArranger
             
              * Array Element) string	Note	MIDI Number Array
                 ======	====	===========
-            4)  D4 = 62
-            3)  B3 = 59
-            2)  G3 = 55
-            1)  D3 = 48
-            0)  G4 = 67  
+            4)  D5 = 62
+            3)  B4 = 59
+            2)  G4 = 55
+            1)  D4 = 50
+            0)  G5 = 67  
             
             Number of frets :
-              Strings 2-5 = 22 frets
+              Strings 2-5 = 20 frets
               String  1 = 17 frets 
 
              */

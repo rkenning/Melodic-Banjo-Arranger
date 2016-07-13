@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using NAudio.Midi;
 using System.IO;
 using System.Linq;
 using AlphaTab.Importer;
 using AlphaTab.Model;
+using System.Threading.Tasks;
 
 
 namespace MelodicBanjoArranger
@@ -18,7 +18,7 @@ namespace MelodicBanjoArranger
 
         private void update_DTResults(List<note_node> DTData_Display)
         {
-            //testing
+            //Disabled until trimming of the DTree is resolved
             return;
             
             // NEW DataGrid Stuff
@@ -40,8 +40,31 @@ namespace MelodicBanjoArranger
                 table.Rows.Add(index, temp_node.ToString());
             }
 
-            this.dataDTResults.DataSource = table;
+            Logging.Update_Status("DT Total Table Size = " + table.Rows.Count.ToString());
+            // this.dataDTResults.DataSource = table;
         }
+
+        //Best nodes display
+        private void update_BestNodes()
+        {
+            //Clear old values
+            this.dataListBestNodes.DataSource= null;
+            this.dataListBestNodes.Refresh();
+
+            DataTable table = new DataTable("DTResults");
+            List<String> Result_list = new List<string>();
+            table.Columns.Add("Index");
+            table.Columns.Add("Results");
+            foreach (KeyValuePair<long, note_node> temp_node in  BestNodes.get_all_notes())
+            {
+                table.Rows.Add(temp_node.Key, temp_node.Value.ToString());
+            }
+
+            Logging.Update_Status("DT Total Table Size = " + table.Rows.Count.ToString());
+            this.dataListBestNodes.DataSource = table;
+
+        }
+
 
 
         public Main_Form()
@@ -55,9 +78,9 @@ namespace MelodicBanjoArranger
             //Testing Calls to work through the setup of DT, Arrangements etc..
             update_arrangement();
             cmdBuildDT_Click(sender , e);
-            cmdCosts_Click(sender, e);
-            cmdCreateArrangemenets_Click(sender, e);
-            this.tabMain.SelectedIndex= 2;
+            //cmdCosts_Click(sender, e);
+           // cmdCreateArrangemenets_Click(sender, e);
+            //this.tabMain.SelectedIndex= 2;
 
         }
 
@@ -191,7 +214,10 @@ namespace MelodicBanjoArranger
 
             List<note_node> DTData_Costs = new List<note_node>();
 
-            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result, this);
+
+
+            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result, this).Result;
+          
             DTData_result = DTData_Costs;
 
 
@@ -208,7 +234,10 @@ namespace MelodicBanjoArranger
 
         private void cmdCreateArrangemenets_Click(object sender, EventArgs e)
         {
+            Logging.Update_Status("Starting Arrangement");
             Arrangemenet_engine.create_arrangemnets(DecisionTree.get_all_nodes());
+            Logging.Update_Status("Finished Arrangement Process");
+
             String tempStr = "";
 
             txtArrange.Text = null;
@@ -248,7 +277,7 @@ namespace MelodicBanjoArranger
                 //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
                 byte[] array = Encoding.ASCII.GetBytes(AlphaTabController.Build_AlphaText(temp_arr));
                 //call method to render the Tab Creation
-                //InternalOpenFile(array);
+                InternalOpenFile(array);
 
                 //TODO - Set the Other Data Grid to the NoteNode values for the select arrangemenet
                 int test;
@@ -351,6 +380,28 @@ namespace MelodicBanjoArranger
             InternalOpenFile(array);
         }
 
+        private void cmdDTShow_Click(object sender, EventArgs e)
+        {
+            update_BestNodes();
+        }
+
+        private void cmdBestArrangements_Click(object sender, EventArgs e)
+        {
+            Logging.Update_Status("Starting Arrangement");
+            
+            Arrangemenet_Best_engine.create_arrangemnets(DecisionTree.get_all_nodes(),0);
+            Logging.Update_Status("Finished Arrangement Process");
+
+            String tempStr = "";
+
+            txtArrange.Text = null;
+            txtArrange.Text = tempStr;
+
+            dGridArrangements.DataSource = null;
+
+            dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
+
+        }
     }
 }
 

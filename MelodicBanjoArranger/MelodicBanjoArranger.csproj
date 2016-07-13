@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrangement.cs" />
+    <Compile Include="ArrangementBestController.cs" />
     <Compile Include="ArrangementController.cs" />
     <Compile Include="CostCalculator.cs" />
     <Compile Include="DataVisulisation.cs" />
+    <Compile Include="DTBestPath.cs" />
     <Compile Include="DTController.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MatchNote.cs" />
@@ -107,8 +109,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Reference Files\MidiNoteRef.xlsx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reference Files\tuning.jpg" />
     <Content Include="Test Files\bwv772.mid" />
   </ItemGroup>
   <ItemGroup>
