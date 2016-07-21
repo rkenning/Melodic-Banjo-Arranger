@@ -27,6 +27,15 @@ namespace MelodicBanjoArranger
             NoteDetails = NoteDetails_;
         }
 
+        public note_node(int? parent_node_index_,int last_note_index, int cost_, MatchNote NoteDetails_, note_node parent_node_)// Accept null parent note index
+        {
+            parent_node_index = parent_node_index_;
+            parent_node = parent_node_;
+            cost = cost_;
+            NoteDetails = NoteDetails_;
+        }
+
+
         public override string ToString()
         {
             String Temp_string;
@@ -42,12 +51,11 @@ namespace MelodicBanjoArranger
 
         public string ToStringSmall()
         {
-            String Temp_string;
-            Temp_string = "Cost:" + cost.ToString();
-            Temp_string += ":" + NoteDetails.ToStringSmall();
+            StringBuilder Temp_string = new StringBuilder();
+            Temp_string.Append(NoteDetails.ToStringSmall());
+            Temp_string.Append("Cost:" + cost.ToString());
 
-
-            return Temp_string;
+            return Temp_string.ToString();
 
         }
 
@@ -63,17 +71,9 @@ namespace MelodicBanjoArranger
     {
         private static List<note_node> DTData = new List<note_node>();
 
-        public static note_node add_node(int? parent_node_index_, int note_from_idx_ref_, int note_to_idx_ref_, MatchNote NoteDetails_, note_node parent_node_) // Accept null parent note index
+        public static void add_node(note_node temp_note_node) // Accept null parent note index
         {
-            note_node temp_note_node = new note_node();
-            //Assign the passed attibute values to the temp object
-            temp_note_node.parent_node_index = parent_node_index_;
-            temp_note_node.parent_node = parent_node_;
-            temp_note_node.cost = 0;
-            temp_note_node.NoteDetails = NoteDetails_;
-
-
-            if (parent_node_ != null)
+            if (temp_note_node.parent_node != null)
             {
                 DTData.Add(temp_note_node);
             }
@@ -84,9 +84,13 @@ namespace MelodicBanjoArranger
 
             //return the index of the new newly created note node item
             temp_note_node.tree_index = DTData.Count() - 1;
-            return temp_note_node;
+           
 
-
+            //Cound mod 1000
+            if (DTData.Count % 1000 == 0 )
+            {
+                Logging.Update_Status("DT Size at:" + DTData.Count.ToString());
+            }
 
         }
 

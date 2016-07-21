@@ -8,25 +8,38 @@ using System.Linq;
 using AlphaTab.Importer;
 using AlphaTab.Model;
 using System.Threading.Tasks;
+using System.Threading;
 
 
 namespace MelodicBanjoArranger
 {
     public partial class Main_Form : Form
     {
+        public static Main_Form Self;  // Needed for reference by the 
+
+
+
+        CancellationTokenSource cts;
+        
+        // This delegate enables asynchronous calls for setting
+        // the text property on a TextBox control.
+        delegate void SetTextCallback(string text);
+
         List<note_node> DTData_result = new List<note_node>();
 
         private void update_DTResults(List<note_node> DTData_Display)
         {
             //Disabled until trimming of the DTree is resolved
+            // This finctionality has been disabled as the Tree view is a lot better view
+            //TODO might add a tab with a breakdown of the full DT listing
             return;
-            
+
             // NEW DataGrid Stuff
             note_node temp_node;
             int index;
 
-            this.dataDTResults.DataSource = null;
-            this.dataDTResults.Refresh();
+            //this.dataDTResults.DataSource = null;
+            //this.dataDTResults.Refresh();
 
             DataTable table = new DataTable("DTResults");
             List<String> Result_list = new List<string>();
@@ -48,14 +61,14 @@ namespace MelodicBanjoArranger
         private void update_BestNodes()
         {
             //Clear old values
-            this.dataListBestNodes.DataSource= null;
+            this.dataListBestNodes.DataSource = null;
             this.dataListBestNodes.Refresh();
 
             DataTable table = new DataTable("DTResults");
             List<String> Result_list = new List<string>();
             table.Columns.Add("Index");
             table.Columns.Add("Results");
-            foreach (KeyValuePair<long, note_node> temp_node in  BestNodes.get_all_notes())
+            foreach (KeyValuePair<long, note_node> temp_node in BestNodes.get_all_notes())
             {
                 table.Rows.Add(temp_node.Key, temp_node.Value.ToString());
             }
@@ -70,6 +83,7 @@ namespace MelodicBanjoArranger
         public Main_Form()
         {
             InitializeComponent();
+            Self = this;
         }
 
 
@@ -77,9 +91,9 @@ namespace MelodicBanjoArranger
         {
             //Testing Calls to work through the setup of DT, Arrangements etc..
             update_arrangement();
-            cmdBuildDT_Click(sender , e);
+            cmdBuildDT_Click(sender, e);
             //cmdCosts_Click(sender, e);
-           // cmdCreateArrangemenets_Click(sender, e);
+            // cmdCreateArrangemenets_Click(sender, e);
             //this.tabMain.SelectedIndex= 2;
 
         }
@@ -97,7 +111,7 @@ namespace MelodicBanjoArranger
 
             txtNoteMatch.Text = null;
             txtNotes.Text = null;
-            
+
 
             string referencepath = @"";
 
@@ -107,15 +121,12 @@ namespace MelodicBanjoArranger
             Logging.Update_Status("Loading File : " + filepath1);
 
             MidiFileClass MidiControlObject = new MidiFileClass();
-            ICollection<ArrangeNote> MidiObject = new List<ArrangeNote>();
-            
-            //Load the midifile into the midi object
-            //MidiControlObject.ConvertFile(filepath1, 1, 2, MidiObject);
+            ICollection<MidiNotes> MidiObject = new List<MidiNotes>();
 
-            //TODO Add process to specific select track for processing Currently track 0 is only processed
+
             int trackNumber;
             if (Int32.TryParse(txtTrackNumber.Text, out trackNumber))
-                MidiControlObject.ConvertFile(filepath1, 1, trackNumber , MidiObject);  //Note track number 0 being used for the current file
+                MidiControlObject.ConvertFile(filepath1, 1, trackNumber, MidiObject);  //Note track number 0 being used for the current file
             else
                 throw new System.ArgumentException("Invalid Track Number.  Music be numeric", "Error");
 
@@ -143,16 +154,18 @@ namespace MelodicBanjoArranger
 
             //Populate the matches 
 
-            try {
-                matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text));
-            }
-            catch
+            try
             {
-                MessageBox.Show("There Was an error");
+                matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text), Convert.ToInt16(txtMaxFrets.Text));
+            }
+            catch (Exception Ex)
+            {
+                Logging.Update_Status("Error processing matches");
+                throw new System.ArgumentException("Error processing matches" + Ex.ToString());
             }
 
             //TODO All the stuff below is rubbish - General re-wite required for this + move out to a class
-            foreach (ArrangeNote temp in MidiObject)
+            foreach (MidiNotes temp in MidiObject)
             {
 
                 // Pass the current note numbe to the arrangenote object to match
@@ -173,24 +186,38 @@ namespace MelodicBanjoArranger
 
             };
         }
-                
+
         private void cmdArrange_Click(object sender, EventArgs e)
         {
-            update_arrangement();
+            try
+            {
+                update_arrangement();
+                Logging.Update_Status(MatchNotes.DT_size_projection().ToString());
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Error : " + Ex.ToString());
+            }
         }
 
-        // This delegate enables asynchronous calls for setting
-        // the text property on a TextBox control.
-        delegate void SetTextCallback(string text);
 
-        private void cmdBuildDT_Click(object sender, EventArgs e)
+
+        private async void  cmdBuildDT_Click(object sender, EventArgs e)
         {
-          
             Logging.Open_Dlg();
+            //  try
+            //  {
+
 
             //Create a new Decision Tree Object
             DTData_result.Clear();
-            DTData_result = DTController.Process_Route_Notes(MatchNotes.matchingresults);
+
+            Logging.Update_Status("Starting DT Building Process");
+            cts = new CancellationTokenSource();
+            var ctoken = cts.Token;
+            DTData_result = await Task.Run(() => DTController.Process_Route_Notes(MatchNotes.matchingresults, Convert.ToInt16(txtCostLimit.Text),ctoken),ctoken);
+            Logging.Update_Status("Finished producing DT results");
+
 
             lblMatchingNotes.Text = MatchNotes.get_matching_note_count().ToString();
 
@@ -200,10 +227,16 @@ namespace MelodicBanjoArranger
 
             //Call local method to update the forms DataGrid with the latest DT Results
             update_DTResults(DTData_result);
-            
+
             Logging.Update_Status("DT calculation complete & form updated");
+
+            //}
+            //  catch (Exception ex)
+            //  {
+            //      MessageBox.Show("Error creating DT Tree:"+ex.ToString());
+            // }
         }
-       private void cmdCreateDTGraph_Click(object sender, EventArgs e)
+        private void cmdCreateDTGraph_Click(object sender, EventArgs e)
         {
             DataVisulisation.Create_Graph(DTData_result);
         }
@@ -216,8 +249,8 @@ namespace MelodicBanjoArranger
 
 
 
-            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result, this).Result;
-          
+            DTData_Costs = CostCalculator.Calculate_DT_Costs(DTData_result, this);
+
             DTData_result = DTData_Costs;
 
 
@@ -244,7 +277,7 @@ namespace MelodicBanjoArranger
             txtArrange.Text = tempStr;
 
             dGridArrangements.DataSource = null;
-           
+
             dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
 
 
@@ -264,9 +297,9 @@ namespace MelodicBanjoArranger
             //Return selected arrangement from Data Grid
             try
             {
-                
+
                 int SelectArrangement = Convert.ToInt32(this.dGridArrangements.SelectedRows[0].Cells[0].Value);
-                
+
                 txtSelectedArrangement.Text = SelectArrangement.ToString();
 
                 Arrangement temp_arr = Arrangemenets.get_Arrangement(SelectArrangement);
@@ -277,12 +310,16 @@ namespace MelodicBanjoArranger
                 //txtAlphaMarkup.Text = AlphaTabController.Example_Text;
                 byte[] array = Encoding.ASCII.GetBytes(AlphaTabController.Build_AlphaText(temp_arr));
                 //call method to render the Tab Creation
-                InternalOpenFile(array);
+
+                //Create a new tab view form and pass the AlphaText to the control
+                TabView TabForm = new TabView();
+                TabForm.InternalOpenFile(array);
+                TabForm.Show();
 
                 //TODO - Set the Other Data Grid to the NoteNode values for the select arrangemenet
                 int test;
 
-                dGridArrCost.DataSource = temp_arr.get_arrange_notes_sortable() ;
+                dGridArrCost.DataSource = temp_arr.get_arrange_notes_sortable();
 
 
             }
@@ -292,7 +329,7 @@ namespace MelodicBanjoArranger
                 //Error if no line is selected
                 //MessageBox.Show("You need to select a line");
             }
- 
+
         }
 
 
@@ -307,77 +344,16 @@ namespace MelodicBanjoArranger
             Select_Arrangement();
         }
 
-        //Alpha TAB Stuff Below
-        //=========================
-        //TO DO This all needs to be moved to somewhere better than in the main form code
-
-        private Score _score;
-        private int _currentTrackIndex;
-
-        #region Score Data
-
-        public Score Score
-        {
-            get { return _score; }
-            set
-            {
-                _score = value;
-    //            showScoreInfo.Enabled = value != null;
-                Text = "AlphaTab - " + (value == null ? "No File Opened" : value.Title);
-                CurrentTrackIndex = 0;
-            }
-        }
-
-        public int CurrentTrackIndex
-        {
-            get { return _currentTrackIndex; }
-            set
-            {
-                _currentTrackIndex = value;
-             
-                var track = CurrentTrack;
-                if (track != null)
-                {
-                    alphaTabControl1.Track = track;
-                }
-            }
-        }
-
-        public Track CurrentTrack
-        {
-            get
-            {
-                if (Score == null || CurrentTrackIndex < 0 || CurrentTrackIndex >= _score.Tracks.Count) return null;
-                return _score.Tracks[_currentTrackIndex];
-            }
-        }
-
-        #endregion
-
-        #region Score Loading
-
-        private void InternalOpenFile(byte[] data)
-        {
-            try
-            {
-                // load the score from the filesystem
-                Score = ScoreLoader.LoadScoreFromBytes(data);
-            }
-
-            catch (Exception e)
-            {
-                MessageBox.Show(this, e.Message, "An error during opening the file occured", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-
-        #endregion
+    
 
         private void cmdRenderAlphaTab_Click(object sender, EventArgs e)
         {
             byte[] array = Encoding.ASCII.GetBytes(this.txtAlphaMarkup.Text);
-            InternalOpenFile(array);
+
+            //Create a new tab view form and pass the AlphaText to the control
+            TabView TabForm = new TabView();
+            TabForm.InternalOpenFile(array);
+            TabForm.Show();
         }
 
         private void cmdDTShow_Click(object sender, EventArgs e)
@@ -388,8 +364,8 @@ namespace MelodicBanjoArranger
         private void cmdBestArrangements_Click(object sender, EventArgs e)
         {
             Logging.Update_Status("Starting Arrangement");
-            
-            Arrangemenet_Best_engine.create_arrangemnets(DecisionTree.get_all_nodes(),0);
+
+            Arrangemenet_Best_engine.create_arrangemnets(DecisionTree.get_all_nodes(), 0);
             Logging.Update_Status("Finished Arrangement Process");
 
             String tempStr = "";
@@ -402,6 +378,51 @@ namespace MelodicBanjoArranger
             dGridArrangements.DataSource = Arrangemenet_engine.get_arrangemenets_sortable();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (cts != null)
+            {
+                cts.Cancel();
+            }
+        }
+
+
+        //Logging related code
+        public void Update_Status(String strMessage)
+        {
+            if (txtUpdate.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(Update_Status);
+                this.Invoke(d, new object[] { strMessage });
+            }
+            else
+            { 
+                txtUpdate.Text += DateTime.Now.ToString() + " -  " + strMessage + "\r\n";
+                this.Refresh();
+                txtUpdate.SelectionStart = txtUpdate.Text.Length;
+                txtUpdate.ScrollToCaret();
+            }
+            
+        }
+
+        public void Update_Note_Position(String strMessage)
+        {
+            if (this.txtUpdate.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(Update_Note_Position);
+                this.Invoke(d, new object[] { strMessage });
+            }
+            else
+            {
+                this.txtCurrentNotePosition.Text = strMessage;
+                this.Refresh();
+            }
+
+
+
+        }
+
     }
 }
 

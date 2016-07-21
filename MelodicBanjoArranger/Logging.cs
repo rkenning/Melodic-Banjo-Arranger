@@ -14,18 +14,22 @@ namespace MelodicBanjoArranger
 
         public static void Open_Dlg()
         {
-            Rectangle workingArea = Screen.GetWorkingArea(updateDlg);
-            updateDlg.Location = new Point(workingArea.Right - updateDlg.Size.Width,
-                                      workingArea.Bottom - updateDlg.Size.Height);
+            //Rectangle workingArea = Screen.GetWorkingArea(updateDlg);
+            //updateDlg.Location = new Point(workingArea.Right - updateDlg.Size.Width,
+ //                                     workingArea.Bottom - updateDlg.Size.Height);
 
-            updateDlg.Show();
-            updateDlg.BringToFront();
+   //         updateDlg.Show();
+     //       updateDlg.BringToFront();
 
         }
 
         internal static void Update_Status(string statusText)
         {
-            updateDlg.Update_Status(statusText);
+            Main_Form.Self.Update_Status(statusText);
+        }
+        internal static void Update_note_position(long position)
+        {
+            Main_Form.Self.Update_Note_Position(position.ToString());
         }
 
 

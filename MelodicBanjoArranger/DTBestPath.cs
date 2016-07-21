@@ -33,6 +33,18 @@ namespace MelodicBanjoArranger
             }
         }
 
+        public static int compare_Cost(note_node temp_node)
+        {
+            try
+            {
+                return temp_node.cost - DicBestNodes[temp_node.NoteDetails.position].cost;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
 
         public static Dictionary<long, note_node> get_all_notes()
         {

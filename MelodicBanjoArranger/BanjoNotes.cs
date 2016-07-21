@@ -20,7 +20,7 @@ namespace MelodicBanjoArranger
     }
 
 
-    public class ArrangeNote
+    public class MidiNotes
     {
         public int noteNumber { get; set; }
         public String noteName { get; set; }
@@ -29,11 +29,12 @@ namespace MelodicBanjoArranger
         public long position { get; set; }
         public long String { get; set; }
         public long fret { get; set; }
+        public bool last_map { get; set; }
 
 
 
 
-        public ArrangeNote(int NoteNumber_, int velocity_, int duration_, long position_)
+        public MidiNotes(int NoteNumber_, int velocity_, int duration_, long position_)
         {
             noteNumber = NoteNumber_;
             velocity = velocity_;
@@ -42,7 +43,7 @@ namespace MelodicBanjoArranger
         }
 
 
-        public ArrangeNote(NoteOnEvent noteOnEvent)
+        public MidiNotes(NoteOnEvent noteOnEvent)
         {
             noteNumber = noteOnEvent.NoteNumber;
             velocity = noteOnEvent.Velocity;
@@ -63,7 +64,7 @@ namespace MelodicBanjoArranger
         public int[] starting_frets = new int[5] { 5, 0, 0, 0, 0 };
         public int[] starting_notes = new int[5] { 67, 50, 55, 59, 62 };
 
-        public int max_frets = 18; //Changed to reuce options
+        public int max_frets = 22; //Changed to reuce options
 
         public BanjoNotes()
         {

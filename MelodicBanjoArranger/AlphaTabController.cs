@@ -12,8 +12,11 @@ namespace MelodicBanjoArranger
        
         public static String Build_AlphaText(Arrangement in_arrangement)
         {
-            String AlphaText;
-            AlphaText = @"\tuning G5 D4 G4 B4 D5. ";
+            int BarCounter = 0;
+            StringBuilder AlphaText = new StringBuilder();
+
+
+            AlphaText.Append( @"\tuning G5 D4 G4 B4 D5. ");
             int MapAlphaString; // AlphaTab uses a different string numbering to my system to mapping required
 
             //Add the arranged notes to the AlphaText string
@@ -21,13 +24,17 @@ namespace MelodicBanjoArranger
             {
                 MapAlphaString = Math.Abs(temp_note.NoteDetails.banjoString - 5);
                 //Fret + String + Duration
-                AlphaText += temp_note.NoteDetails.fret.ToString() + "." + MapAlphaString.ToString() + "." + "16 ";
-      
-
+                AlphaText.Append( temp_note.NoteDetails.fret.ToString() + "." + MapAlphaString.ToString() + "." + "16 ");
+                if (BarCounter == 16)
+                {
+                    BarCounter = 0;
+                    AlphaText.Append("|");
+                }
+                BarCounter += 1;
             };
 
 
-            return AlphaText;
+            return AlphaText.ToString();
         }
 
 

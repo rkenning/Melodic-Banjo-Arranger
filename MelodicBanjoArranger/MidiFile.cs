@@ -73,7 +73,7 @@ namespace MelodicBanjoArranger
 
 
 
-        public bool ConvertFile(string sourceFile, int fileType, int TrackNum, ICollection<ArrangeNote> NoteCollection)
+        public bool ConvertFile(string sourceFile, int fileType, int TrackNum, ICollection<MidiNotes> NoteCollection)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace MelodicBanjoArranger
                         // Add to the midi collection
                         if (!MidiEvent.IsNoteOff(noteOnEvent))
                         {
-                            ArrangeNote tempnote = new ArrangeNote(noteOnEvent);
+                            MidiNotes tempnote = new MidiNotes(noteOnEvent);
                             NoteCollection.Add(tempnote);
                         };
 

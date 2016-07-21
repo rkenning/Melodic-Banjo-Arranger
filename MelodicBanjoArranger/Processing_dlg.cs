@@ -8,6 +8,7 @@ using System.Threading;
 
 namespace MelodicBanjoArranger
 {
+    
     public partial class Processing_dlg : Form
     {
         // This delegate enables asynchronous calls for setting
@@ -21,9 +22,6 @@ namespace MelodicBanjoArranger
 
         public void Update_Status(String strMessage)
         {
-
-     
-
             if (this.txtUpdate.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(Update_Status);
@@ -41,9 +39,29 @@ namespace MelodicBanjoArranger
 
         }
 
+        public void Update_Note_Position(String strMessage)
+        {
+            if (this.txtUpdate.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(Update_Note_Position);
+                this.Invoke(d, new object[] { strMessage });
+            }
+            else
+            {
+                this.txtCurrentNotePosition.Text = strMessage;
+                this.Refresh();
+            }
+
+
+
+        }
+
+
         private void Processing_dlg_Load(object sender, EventArgs e)
         {
 
         }
+
+  
     }
 }

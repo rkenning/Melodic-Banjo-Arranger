@@ -18,46 +18,48 @@ namespace MelodicBanjoArranger
         public int fret { get; set; }
         public long position { get; set; }
         public string notename { get; set; }
+        public bool last_note { get; set; }
 
-        public MatchNote(int notenumber_, int banjostring_, int fret_, long position_, string notename_)
+        public MatchNote(int notenumber_, int banjostring_, int fret_, long position_, string notename_, bool last_note_)
         {
             notenumber = notenumber_;
             banjoString = banjostring_;
             fret = fret_;
             position = position_;
             notename = notename_;
+            last_note = last_note_;
+
+
         }
 
         public override string ToString()
         {
-            String Temp_string;
-            Temp_string = "Note Number:" + notenumber.ToString();
-            Temp_string += " String:" + banjoString.ToString();
-            Temp_string += " Fret:" + fret.ToString();
-            Temp_string += " Position:" + position.ToString();
-            Temp_string += " NoteName:" + notename.ToString();
+            StringBuilder Temp_string = new StringBuilder();
+            Temp_string.Append( "Note Number:" + notenumber.ToString());
+            Temp_string.Append(" String:" + banjoString.ToString());
+            Temp_string.Append(" Fret:" + fret.ToString());
+            Temp_string.Append(" Position:" + position.ToString());
+            Temp_string.Append(" NoteName:" + notename.ToString());
+            Temp_string.Append(" Last Note:" + last_note.ToString()); 
 
-            return Temp_string;
+            return Temp_string.ToString();
 
         }
 
         public string ToStringSmall()
         {
-            String Temp_string;
-            Temp_string = position.ToString();
-            Temp_string += ":" + notenumber.ToString();
-            Temp_string += ":" + banjoString.ToString();
-            Temp_string += ":" + fret.ToString();
-            Temp_string += ":" + notename.ToString();
+            StringBuilder Temp_string = new StringBuilder();
+            Temp_string.Append("Pos:"+position.ToString());
+            Temp_string.Append(" Num:" + notenumber.ToString());
+            Temp_string.Append(" Str:" + banjoString.ToString());
+            Temp_string.Append("\nFet:" + fret.ToString());
+            Temp_string.Append(" Name:" + notename.ToString());
 
-            return Temp_string;
+            return Temp_string.ToString();
 
         }
 
     }
-
-
-
 
     public class MatchNotes
     {
@@ -73,49 +75,72 @@ namespace MelodicBanjoArranger
             return matchingresults.Count();
         }
 
+        public static void set_last_match()
+        {
+            matchingresults[matchingresults.Count - 1].last_note = true;
+        }
+
+
+        public static long DT_size_projection()
+        {
+            
+            var grouped = matchingresults
+                .GroupBy(i => i.position)
+                .Select(i => new { temp = i.Key, count = i.Count() });
+
+            long lastResult = 1;
+            foreach (var thing in grouped)
+            {
+                lastResult *= thing.count;
+            }
+            return lastResult;
+        }
+
         //Return the next set of matching notes options based on the recieved match object
         public static List<MatchNote> getNextMatchNotes(MatchNote CurrentMatchNote)
         {
+
+            //TODO Rewrite all this method with better Linq queries
             try
-            { 
-            List<MatchNote> tempMatchNotes = new List<MatchNote>();
-            MatchNote NextNote = null;
-
-            //Find the index of the recieved MatchNote parameter
-            int MatchNoteIndex = MatchNotes.matchingresults.IndexOf(CurrentMatchNote);
-
-            //First find the note details for the next note in the collection for reference to position in loop below
-            //this ensure only the [next] notes from the note specificed in the pamarater are selected
-            for (int i = MatchNoteIndex; i < MatchNotes.matchingresults.Count(); i++)
             {
-                if (MatchNotes.matchingresults[i].position > CurrentMatchNote.position)
+                List<MatchNote> tempMatchNotes = new List<MatchNote>();
+                MatchNote NextNote = null;
+
+                //Find the index of the recieved MatchNote parameter
+                int MatchNoteIndex = MatchNotes.matchingresults.IndexOf(CurrentMatchNote);
+
+                //First find the note details for the next note in the collection for reference to position in loop below
+                //this ensure only the [next] notes from the note specificed in the pamarater are selected
+                for (int i = MatchNoteIndex; i < MatchNotes.matchingresults.Count(); i++)
                 {
-                    NextNote = MatchNotes.matchingresults[i];
-                    break;
+                    if (MatchNotes.matchingresults[i].position > CurrentMatchNote.position)
+                    {
+                        NextNote = MatchNotes.matchingresults[i];
+                        break;
+                    }
+
+
                 }
 
+                //Now first [next] note index position has been found, loop through the next notes until the position
+                //changes signifiying a different note
+                for (int i = MatchNotes.matchingresults.IndexOf(NextNote); i < MatchNotes.matchingresults.Count(); i++)
+                {
 
+                    if (MatchNotes.matchingresults[i].position != NextNote.position)
+                        break;
+                    else
+                        //Add 
+                        tempMatchNotes.Add(MatchNotes.matchingresults[i]);
+                }
+
+                return tempMatchNotes;
             }
-
-            //Now first [next] note index position has been found, loop through the next notes until the position
-            //changes signifiying a different note
-            for (int i = MatchNotes.matchingresults.IndexOf(NextNote); i < MatchNotes.matchingresults.Count(); i++)
+            catch
             {
 
-                if (MatchNotes.matchingresults[i].position != NextNote.position)
-                    break;
-                else
-                    //Add 
-                    tempMatchNotes.Add(MatchNotes.matchingresults[i]);
-            }
-
-            return tempMatchNotes;
-        }
-        catch
-        {
-                MessageBox.Show("Error Mapping Notes");
                 return null;
-        }
+            }
         }
 
 
@@ -123,13 +148,13 @@ namespace MelodicBanjoArranger
 
         // Populate Matching results List with all possible matching positions to play each note passed in TempAllNotes
         // Also allows for modification of notes by -/+ octive intivals
-        public static List<MatchNote> Find_Matching_Notes(ICollection<ArrangeNote> TempAllNotes, BanjoNotes banjotemp, int transpose)
+        public static List<MatchNote> Find_Matching_Notes(ICollection<MidiNotes> TempAllNotes, BanjoNotes banjotemp, int transpose, int max_frets)
         {
             Logging.Update_Status("Starting Note Matching Process");
             matchingresults.Clear(); // We need to clear any previsouly matched results
             bool note_matched_;
 
-            foreach (ArrangeNote temp1 in TempAllNotes)
+            foreach (MidiNotes temp1 in TempAllNotes)
             {
                 note_matched_ = false;
                 // Review each note and map it to a banjo fret
@@ -146,20 +171,26 @@ namespace MelodicBanjoArranger
                         // If this is a matching note then add the note to the matching results
                         if (banjotemp.allnotes[string_count, fret_count] == temp1.noteNumber + (transpose))
                         {
-                            matchingresults.Add(new MatchNote(temp1.noteNumber + (transpose), string_count, fret_count, temp1.position,
-                                    note_names.get_note_name(temp1.noteNumber + (transpose)))); 
+                            MatchNote TempMatchNote = new MatchNote(temp1.noteNumber + (transpose), string_count, fret_count, temp1.position,
+                                    note_names.get_note_name(temp1.noteNumber + (transpose)), false);
+                            matchingresults.Add(TempMatchNote);
                             note_matched_ = true;
                         }
 
 
                     }
                 }
+
+                //Set the last note in the collection to true
+                set_last_match();
+
+
                 if (note_matched_ == false)
                 {
 
-                    Logging.Update_Status("Some Notes cannot be match");
+                    Logging.Update_Status("Note :" + temp1.ToString() + " cannot be matched");
                     //return matchingresults;
-                    throw new System.ArgumentException("Some notes cannot be match with this tranposition", "original");
+                    //throw new System.ArgumentException("Some notes cannot be match with this tranposition", "original");
                 }
 
             }

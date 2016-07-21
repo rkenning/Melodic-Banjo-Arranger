@@ -12,6 +12,7 @@ namespace MelodicBanjoArranger
 
         public static int get_note_cost2(note_node temp_node, note_node parent_node_)
         {
+            //New version of the cost engine to support "Best Arrangements" option
             note_node temp_note = new note_node();
 
             temp_note = temp_node;
@@ -138,7 +139,7 @@ namespace MelodicBanjoArranger
             return temp_note;
         }
 
-        public static async Task<List<note_node>> Calculate_DT_Costs(List<note_node> DTArray, Main_Form parentForm)
+        public static List<note_node> Calculate_DT_Costs(List<note_node> DTArray, Main_Form parentForm)
         {
             try
             {
