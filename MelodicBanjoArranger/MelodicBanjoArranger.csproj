@@ -59,6 +59,7 @@
     <Compile Include="CostCalculator.cs" />
     <Compile Include="DataVisulisation.cs" />
     <Compile Include="DTBestPath.cs" />
+    <Compile Include="DTController-v2.cs" />
     <Compile Include="DTController.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MatchNote.cs" />

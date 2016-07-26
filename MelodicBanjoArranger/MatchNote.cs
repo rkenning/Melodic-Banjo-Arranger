@@ -70,6 +70,11 @@ namespace MelodicBanjoArranger
         // Moved to a public static allowing results to be accessed outside of class
         public static List<MatchNote> matchingresults = new List<MatchNote>();
 
+        public static long get_first_note_position()
+        {
+            return matchingresults[0].position;
+        }
+
         public static int get_matching_note_count()
         {
             return matchingresults.Count();
@@ -181,8 +186,7 @@ namespace MelodicBanjoArranger
                     }
                 }
 
-                //Set the last note in the collection to true
-                set_last_match();
+               
 
 
                 if (note_matched_ == false)

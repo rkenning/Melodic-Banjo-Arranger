@@ -52,11 +52,12 @@ namespace MelodicBanjoArranger
             this.cmdCreateArrangemenets = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cmdBuildDT2 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCurrentNotePosition = new System.Windows.Forms.TextBox();
             this.txtUpdate = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cmdStopDT = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txtMaxFrets = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -96,28 +97,31 @@ namespace MelodicBanjoArranger
             // txtNotes
             // 
             this.txtNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNotes.Location = new System.Drawing.Point(18, 33);
+            this.txtNotes.Location = new System.Drawing.Point(42, 74);
+            this.txtNotes.Margin = new System.Windows.Forms.Padding(7);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNotes.Size = new System.Drawing.Size(465, 299);
+            this.txtNotes.Size = new System.Drawing.Size(1080, 662);
             this.txtNotes.TabIndex = 0;
             // 
             // txtNoteMatch
             // 
             this.txtNoteMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoteMatch.Location = new System.Drawing.Point(18, 340);
+            this.txtNoteMatch.Location = new System.Drawing.Point(42, 758);
+            this.txtNoteMatch.Margin = new System.Windows.Forms.Padding(7);
             this.txtNoteMatch.Multiline = true;
             this.txtNoteMatch.Name = "txtNoteMatch";
             this.txtNoteMatch.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtNoteMatch.Size = new System.Drawing.Size(528, 253);
+            this.txtNoteMatch.Size = new System.Drawing.Size(1227, 559);
             this.txtNoteMatch.TabIndex = 2;
             // 
             // cmdArrange
             // 
-            this.cmdArrange.Location = new System.Drawing.Point(638, 350);
+            this.cmdArrange.Location = new System.Drawing.Point(1489, 781);
+            this.cmdArrange.Margin = new System.Windows.Forms.Padding(7);
             this.cmdArrange.Name = "cmdArrange";
-            this.cmdArrange.Size = new System.Drawing.Size(125, 23);
+            this.cmdArrange.Size = new System.Drawing.Size(292, 51);
             this.cmdArrange.TabIndex = 4;
             this.cmdArrange.Text = "Re-Arrange";
             this.cmdArrange.UseVisualStyleBackColor = true;
@@ -126,26 +130,29 @@ namespace MelodicBanjoArranger
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 17);
+            this.label1.Location = new System.Drawing.Point(42, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(168, 29);
             this.label1.TabIndex = 6;
             this.label1.Text = "Original Notes";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(114, 17);
+            this.label2.Location = new System.Drawing.Point(266, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(119, 29);
             this.label2.TabIndex = 7;
             this.label2.Text = "Mappings";
             // 
             // txtTranspose
             // 
-            this.txtTranspose.Location = new System.Drawing.Point(768, 525);
+            this.txtTranspose.Location = new System.Drawing.Point(1792, 1171);
+            this.txtTranspose.Margin = new System.Windows.Forms.Padding(7);
             this.txtTranspose.Name = "txtTranspose";
-            this.txtTranspose.Size = new System.Drawing.Size(100, 20);
+            this.txtTranspose.Size = new System.Drawing.Size(228, 35);
             this.txtTranspose.TabIndex = 9;
             this.txtTranspose.Text = "-12";
             // 
@@ -153,14 +160,15 @@ namespace MelodicBanjoArranger
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(36, 36);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(92, 4);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(31, 246);
+            this.textBox1.Location = new System.Drawing.Point(72, 549);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(7);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(272, 117);
+            this.textBox1.Size = new System.Drawing.Size(629, 256);
             this.textBox1.TabIndex = 12;
             this.textBox1.Text = "Banjo Tuning Notes\r\n\r\n4)  D4 = 62\r\n3)  B3 = 59\r\n2)  G3 = 55\r\n1)  C3 = 48\r\n0)  G4 " +
     "= 67 ";
@@ -168,45 +176,50 @@ namespace MelodicBanjoArranger
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(31, 39);
+            this.pictureBox1.Location = new System.Drawing.Point(72, 87);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(882, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(2058, 424);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(636, 525);
+            this.label4.Location = new System.Drawing.Point(1484, 1171);
+            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 13);
+            this.label4.Size = new System.Drawing.Size(264, 29);
             this.label4.TabIndex = 14;
             this.label4.Text = "Semitones Transposed";
             // 
             // cmdBuildDT
             // 
-            this.cmdBuildDT.Location = new System.Drawing.Point(638, 385);
+            this.cmdBuildDT.Location = new System.Drawing.Point(1489, 859);
+            this.cmdBuildDT.Margin = new System.Windows.Forms.Padding(7);
             this.cmdBuildDT.Name = "cmdBuildDT";
-            this.cmdBuildDT.Size = new System.Drawing.Size(125, 23);
+            this.cmdBuildDT.Size = new System.Drawing.Size(205, 51);
             this.cmdBuildDT.TabIndex = 15;
-            this.cmdBuildDT.Text = "Build DT";
+            this.cmdBuildDT.Text = "Build DT v1";
             this.cmdBuildDT.UseVisualStyleBackColor = true;
             this.cmdBuildDT.Click += new System.EventHandler(this.cmdBuildDT_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(509, 19);
+            this.label5.Location = new System.Drawing.Point(1188, 42);
+            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.Size = new System.Drawing.Size(148, 29);
             this.label5.TabIndex = 17;
             this.label5.Text = "Process Log";
             // 
             // cmdCreateDTGraph
             // 
-            this.cmdCreateDTGraph.Location = new System.Drawing.Point(863, 350);
+            this.cmdCreateDTGraph.Location = new System.Drawing.Point(2014, 781);
+            this.cmdCreateDTGraph.Margin = new System.Windows.Forms.Padding(7);
             this.cmdCreateDTGraph.Name = "cmdCreateDTGraph";
-            this.cmdCreateDTGraph.Size = new System.Drawing.Size(119, 23);
+            this.cmdCreateDTGraph.Size = new System.Drawing.Size(278, 51);
             this.cmdCreateDTGraph.TabIndex = 18;
             this.cmdCreateDTGraph.Text = "Create DT Graph";
             this.cmdCreateDTGraph.UseVisualStyleBackColor = true;
@@ -214,9 +227,10 @@ namespace MelodicBanjoArranger
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(768, 551);
+            this.txtFileName.Location = new System.Drawing.Point(1792, 1229);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(7);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(325, 20);
+            this.txtFileName.Size = new System.Drawing.Size(753, 35);
             this.txtFileName.TabIndex = 20;
             this.txtFileName.Text = "Dance10.mid";
             // 
@@ -226,9 +240,10 @@ namespace MelodicBanjoArranger
             // 
             // cmdCheckTree
             // 
-            this.cmdCheckTree.Location = new System.Drawing.Point(998, 350);
+            this.cmdCheckTree.Location = new System.Drawing.Point(2329, 781);
+            this.cmdCheckTree.Margin = new System.Windows.Forms.Padding(7);
             this.cmdCheckTree.Name = "cmdCheckTree";
-            this.cmdCheckTree.Size = new System.Drawing.Size(147, 23);
+            this.cmdCheckTree.Size = new System.Drawing.Size(343, 51);
             this.cmdCheckTree.TabIndex = 21;
             this.cmdCheckTree.Text = "Check Tree";
             this.cmdCheckTree.UseVisualStyleBackColor = true;
@@ -236,9 +251,10 @@ namespace MelodicBanjoArranger
             // 
             // cmdCreateArrangemenets
             // 
-            this.cmdCreateArrangemenets.Location = new System.Drawing.Point(639, 419);
+            this.cmdCreateArrangemenets.Location = new System.Drawing.Point(1491, 935);
+            this.cmdCreateArrangemenets.Margin = new System.Windows.Forms.Padding(7);
             this.cmdCreateArrangemenets.Name = "cmdCreateArrangemenets";
-            this.cmdCreateArrangemenets.Size = new System.Drawing.Size(124, 23);
+            this.cmdCreateArrangemenets.Size = new System.Drawing.Size(289, 51);
             this.cmdCreateArrangemenets.TabIndex = 22;
             this.cmdCreateArrangemenets.Text = "Create Arrangemenets";
             this.cmdCreateArrangemenets.UseVisualStyleBackColor = true;
@@ -250,19 +266,21 @@ namespace MelodicBanjoArranger
             this.tabMain.Controls.Add(this.tabPage2);
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Controls.Add(this.tabPage4);
-            this.tabMain.Location = new System.Drawing.Point(12, 3);
+            this.tabMain.Location = new System.Drawing.Point(28, 7);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(7);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(1322, 1013);
+            this.tabMain.Size = new System.Drawing.Size(3085, 2260);
             this.tabMain.TabIndex = 23;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cmdBuildDT2);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.txtCurrentNotePosition);
             this.tabPage1.Controls.Add(this.txtUpdate);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.cmdStopDT);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.txtMaxFrets);
             this.tabPage1.Controls.Add(this.label10);
@@ -289,98 +307,121 @@ namespace MelodicBanjoArranger
             this.tabPage1.Controls.Add(this.txtNoteMatch);
             this.tabPage1.Controls.Add(this.cmdCreateDTGraph);
             this.tabPage1.Controls.Add(this.cmdArrange);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(10, 47);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(7);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1314, 987);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(7);
+            this.tabPage1.Size = new System.Drawing.Size(3065, 2203);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Initial Stuff";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // cmdBuildDT2
+            // 
+            this.cmdBuildDT2.Location = new System.Drawing.Point(1708, 859);
+            this.cmdBuildDT2.Margin = new System.Windows.Forms.Padding(7);
+            this.cmdBuildDT2.Name = "cmdBuildDT2";
+            this.cmdBuildDT2.Size = new System.Drawing.Size(205, 51);
+            this.cmdBuildDT2.TabIndex = 42;
+            this.cmdBuildDT2.Text = "Build DT v2";
+            this.cmdBuildDT2.UseVisualStyleBackColor = true;
+            this.cmdBuildDT2.Click += new System.EventHandler(this.cmdBuildDT2_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(621, 618);
+            this.label13.Location = new System.Drawing.Point(1449, 1379);
+            this.label13.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(97, 13);
+            this.label13.Size = new System.Drawing.Size(220, 29);
             this.label13.TabIndex = 41;
             this.label13.Text = "Processing Details:";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(621, 643);
+            this.label12.Location = new System.Drawing.Point(1449, 1434);
+            this.label12.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 13);
+            this.label12.Size = new System.Drawing.Size(158, 29);
             this.label12.TabIndex = 40;
             this.label12.Text = "Note Position";
             // 
             // txtCurrentNotePosition
             // 
-            this.txtCurrentNotePosition.Location = new System.Drawing.Point(768, 643);
+            this.txtCurrentNotePosition.Location = new System.Drawing.Point(1792, 1434);
+            this.txtCurrentNotePosition.Margin = new System.Windows.Forms.Padding(7);
             this.txtCurrentNotePosition.Name = "txtCurrentNotePosition";
-            this.txtCurrentNotePosition.Size = new System.Drawing.Size(222, 20);
+            this.txtCurrentNotePosition.Size = new System.Drawing.Size(513, 35);
             this.txtCurrentNotePosition.TabIndex = 39;
             // 
             // txtUpdate
             // 
             this.txtUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdate.Location = new System.Drawing.Point(506, 35);
+            this.txtUpdate.Location = new System.Drawing.Point(1181, 78);
+            this.txtUpdate.Margin = new System.Windows.Forms.Padding(7);
             this.txtUpdate.Multiline = true;
             this.txtUpdate.Name = "txtUpdate";
             this.txtUpdate.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtUpdate.Size = new System.Drawing.Size(639, 299);
+            this.txtUpdate.Size = new System.Drawing.Size(1486, 662);
             this.txtUpdate.TabIndex = 38;
             // 
-            // button1
+            // cmdStopDT
             // 
-            this.button1.Location = new System.Drawing.Point(1208, 350);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 37);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "Stop Processing";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cmdStopDT.Location = new System.Drawing.Point(2014, 1039);
+            this.cmdStopDT.Margin = new System.Windows.Forms.Padding(7);
+            this.cmdStopDT.Name = "cmdStopDT";
+            this.cmdStopDT.Size = new System.Drawing.Size(175, 83);
+            this.cmdStopDT.TabIndex = 37;
+            this.cmdStopDT.Text = "Stop Processing";
+            this.cmdStopDT.UseVisualStyleBackColor = true;
+            this.cmdStopDT.Click += new System.EventHandler(this.button1_Click);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(863, 417);
+            this.label11.Location = new System.Drawing.Point(2014, 930);
+            this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(45, 13);
+            this.label11.Size = new System.Drawing.Size(97, 29);
             this.label11.TabIndex = 36;
             this.label11.Text = "Max fret";
             // 
             // txtMaxFrets
             // 
-            this.txtMaxFrets.Location = new System.Drawing.Point(993, 414);
+            this.txtMaxFrets.Location = new System.Drawing.Point(2317, 924);
+            this.txtMaxFrets.Margin = new System.Windows.Forms.Padding(7);
             this.txtMaxFrets.Name = "txtMaxFrets";
-            this.txtMaxFrets.Size = new System.Drawing.Size(100, 20);
+            this.txtMaxFrets.Size = new System.Drawing.Size(228, 35);
             this.txtMaxFrets.TabIndex = 35;
             this.txtMaxFrets.Text = "20";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(863, 443);
+            this.label10.Location = new System.Drawing.Point(2014, 988);
+            this.label10.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 13);
+            this.label10.Size = new System.Drawing.Size(158, 29);
             this.label10.TabIndex = 34;
             this.label10.Text = "DT Cost Limit";
             // 
             // txtCostLimit
             // 
-            this.txtCostLimit.Location = new System.Drawing.Point(993, 437);
+            this.txtCostLimit.Location = new System.Drawing.Point(2317, 975);
+            this.txtCostLimit.Margin = new System.Windows.Forms.Padding(7);
             this.txtCostLimit.Name = "txtCostLimit";
-            this.txtCostLimit.Size = new System.Drawing.Size(100, 20);
+            this.txtCostLimit.Size = new System.Drawing.Size(228, 35);
             this.txtCostLimit.TabIndex = 33;
-            this.txtCostLimit.Text = "2";
+            this.txtCostLimit.Text = "8";
             // 
             // cmdBestArrangements
             // 
-            this.cmdBestArrangements.Location = new System.Drawing.Point(641, 453);
+            this.cmdBestArrangements.Location = new System.Drawing.Point(1496, 1011);
+            this.cmdBestArrangements.Margin = new System.Windows.Forms.Padding(7);
             this.cmdBestArrangements.Name = "cmdBestArrangements";
-            this.cmdBestArrangements.Size = new System.Drawing.Size(124, 35);
+            this.cmdBestArrangements.Size = new System.Drawing.Size(289, 78);
             this.cmdBestArrangements.TabIndex = 32;
             this.cmdBestArrangements.Text = "Create Best Arrangemenets";
             this.cmdBestArrangements.UseVisualStyleBackColor = true;
@@ -389,70 +430,78 @@ namespace MelodicBanjoArranger
             // lblOriginalNotes
             // 
             this.lblOriginalNotes.AutoSize = true;
-            this.lblOriginalNotes.Location = new System.Drawing.Point(114, 669);
+            this.lblOriginalNotes.Location = new System.Drawing.Point(266, 1492);
+            this.lblOriginalNotes.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblOriginalNotes.Name = "lblOriginalNotes";
-            this.lblOriginalNotes.Size = new System.Drawing.Size(0, 13);
+            this.lblOriginalNotes.Size = new System.Drawing.Size(0, 29);
             this.lblOriginalNotes.TabIndex = 31;
             // 
             // lblMatchingNotes
             // 
             this.lblMatchingNotes.AutoSize = true;
-            this.lblMatchingNotes.Location = new System.Drawing.Point(114, 646);
+            this.lblMatchingNotes.Location = new System.Drawing.Point(266, 1441);
+            this.lblMatchingNotes.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblMatchingNotes.Name = "lblMatchingNotes";
-            this.lblMatchingNotes.Size = new System.Drawing.Size(41, 13);
+            this.lblMatchingNotes.Size = new System.Drawing.Size(92, 29);
             this.lblMatchingNotes.TabIndex = 30;
             this.lblMatchingNotes.Text = "label10";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 669);
+            this.label9.Location = new System.Drawing.Point(42, 1492);
+            this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 13);
+            this.label9.Size = new System.Drawing.Size(181, 29);
             this.label9.TabIndex = 29;
             this.label9.Text = "#Original Notes";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 646);
+            this.label8.Location = new System.Drawing.Point(42, 1441);
+            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 13);
+            this.label8.Size = new System.Drawing.Size(193, 29);
             this.label8.TabIndex = 28;
             this.label8.Text = "#Matching Notes";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 618);
+            this.label3.Location = new System.Drawing.Point(42, 1379);
+            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.Size = new System.Drawing.Size(254, 29);
             this.label3.TabIndex = 27;
             this.label3.Text = "Current Matching Stats";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(639, 577);
+            this.label7.Location = new System.Drawing.Point(1491, 1287);
+            this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 13);
+            this.label7.Size = new System.Drawing.Size(219, 29);
             this.label7.TabIndex = 25;
             this.label7.Text = "Midi Track Number";
             // 
             // txtTrackNumber
             // 
-            this.txtTrackNumber.Location = new System.Drawing.Point(768, 577);
+            this.txtTrackNumber.Location = new System.Drawing.Point(1792, 1287);
+            this.txtTrackNumber.Margin = new System.Windows.Forms.Padding(7);
             this.txtTrackNumber.Name = "txtTrackNumber";
-            this.txtTrackNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtTrackNumber.Size = new System.Drawing.Size(228, 35);
             this.txtTrackNumber.TabIndex = 24;
             this.txtTrackNumber.Text = "1";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(636, 551);
+            this.label6.Location = new System.Drawing.Point(1484, 1229);
+            this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.Size = new System.Drawing.Size(114, 29);
             this.label6.TabIndex = 23;
             this.label6.Text = "Filename";
             // 
@@ -460,10 +509,11 @@ namespace MelodicBanjoArranger
             // 
             this.tabPage2.Controls.Add(this.pictureBox1);
             this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(10, 47);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(7);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1314, 987);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(7);
+            this.tabPage2.Size = new System.Drawing.Size(3065, 2203);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Reference";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -477,9 +527,10 @@ namespace MelodicBanjoArranger
             this.tabPage3.Controls.Add(this.cmdCreateScore);
             this.tabPage3.Controls.Add(this.txtArrange);
             this.tabPage3.Controls.Add(this.dGridArrangements);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(10, 47);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(7);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1314, 987);
+            this.tabPage3.Size = new System.Drawing.Size(3065, 2203);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Arrangemenets";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -488,16 +539,18 @@ namespace MelodicBanjoArranger
             // 
             this.dGridArrCost.AllowUserToOrderColumns = true;
             this.dGridArrCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGridArrCost.Location = new System.Drawing.Point(13, 319);
+            this.dGridArrCost.Location = new System.Drawing.Point(30, 712);
+            this.dGridArrCost.Margin = new System.Windows.Forms.Padding(7);
             this.dGridArrCost.Name = "dGridArrCost";
-            this.dGridArrCost.Size = new System.Drawing.Size(1282, 400);
+            this.dGridArrCost.Size = new System.Drawing.Size(2991, 892);
             this.dGridArrCost.TabIndex = 7;
             // 
             // cmdRenderAlphaTab
             // 
-            this.cmdRenderAlphaTab.Location = new System.Drawing.Point(844, 126);
+            this.cmdRenderAlphaTab.Location = new System.Drawing.Point(1969, 281);
+            this.cmdRenderAlphaTab.Margin = new System.Windows.Forms.Padding(7);
             this.cmdRenderAlphaTab.Name = "cmdRenderAlphaTab";
-            this.cmdRenderAlphaTab.Size = new System.Drawing.Size(173, 23);
+            this.cmdRenderAlphaTab.Size = new System.Drawing.Size(404, 51);
             this.cmdRenderAlphaTab.TabIndex = 6;
             this.cmdRenderAlphaTab.Text = "Render AlphaTab";
             this.cmdRenderAlphaTab.UseVisualStyleBackColor = true;
@@ -505,24 +558,27 @@ namespace MelodicBanjoArranger
             // 
             // txtAlphaMarkup
             // 
-            this.txtAlphaMarkup.Location = new System.Drawing.Point(715, 167);
+            this.txtAlphaMarkup.Location = new System.Drawing.Point(1668, 373);
+            this.txtAlphaMarkup.Margin = new System.Windows.Forms.Padding(7);
             this.txtAlphaMarkup.Multiline = true;
             this.txtAlphaMarkup.Name = "txtAlphaMarkup";
-            this.txtAlphaMarkup.Size = new System.Drawing.Size(580, 133);
+            this.txtAlphaMarkup.Size = new System.Drawing.Size(1348, 292);
             this.txtAlphaMarkup.TabIndex = 5;
             // 
             // txtSelectedArrangement
             // 
-            this.txtSelectedArrangement.Location = new System.Drawing.Point(1187, 129);
+            this.txtSelectedArrangement.Location = new System.Drawing.Point(2770, 288);
+            this.txtSelectedArrangement.Margin = new System.Windows.Forms.Padding(7);
             this.txtSelectedArrangement.Name = "txtSelectedArrangement";
-            this.txtSelectedArrangement.Size = new System.Drawing.Size(108, 20);
+            this.txtSelectedArrangement.Size = new System.Drawing.Size(247, 35);
             this.txtSelectedArrangement.TabIndex = 4;
             // 
             // cmdCreateScore
             // 
-            this.cmdCreateScore.Location = new System.Drawing.Point(708, 126);
+            this.cmdCreateScore.Location = new System.Drawing.Point(1652, 281);
+            this.cmdCreateScore.Margin = new System.Windows.Forms.Padding(7);
             this.cmdCreateScore.Name = "cmdCreateScore";
-            this.cmdCreateScore.Size = new System.Drawing.Size(130, 23);
+            this.cmdCreateScore.Size = new System.Drawing.Size(303, 51);
             this.cmdCreateScore.TabIndex = 2;
             this.cmdCreateScore.Text = "Create AlphaText";
             this.cmdCreateScore.UseVisualStyleBackColor = true;
@@ -530,20 +586,22 @@ namespace MelodicBanjoArranger
             // 
             // txtArrange
             // 
-            this.txtArrange.Location = new System.Drawing.Point(708, 21);
+            this.txtArrange.Location = new System.Drawing.Point(1652, 47);
+            this.txtArrange.Margin = new System.Windows.Forms.Padding(7);
             this.txtArrange.Multiline = true;
             this.txtArrange.Name = "txtArrange";
             this.txtArrange.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtArrange.Size = new System.Drawing.Size(443, 99);
+            this.txtArrange.Size = new System.Drawing.Size(1028, 216);
             this.txtArrange.TabIndex = 1;
             // 
             // dGridArrangements
             // 
             this.dGridArrangements.AllowUserToOrderColumns = true;
             this.dGridArrangements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGridArrangements.Location = new System.Drawing.Point(13, 21);
+            this.dGridArrangements.Location = new System.Drawing.Point(30, 47);
+            this.dGridArrangements.Margin = new System.Windows.Forms.Padding(7);
             this.dGridArrangements.Name = "dGridArrangements";
-            this.dGridArrangements.Size = new System.Drawing.Size(692, 292);
+            this.dGridArrangements.Size = new System.Drawing.Size(1615, 651);
             this.dGridArrangements.TabIndex = 0;
             this.dGridArrangements.SelectionChanged += new System.EventHandler(this.dGridArrangements_SelectionChanged);
             // 
@@ -551,10 +609,11 @@ namespace MelodicBanjoArranger
             // 
             this.tabPage4.Controls.Add(this.dataListBestNodes);
             this.tabPage4.Controls.Add(this.cmdListBest);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(10, 47);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(7);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1314, 987);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(7);
+            this.tabPage4.Size = new System.Drawing.Size(3065, 2203);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "DT Listing";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -563,16 +622,18 @@ namespace MelodicBanjoArranger
             // 
             this.dataListBestNodes.AllowUserToOrderColumns = true;
             this.dataListBestNodes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListBestNodes.Location = new System.Drawing.Point(6, 6);
+            this.dataListBestNodes.Location = new System.Drawing.Point(14, 13);
+            this.dataListBestNodes.Margin = new System.Windows.Forms.Padding(7);
             this.dataListBestNodes.Name = "dataListBestNodes";
-            this.dataListBestNodes.Size = new System.Drawing.Size(1340, 592);
+            this.dataListBestNodes.Size = new System.Drawing.Size(3127, 1321);
             this.dataListBestNodes.TabIndex = 2;
             // 
             // cmdListBest
             // 
-            this.cmdListBest.Location = new System.Drawing.Point(3, 604);
+            this.cmdListBest.Location = new System.Drawing.Point(7, 1347);
+            this.cmdListBest.Margin = new System.Windows.Forms.Padding(7);
             this.cmdListBest.Name = "cmdListBest";
-            this.cmdListBest.Size = new System.Drawing.Size(75, 23);
+            this.cmdListBest.Size = new System.Drawing.Size(175, 51);
             this.cmdListBest.TabIndex = 1;
             this.cmdListBest.Text = "Show Best Nodes";
             this.cmdListBest.UseVisualStyleBackColor = true;
@@ -580,10 +641,11 @@ namespace MelodicBanjoArranger
             // 
             // Main_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 784);
+            this.ClientSize = new System.Drawing.Size(2722, 1749);
             this.Controls.Add(this.tabMain);
+            this.Margin = new System.Windows.Forms.Padding(7);
             this.Name = "Main_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Melodic Banjo Arranger";
@@ -653,11 +715,12 @@ namespace MelodicBanjoArranger
         private Label label11;
         private TextBox txtMaxFrets;
         private Label label10;
-        private Button button1;
+        private Button cmdStopDT;
         private TextBox txtUpdate;
         private Label label13;
         private Label label12;
         private TextBox txtCurrentNotePosition;
+        private Button cmdBuildDT2;
     }
 }
 

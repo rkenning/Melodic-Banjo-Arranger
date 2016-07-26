@@ -91,7 +91,10 @@ namespace MelodicBanjoArranger
         {
             //Testing Calls to work through the setup of DT, Arrangements etc..
             update_arrangement();
-            cmdBuildDT_Click(sender, e);
+            //Set the last note in the collection to true
+            MatchNotes.set_last_match();
+            //cmdBuildDT_Click(sender, e);
+            //cmdBuildDT2_Click(sender, e);
             //cmdCosts_Click(sender, e);
             // cmdCreateArrangemenets_Click(sender, e);
             //this.tabMain.SelectedIndex= 2;
@@ -131,7 +134,7 @@ namespace MelodicBanjoArranger
                 throw new System.ArgumentException("Invalid Track Number.  Music be numeric", "Error");
 
             // Create the banjo object
-            BanjoNotes banjoobject = new BanjoNotes();
+            BanjoNotes banjoobject = new BanjoNotes(Convert.ToInt16(txtMaxFrets.Text));
             //Define the matches structure
             List<MatchNote> matches = new List<MatchNote>();
 
@@ -423,6 +426,45 @@ namespace MelodicBanjoArranger
 
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void cmdBuildDT2_Click(object sender, EventArgs e)
+        {
+            Logging.Open_Dlg();
+            //  try
+            //  {
+
+
+            //Create a new Decision Tree Object
+            DTData_result.Clear();
+
+            Logging.Update_Status("Starting DT Building Process");
+            cts = new CancellationTokenSource();
+            var ctoken = cts.Token;
+            DTData_result = await Task.Run(() => DTController2.Process_Route_Notes(MatchNotes.matchingresults, Convert.ToInt16(txtCostLimit.Text), ctoken), ctoken);
+            Logging.Update_Status("Finished producing DT results");
+
+
+            lblMatchingNotes.Text = MatchNotes.get_matching_note_count().ToString();
+
+            // Write out the DT Results
+            Logging.Update_Status("Writing " + DTData_result.Count + " to form");
+            Logging.Update_Status("Finished DT Build, Updating Screen");
+
+            //Call local method to update the forms DataGrid with the latest DT Results
+            update_DTResults(DTData_result);
+
+            Logging.Update_Status("DT calculation complete & form updated");
+
+            //}
+            //  catch (Exception ex)
+            //  {
+            //      MessageBox.Show("Error creating DT Tree:"+ex.ToString());
+            // }
+        }
     }
 }
 

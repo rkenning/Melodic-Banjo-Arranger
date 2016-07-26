@@ -66,7 +66,7 @@ namespace MelodicBanjoArranger
 
         public int max_frets = 22; //Changed to reuce options
 
-        public BanjoNotes()
+        public BanjoNotes(int max_frets_)
         {
             // Constructor
 
@@ -88,6 +88,9 @@ namespace MelodicBanjoArranger
               String  1 = 17 frets 
 
              */
+
+            max_frets = max_frets_;
+            
             // Loop through each string
             for (int string_count = 0; string_count < 5; string_count++)
             {

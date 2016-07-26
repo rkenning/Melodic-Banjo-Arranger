@@ -22,7 +22,7 @@ namespace MelodicBanjoArranger
             {
 
                 //Find the position in the dictioary and check the paramter note against the current note
-                if (DicBestNodes[temp_node.NoteDetails.position].cost < temp_node.cost)
+                if (DicBestNodes[temp_node.NoteDetails.position].cost > temp_node.cost)
                 {
                     DicBestNodes[temp_node.NoteDetails.position] = temp_node;
                 }
