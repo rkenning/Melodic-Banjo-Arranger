@@ -12,11 +12,14 @@ Summary: Project to perform a cost based analysis of melodic Banjo note arrangem
 
 * Apply a cost based evaluation of every alternative arrangements
 
-Further detail regards the approaches I have implemented can be found at the blog [link](http://ryankenning.com/2015/07/14
-/melodic-banjo-project-the-story-so-far/)
+* Ultimatly provide a "Best" arrangement of the melodic line
+
+Further detail regards the approaches I have implemented can be found at the blog [link](http://ryankenning.com/2015/07/14/melodic-banjo-project-the-story-so-far/)
 
 Shoutouts to frameworks & guidance regards this project:
 
 [Naudio](https://github.com/naudio/NAudio) - Top notch audio libary which got things off the ground very quickly for me regards parsing of Midi
 
 [alphaTab](https://github.com/CoderLine/alphaTab) - Great Tab rendering libary used to present the arrangements
+
+[MSAGL](https://github.com/Microsoft/automatic-graph-layout) - Microsoft Automatic Graph Layout : Very cool drawing libary used to display the DT node relationships
