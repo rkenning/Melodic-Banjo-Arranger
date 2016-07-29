@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MelodicBanjoArranger\MelodicBanjoArranger.csproj">
-      <Project>{92E4CB4C-98B0-40CD-B851-CCF6E2577F13}</Project>
+      <Project>{92e4cb4c-98b0-40cd-b851-ccf6e2577f13}</Project>
       <Name>MelodicBanjoArranger</Name>
     </ProjectReference>
   </ItemGroup>

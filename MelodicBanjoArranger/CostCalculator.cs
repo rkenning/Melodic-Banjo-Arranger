@@ -31,18 +31,22 @@ namespace MelodicBanjoArranger
             }
             else
             {
+               
+                //TODO the whole section below needs a bit of a re-write to allow for a gradual costing based on the parent,
+                // parent's parent, parents parents parent etc.....
+
                 // Check the last note is the same string as last note
                 if (temp_node.NoteDetails.banjoString == parent_node_.NoteDetails.banjoString &&
                temp_node.NoteDetails.notenumber != parent_node_.NoteDetails.notenumber
                    && (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
                 {
-                    temp_note.cost = 12;
+                    temp_note.cost += 12;
                 }
                 // Check distance between last note and current note
                 if (System.Math.Abs(temp_node.NoteDetails.fret - parent_node_.NoteDetails.fret) > 4 &&
                    (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
                 {
-                    temp_note.cost = 9;
+                    temp_note.cost += 10;
                 }
 
                 try
@@ -51,7 +55,7 @@ namespace MelodicBanjoArranger
                     if (System.Math.Abs(temp_node.NoteDetails.fret - parent_node_.parent_node.NoteDetails.fret) > 4 &&
                        (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
                     {
-                        temp_note.cost = 6;
+                        temp_note.cost += 8;
                     }
                 }
                 catch
@@ -63,14 +67,38 @@ namespace MelodicBanjoArranger
                     if (System.Math.Abs(temp_node.NoteDetails.fret - parent_node_.parent_node.parent_node.NoteDetails.fret) > 4 &&
                        (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
                     {
-                        temp_note.cost = 3;
+                        temp_note.cost += 6;
                     }
                 }
                 catch
                 {
                 };
 
+                try
+                {
+                    //// Check distance between current note and 3 notes ago
+                    if (System.Math.Abs(temp_node.NoteDetails.fret - parent_node_.parent_node.parent_node.parent_node.NoteDetails.fret) > 4 &&
+                       (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
+                    {
+                        temp_note.cost += 4;
+                    }
+                }
+                catch
+                {
+                };
 
+                try
+                {
+                    //// Check distance between current note and 3 notes ago
+                    if (System.Math.Abs(temp_node.NoteDetails.fret - parent_node_.parent_node.parent_node.parent_node.parent_node.NoteDetails.fret) > 4 &&
+                       (temp_node.NoteDetails.fret != 0 || temp_node.NoteDetails.fret != 0))
+                    {
+                        temp_note.cost += 2;
+                    }
+                }
+                catch
+                {
+                };
             }
             return temp_note.cost;
         }

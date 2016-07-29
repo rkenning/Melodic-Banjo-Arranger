@@ -74,6 +74,12 @@ namespace MelodicBanjoArranger
         {
             return matchingresults[0].position;
         }
+        public static long get_last_note_position()
+        {
+            return matchingresults[matchingresults.Count-1].position;
+        }
+
+
 
         public static int get_matching_note_count()
         {
@@ -153,7 +159,8 @@ namespace MelodicBanjoArranger
 
         // Populate Matching results List with all possible matching positions to play each note passed in TempAllNotes
         // Also allows for modification of notes by -/+ octive intivals
-        public static List<MatchNote> Find_Matching_Notes(ICollection<MidiNotes> TempAllNotes, BanjoNotes banjotemp, int transpose, int max_frets)
+        public static List<MatchNote> Find_Matching_Notes(ICollection<MidiNotes> TempAllNotes, BanjoNotes banjotemp, 
+            int transpose, int max_frets, bool autotrans)
         {
             Logging.Update_Status("Starting Note Matching Process");
             matchingresults.Clear(); // We need to clear any previsouly matched results

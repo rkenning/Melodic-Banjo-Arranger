@@ -90,7 +90,8 @@ namespace MelodicBanjoArranger
         private void Main_Form_Load(object sender, EventArgs e)
         {
             //Testing Calls to work through the setup of DT, Arrangements etc..
-            update_arrangement();
+
+            update_arrangement(chkAutoTrans.CheckState);
             //Set the last note in the collection to true
             MatchNotes.set_last_match();
             //cmdBuildDT_Click(sender, e);
@@ -101,9 +102,12 @@ namespace MelodicBanjoArranger
 
         }
 
-        private void update_arrangement()
+        private void update_arrangement(CheckState AutoTrans)
         {
 
+            //TODO : Remove all this stuff out of the form and into a class
+                       
+            
             //Open Status dlg screen
             Logging.Open_Dlg();
 
@@ -157,9 +161,16 @@ namespace MelodicBanjoArranger
 
             //Populate the matches 
 
+            bool AutoTrans_ = false;
+            if (AutoTrans ==  CheckState.Checked)
+                {
+                AutoTrans_ = true;
+            }
+
             try
             {
-                matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text), Convert.ToInt16(txtMaxFrets.Text));
+                matches = MatchNotes.Find_Matching_Notes(MidiObject, banjoobject, Convert.ToInt16(txtTranspose.Text), 
+                    Convert.ToInt16(txtMaxFrets.Text),AutoTrans_ );
             }
             catch (Exception Ex)
             {
@@ -194,7 +205,7 @@ namespace MelodicBanjoArranger
         {
             try
             {
-                update_arrangement();
+                update_arrangement(chkAutoTrans.CheckState);
                 Logging.Update_Status(MatchNotes.DT_size_projection().ToString());
             }
             catch (Exception Ex)
@@ -444,7 +455,7 @@ namespace MelodicBanjoArranger
             Logging.Update_Status("Starting DT Building Process");
             cts = new CancellationTokenSource();
             var ctoken = cts.Token;
-            DTData_result = await Task.Run(() => DTController2.Process_Route_Notes(MatchNotes.matchingresults, Convert.ToInt16(txtCostLimit.Text), ctoken), ctoken);
+            DTData_result = await Task.Run(() => DTController2.Process_Route_Notes(MatchNotes.matchingresults, Convert.ToInt16(txtCostLimit.Text),Convert.ToInt16(txtEndNodePerStart.Text) ,ctoken), ctoken);
             Logging.Update_Status("Finished producing DT results");
 
 

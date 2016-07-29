@@ -43,7 +43,6 @@ namespace MelodicBanjoArranger
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cmdBuildDT = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmdCreateDTGraph = new System.Windows.Forms.Button();
             this.txtFileName = new System.Windows.Forms.TextBox();
@@ -83,6 +82,9 @@ namespace MelodicBanjoArranger
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataListBestNodes = new System.Windows.Forms.DataGridView();
             this.cmdListBest = new System.Windows.Forms.Button();
+            this.txtEndNodePerStart = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.chkAutoTrans = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -118,7 +120,7 @@ namespace MelodicBanjoArranger
             // 
             // cmdArrange
             // 
-            this.cmdArrange.Location = new System.Drawing.Point(1489, 781);
+            this.cmdArrange.Location = new System.Drawing.Point(1489, 870);
             this.cmdArrange.Margin = new System.Windows.Forms.Padding(7);
             this.cmdArrange.Name = "cmdArrange";
             this.cmdArrange.Size = new System.Drawing.Size(292, 51);
@@ -193,17 +195,6 @@ namespace MelodicBanjoArranger
             this.label4.TabIndex = 14;
             this.label4.Text = "Semitones Transposed";
             // 
-            // cmdBuildDT
-            // 
-            this.cmdBuildDT.Location = new System.Drawing.Point(1489, 859);
-            this.cmdBuildDT.Margin = new System.Windows.Forms.Padding(7);
-            this.cmdBuildDT.Name = "cmdBuildDT";
-            this.cmdBuildDT.Size = new System.Drawing.Size(205, 51);
-            this.cmdBuildDT.TabIndex = 15;
-            this.cmdBuildDT.Text = "Build DT v1";
-            this.cmdBuildDT.UseVisualStyleBackColor = true;
-            this.cmdBuildDT.Click += new System.EventHandler(this.cmdBuildDT_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -251,7 +242,7 @@ namespace MelodicBanjoArranger
             // 
             // cmdCreateArrangemenets
             // 
-            this.cmdCreateArrangemenets.Location = new System.Drawing.Point(1491, 935);
+            this.cmdCreateArrangemenets.Location = new System.Drawing.Point(1492, 1000);
             this.cmdCreateArrangemenets.Margin = new System.Windows.Forms.Padding(7);
             this.cmdCreateArrangemenets.Name = "cmdCreateArrangemenets";
             this.cmdCreateArrangemenets.Size = new System.Drawing.Size(289, 51);
@@ -275,6 +266,9 @@ namespace MelodicBanjoArranger
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.chkAutoTrans);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.txtEndNodePerStart);
             this.tabPage1.Controls.Add(this.cmdBuildDT2);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label12);
@@ -301,7 +295,6 @@ namespace MelodicBanjoArranger
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.cmdCreateArrangemenets);
             this.tabPage1.Controls.Add(this.txtTranspose);
-            this.tabPage1.Controls.Add(this.cmdBuildDT);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txtNoteMatch);
@@ -319,7 +312,7 @@ namespace MelodicBanjoArranger
             // 
             // cmdBuildDT2
             // 
-            this.cmdBuildDT2.Location = new System.Drawing.Point(1708, 859);
+            this.cmdBuildDT2.Location = new System.Drawing.Point(1489, 935);
             this.cmdBuildDT2.Margin = new System.Windows.Forms.Padding(7);
             this.cmdBuildDT2.Name = "cmdBuildDT2";
             this.cmdBuildDT2.Size = new System.Drawing.Size(205, 51);
@@ -369,7 +362,7 @@ namespace MelodicBanjoArranger
             // 
             // cmdStopDT
             // 
-            this.cmdStopDT.Location = new System.Drawing.Point(2014, 1039);
+            this.cmdStopDT.Location = new System.Drawing.Point(2317, 1084);
             this.cmdStopDT.Margin = new System.Windows.Forms.Padding(7);
             this.cmdStopDT.Name = "cmdStopDT";
             this.cmdStopDT.Size = new System.Drawing.Size(175, 83);
@@ -414,11 +407,11 @@ namespace MelodicBanjoArranger
             this.txtCostLimit.Name = "txtCostLimit";
             this.txtCostLimit.Size = new System.Drawing.Size(228, 35);
             this.txtCostLimit.TabIndex = 33;
-            this.txtCostLimit.Text = "8";
+            this.txtCostLimit.Text = "2";
             // 
             // cmdBestArrangements
             // 
-            this.cmdBestArrangements.Location = new System.Drawing.Point(1496, 1011);
+            this.cmdBestArrangements.Location = new System.Drawing.Point(1489, 1065);
             this.cmdBestArrangements.Margin = new System.Windows.Forms.Padding(7);
             this.cmdBestArrangements.Name = "cmdBestArrangements";
             this.cmdBestArrangements.Size = new System.Drawing.Size(289, 78);
@@ -639,6 +632,37 @@ namespace MelodicBanjoArranger
             this.cmdListBest.UseVisualStyleBackColor = true;
             this.cmdListBest.Click += new System.EventHandler(this.cmdDTShow_Click);
             // 
+            // txtEndNodePerStart
+            // 
+            this.txtEndNodePerStart.Location = new System.Drawing.Point(2317, 1035);
+            this.txtEndNodePerStart.Margin = new System.Windows.Forms.Padding(7);
+            this.txtEndNodePerStart.Name = "txtEndNodePerStart";
+            this.txtEndNodePerStart.Size = new System.Drawing.Size(228, 35);
+            this.txtEndNodePerStart.TabIndex = 43;
+            this.txtEndNodePerStart.Text = "10";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1876, 1041);
+            this.label14.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(416, 29);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "Num of Finished nodes per start node";
+            // 
+            // chkAutoTrans
+            // 
+            this.chkAutoTrans.AutoSize = true;
+            this.chkAutoTrans.Checked = true;
+            this.chkAutoTrans.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoTrans.Location = new System.Drawing.Point(1489, 810);
+            this.chkAutoTrans.Name = "chkAutoTrans";
+            this.chkAutoTrans.Size = new System.Drawing.Size(353, 33);
+            this.chkAutoTrans.TabIndex = 45;
+            this.chkAutoTrans.Text = "Auto Transpose Out of range";
+            this.chkAutoTrans.UseVisualStyleBackColor = true;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
@@ -681,7 +705,6 @@ namespace MelodicBanjoArranger
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button cmdBuildDT;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button cmdCreateDTGraph;
         private System.Windows.Forms.TextBox txtFileName;
@@ -721,6 +744,9 @@ namespace MelodicBanjoArranger
         private Label label12;
         private TextBox txtCurrentNotePosition;
         private Button cmdBuildDT2;
+        private Label label14;
+        private TextBox txtEndNodePerStart;
+        private CheckBox chkAutoTrans;
     }
 }
 

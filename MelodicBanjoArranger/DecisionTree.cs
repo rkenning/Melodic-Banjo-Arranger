@@ -15,6 +15,7 @@ namespace MelodicBanjoArranger
         public int cost { get; set; }
         public MatchNote NoteDetails { get; set; }
         public int? tree_index { get; set; }
+        public Boolean Excluded { get; set; } = false;
         
 
         public note_node()
