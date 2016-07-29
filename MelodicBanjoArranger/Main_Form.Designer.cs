@@ -51,6 +51,9 @@ namespace MelodicBanjoArranger
             this.cmdCreateArrangemenets = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkAutoTrans = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtEndNodePerStart = new System.Windows.Forms.TextBox();
             this.cmdBuildDT2 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -82,9 +85,6 @@ namespace MelodicBanjoArranger
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataListBestNodes = new System.Windows.Forms.DataGridView();
             this.cmdListBest = new System.Windows.Forms.Button();
-            this.txtEndNodePerStart = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.chkAutoTrans = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -223,7 +223,7 @@ namespace MelodicBanjoArranger
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(753, 35);
             this.txtFileName.TabIndex = 20;
-            this.txtFileName.Text = "Dance10.mid";
+            this.txtFileName.Text = "bwv772.mid";
             // 
             // openFileDialog1
             // 
@@ -309,6 +309,37 @@ namespace MelodicBanjoArranger
             this.tabPage1.Text = "Initial Stuff";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // chkAutoTrans
+            // 
+            this.chkAutoTrans.AutoSize = true;
+            this.chkAutoTrans.Checked = true;
+            this.chkAutoTrans.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoTrans.Location = new System.Drawing.Point(1489, 810);
+            this.chkAutoTrans.Name = "chkAutoTrans";
+            this.chkAutoTrans.Size = new System.Drawing.Size(353, 33);
+            this.chkAutoTrans.TabIndex = 45;
+            this.chkAutoTrans.Text = "Auto Transpose Out of range";
+            this.chkAutoTrans.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1876, 1041);
+            this.label14.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(416, 29);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "Num of Finished nodes per start node";
+            // 
+            // txtEndNodePerStart
+            // 
+            this.txtEndNodePerStart.Location = new System.Drawing.Point(2317, 1035);
+            this.txtEndNodePerStart.Margin = new System.Windows.Forms.Padding(7);
+            this.txtEndNodePerStart.Name = "txtEndNodePerStart";
+            this.txtEndNodePerStart.Size = new System.Drawing.Size(228, 35);
+            this.txtEndNodePerStart.TabIndex = 43;
+            this.txtEndNodePerStart.Text = "10";
             // 
             // cmdBuildDT2
             // 
@@ -631,37 +662,6 @@ namespace MelodicBanjoArranger
             this.cmdListBest.Text = "Show Best Nodes";
             this.cmdListBest.UseVisualStyleBackColor = true;
             this.cmdListBest.Click += new System.EventHandler(this.cmdDTShow_Click);
-            // 
-            // txtEndNodePerStart
-            // 
-            this.txtEndNodePerStart.Location = new System.Drawing.Point(2317, 1035);
-            this.txtEndNodePerStart.Margin = new System.Windows.Forms.Padding(7);
-            this.txtEndNodePerStart.Name = "txtEndNodePerStart";
-            this.txtEndNodePerStart.Size = new System.Drawing.Size(228, 35);
-            this.txtEndNodePerStart.TabIndex = 43;
-            this.txtEndNodePerStart.Text = "10";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1876, 1041);
-            this.label14.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(416, 29);
-            this.label14.TabIndex = 44;
-            this.label14.Text = "Num of Finished nodes per start node";
-            // 
-            // chkAutoTrans
-            // 
-            this.chkAutoTrans.AutoSize = true;
-            this.chkAutoTrans.Checked = true;
-            this.chkAutoTrans.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoTrans.Location = new System.Drawing.Point(1489, 810);
-            this.chkAutoTrans.Name = "chkAutoTrans";
-            this.chkAutoTrans.Size = new System.Drawing.Size(353, 33);
-            this.chkAutoTrans.TabIndex = 45;
-            this.chkAutoTrans.Text = "Auto Transpose Out of range";
-            this.chkAutoTrans.UseVisualStyleBackColor = true;
             // 
             // Main_Form
             // 

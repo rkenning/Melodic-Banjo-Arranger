@@ -91,9 +91,9 @@ namespace MelodicBanjoArranger
         {
             //Testing Calls to work through the setup of DT, Arrangements etc..
 
-            update_arrangement(chkAutoTrans.CheckState);
+            //update_arrangement(chkAutoTrans.CheckState);
             //Set the last note in the collection to true
-            MatchNotes.set_last_match();
+            //MatchNotes.set_last_match();
             //cmdBuildDT_Click(sender, e);
             //cmdBuildDT2_Click(sender, e);
             //cmdCosts_Click(sender, e);
@@ -199,6 +199,8 @@ namespace MelodicBanjoArranger
                     + temp.banjoString + ":" + "Fret Number " + temp.fret + " Note name:" + temp.notename + "\r\n";
 
             };
+            MatchNotes.set_last_match();
+
         }
 
         private void cmdArrange_Click(object sender, EventArgs e)

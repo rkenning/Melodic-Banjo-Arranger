@@ -199,7 +199,7 @@ namespace MelodicBanjoArranger
                 if (note_matched_ == false)
                 {
 
-                    Logging.Update_Status("Note :" + temp1.ToString() + " cannot be matched");
+                    Logging.Update_Status("Note :" + temp1.noteNumber.ToString() + " cannot be matched");
                     //return matchingresults;
                     //throw new System.ArgumentException("Some notes cannot be match with this tranposition", "original");
                 }

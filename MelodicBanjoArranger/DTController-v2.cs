@@ -156,6 +156,7 @@ namespace MelodicBanjoArranger
                         if (temp_node.NoteDetails.position == MatchNotes.get_last_note_position())
                         {
                             currentEndCount_ += 1;
+                            Logging.Update_Status("End note found :" + currentEndCount_.ToString());
                             return;
 
                         }
