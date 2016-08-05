@@ -328,7 +328,7 @@ namespace MelodicBanjoArranger
                 //call method to render the Tab Creation
 
                 //Create a new tab view form and pass the AlphaText to the control
-                TabView TabForm = new TabView();
+                TabForm TabForm = new TabForm();
                 TabForm.InternalOpenFile(array);
                 TabForm.Show();
 
@@ -367,7 +367,7 @@ namespace MelodicBanjoArranger
             byte[] array = Encoding.ASCII.GetBytes(this.txtAlphaMarkup.Text);
 
             //Create a new tab view form and pass the AlphaText to the control
-            TabView TabForm = new TabView();
+            TabForm TabForm = new TabForm();
             TabForm.InternalOpenFile(array);
             TabForm.Show();
         }
@@ -453,6 +453,9 @@ namespace MelodicBanjoArranger
 
             //Create a new Decision Tree Object
             DTData_result.Clear();
+            DTData_result = null;
+           
+
 
             Logging.Update_Status("Starting DT Building Process");
             cts = new CancellationTokenSource();

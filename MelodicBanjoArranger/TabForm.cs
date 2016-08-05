@@ -13,25 +13,12 @@ using AlphaTab.Model;
 
 namespace MelodicBanjoArranger
 {
-    public partial class TabView : Form
+    public partial class TabForm : Form
     {
-        public TabView()
-        {
-            InitializeComponent();
-        }
 
-        private void TabView_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        //Alpha TAB Stuff Below
-        //=========================
-        //TO DO This all needs to be moved to somewhere better than in the main form code
 
         private Score _score;
         private int _currentTrackIndex;
-
         #region Score Data
 
         public Score Score
@@ -72,6 +59,11 @@ namespace MelodicBanjoArranger
 
         #endregion
 
+        public TabForm()
+        {
+            InitializeComponent();
+        }
+
         #region Score Loading
 
         public void InternalOpenFile(byte[] data)
@@ -92,12 +84,5 @@ namespace MelodicBanjoArranger
 
         #endregion
 
-        private void cmdClose_Click(object sender, EventArgs e)
-        {
-
-            this.alphaTabControl1.SuspendLayout();
-            this.alphaTabControl1.Dispose();                
-            this.Dispose();
-        }
     }
 }

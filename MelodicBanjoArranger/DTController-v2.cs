@@ -18,6 +18,8 @@ namespace MelodicBanjoArranger
         public  static List<note_node> Process_Route_Notes(List<MatchNote> matchingresults, int cost_limit, int max_end_notes, CancellationToken cts)
         {
 
+            BestNodes.Clear();
+
             //First sort the list by fret & include only the root notes list into 
             List<MatchNote> Root_Notes = matchingresults
                 .Where(f => f.position == MatchNotes.get_first_note_position())

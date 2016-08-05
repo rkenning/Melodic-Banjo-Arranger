@@ -156,7 +156,7 @@ namespace MelodicBanjoArranger
             this.txtTranspose.Name = "txtTranspose";
             this.txtTranspose.Size = new System.Drawing.Size(228, 35);
             this.txtTranspose.TabIndex = 9;
-            this.txtTranspose.Text = "-12";
+            this.txtTranspose.Text = "-4";
             // 
             // contextMenuStrip1
             // 
@@ -339,7 +339,7 @@ namespace MelodicBanjoArranger
             this.txtEndNodePerStart.Name = "txtEndNodePerStart";
             this.txtEndNodePerStart.Size = new System.Drawing.Size(228, 35);
             this.txtEndNodePerStart.TabIndex = 43;
-            this.txtEndNodePerStart.Text = "10";
+            this.txtEndNodePerStart.Text = "2";
             // 
             // cmdBuildDT2
             // 

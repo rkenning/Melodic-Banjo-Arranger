@@ -10,6 +10,12 @@ namespace MelodicBanjoArranger
     {
         private static Dictionary<long, note_node> DicBestNodes = new Dictionary<long, note_node>();
 
+
+        public static void Clear()
+        {
+            DicBestNodes.Clear();
+        }
+
         public static note_node get_node(long position)
         {
             return DicBestNodes[position];

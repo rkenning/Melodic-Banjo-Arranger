@@ -1,6 +1,6 @@
 ﻿namespace MelodicBanjoArranger
 {
-    partial class TabView
+    partial class TabForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmdClose = new System.Windows.Forms.Button();
+            this.alphaTabControl1 = new AlphaTab.Platform.CSharp.WinForms.AlphaTabControl();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // alphaTabControl1
+            // panel1
             // 
-            this.alphaTabControl1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.alphaTabControl1.Location = new System.Drawing.Point(287, 3);
-            this.alphaTabControl1.Name = "alphaTabControl1";
-            this.alphaTabControl1.Size = new System.Drawing.Size(316, 157);
-            this.alphaTabControl1.TabIndex = 0;
-            this.alphaTabControl1.Text = "alphaTabControl1";
-            this.alphaTabControl1.Track = null;
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(98)))), ((int)(((byte)(99)))));
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1877, 1097);
+            this.panel1.TabIndex = 3;
             // 
             // tableLayoutPanel1
             // 
@@ -51,44 +55,46 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.alphaTabControl1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1406, 0);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1877, 364);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // cmdClose
+            // alphaTabControl1
             // 
-            this.cmdClose.Location = new System.Drawing.Point(1319, 3);
-            this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(75, 23);
-            this.cmdClose.TabIndex = 2;
-            this.cmdClose.Text = "Close";
-            this.cmdClose.UseVisualStyleBackColor = true;
-            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+            this.alphaTabControl1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.alphaTabControl1.Location = new System.Drawing.Point(570, 7);
+            this.alphaTabControl1.Margin = new System.Windows.Forms.Padding(7);
+            this.alphaTabControl1.Name = "alphaTabControl1";
+            this.alphaTabControl1.Size = new System.Drawing.Size(737, 350);
+            this.alphaTabControl1.TabIndex = 0;
+            this.alphaTabControl1.Text = "alphaTabControl1";
+            this.alphaTabControl1.Track = null;
             // 
-            // TabView
+            // TabForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1406, 657);
-            this.Controls.Add(this.cmdClose);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.alphaTabControl1);
-            this.Name = "TabView";
-            this.Text = "TabView";
-            this.Load += new System.EventHandler(this.TabView_Load);
+            this.ClientSize = new System.Drawing.Size(1877, 1097);
+            this.Controls.Add(this.panel1);
+            this.Name = "TabForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private AlphaTab.Platform.CSharp.WinForms.AlphaTabControl alphaTabControl1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button cmdClose;
+        private AlphaTab.Platform.CSharp.WinForms.AlphaTabControl alphaTabControl1;
     }
 }
